@@ -1,0 +1,28 @@
+.health {
+    padding-top: 30px;
+    /* position: relative; */
+    font-weight: 550;
+    font-size: 58px;
+    text-align: left;
+
+  }
+  .content-container {
+    padding-top: 20px;
+  }
+
+  .deli {
+    position: absolute;
+    top: 82%;
+    left: 45%;
+    transform: translate(-40%, -40%);
+  }
+  /* .centeredds {
+    position: absolute;
+    top: 82%;
+    left: 85%;
+    transform: translate(-40%, -40%);
+  } */
+ 
+  
+  
+  

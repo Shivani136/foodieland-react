@@ -1,0 +1,20 @@
+.banner {
+    padding-top: 140px;
+    font-size: 70px;
+    font-weight: bolder;
+  }
+  
+  
+  .centere {
+    position: absolute;
+    top: 180%;
+    left: 45%;
+    transform: translate(-40%, -40%);
+  }
+  
+  .centeredd {
+    position: absolute;
+    top: 82%;
+    left: 80%;
+    transform: translate(-40%, -40%);
+  }

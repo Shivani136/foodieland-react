@@ -1,0 +1,28 @@
+body {
+    background: #ffffff;
+    /* background: linear-gradient(to right, #e98718, #f7c18f); */
+  }
+  
+  .card-img-left {
+    width: 55%;
+    /* Link to your background image using in the property below! */
+    background: scroll center url('https://environment-review.yale.edu/sites/default/files/styles/flexslider_full/public/healthy_food.png?itok=yBY6BGmy');
+    
+    background-size: cover;
+  }
+  
+  .btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+  }
+  
+  .btn-google {
+    color: white !important;
+    background-color: #ea4335;
+  }
+  
+  .btn-facebook {
+    color: white !important;
+    background-color: #3b5998;
+  }
