@@ -25,7 +25,7 @@ function BlogList() {
     async function fetchData() {
 
         await axios.get('/getAllBlog')
-        .then((response) => { setData(response.data) })
+            .then((response) => { setData(response.data) })
         //.then((response) => { console.log(response.data) });
 
     }
@@ -46,7 +46,7 @@ function BlogList() {
     const user = student.data._id
 
     function blogdelete(_id) {
- 
+        alert(_id, "id")
         const temp = {
 
             blogId: _id,
@@ -65,7 +65,7 @@ function BlogList() {
     }
 
     function blogapproved(_id) {
-     
+
         const temp = {
 
             blogId: _id,
@@ -87,10 +87,10 @@ function BlogList() {
     }
 
     function blogunapproved(_id) {
-     
+
         const temp = {
 
-            blogId : _id,
+            blogId: _id,
             ownerId: user
         }
         console.log(temp, "temp")
@@ -129,31 +129,34 @@ function BlogList() {
                                 <th scope="col">BLOG UPDATE</th>
                                 <th scope="col"> BLOG DELETE</th>
                                 <th scope="col"> Status </th>
+                                <th scope="col"> Blog Detail Page </th>
                             </tr>
                         </thead>
                         <tbody>
 
 
                             {
-                                data.map((item, index)=> {
+                                data.map((item, index) => {
 
 
-                                    console.log("gdghdfgsgf",item._id)
+                                    console.log("gdghdfgsgf", item._id)
                                     return (
 
                                         <tr key={index} value={item._id}>
                                             <td scope="row">{item.title}
-                                            <br>
-                                            {/* {item._id} */}
-                                            </br>
+                                                <br>
+                                                    {/* {item._id} */}
+                                                </br>
                                             </td>
-                                            <td scope="row">{item.subTitle}{item._id}</td>
+                                            <td scope="row">{item.subTitle}
+                                                {/* {item._id} */}
+                                            </td>
                                             <td scope="row">{item.description}</td>
 
 
                                             <td scope='row'>
 
-                                                <img src={`http://localhost:8001/${item.image}`} alt="fftgh" style={{ width: "200px", height: "200px" }} />
+                                                <img src={`https://foodielandnod.herokuapp.com/${item.image}`} alt="fftgh" style={{ width: "150px", height: "150px" }} />
                                             </td>
                                             <td scope="row">
 
@@ -185,6 +188,25 @@ function BlogList() {
                                                     </div>
                                                 </div>
 
+                                            </td>
+                                            <td>
+
+
+                                                <a href='blogdetailpage' onClick={() => selectUser(item._id)}>
+
+                                                    <p>{item._id}</p>
+                                                    <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">View Detail</button>
+
+
+                                                </a>
+
+                                                {/* <a href={`/blogdetailpage/${item._id}`} onClick={() => selectUser(item._id)}>
+
+                                                    <p>{item._id}</p>
+                                                    <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">View Detail</button>
+
+
+                                                </a> */}
                                             </td>
 
                                         </tr>

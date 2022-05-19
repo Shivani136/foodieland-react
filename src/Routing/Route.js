@@ -29,6 +29,7 @@ import UserListTemp from '../Component/User/UserListTemp'
 import Contact from '../Component/Contact';
 import About from '../Component/About';
 import Home from '../Component/Home';
+import Newslider from '../Component/Newslider';
 
 function Routing() {
 
@@ -66,6 +67,7 @@ function Routing() {
         <Route path="/table" element={<Table />} />
         <Route path="/about" element={<About />} />
         <Route path="/home" element={<Home/>} />
+        <Route path="/new" element={<Newslider/>} />
         {/* <Route path="*" element={<NoPage />} />  */}
 
       </Routes>

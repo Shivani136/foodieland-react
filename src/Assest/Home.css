@@ -21,3 +21,9 @@
     left: 80%;
     transform: translate(-40%, -40%);
   }
+  /* .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 100%;
+      margin: auto;
+  }
+.container {width: 980px !important;} */

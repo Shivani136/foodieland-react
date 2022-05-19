@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wbGVAZ21haWwuY29tIiwiX2lkIjoiNjIzYWExOWM1OGQ4ZjNkNjY0NTNhODMwIiwiaWF0IjoxNjQ4MDEwNDY1LCJleHAiOjE2NDgwOTY4NjV9.5sx18PmtGWbnBNdOLAu2yGm8HPkv_7znvUw9-fEeRPQ"
-const apiUrl = 'http://localhost:8001/api/'
+const apiUrl = 'https://foodielandnod.herokuapp.com/api/'
 
 const authAxios = axios.create({
   baseURL: apiUrl,
@@ -38,6 +38,8 @@ authAxios.post('/addContactDetails')
 authAxios.post('/subscribe')
 authAxios.get('/searchBlog')
 authAxios.get('/searcRecipe')
+authAxios.get('/popularRecipes')
+authAxios.get('/popularBlog')
 
 export const api = `${apiUrl}/signIn`; 
 export const AllUser = `${apiUrl}/getAllUsers`; 
@@ -67,3 +69,5 @@ export const AddContact  = `${apiUrl}/addContactDetails`;  //
 export const Subscribe  = `${apiUrl}/subscribe`;  //
 export const SearchBlog  = `${apiUrl}/searchBlog`;  //
 export const SearchRecepi  = `${apiUrl}/searcRecipe`;  //
+export const PopularRecipes  = `${apiUrl}/popularRecipes`;  //
+export const PopularBlog  = `${apiUrl}/popularBlog`;  //

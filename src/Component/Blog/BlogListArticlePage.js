@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import '../../Assest/Blogarticle.css'
-import { GetAllBlog, Subscribe, SearchBlog, GetAllRecipe } from '../../Config/Commonapi';
+import { GetAllBlog, Subscribe, SearchBlog, GetAllRecipe, PopularRecipes } from '../../Config/Commonapi';
 
 function BlogListArticlePage() {
   const [data, setData] = useState([]);
@@ -68,15 +68,15 @@ function BlogListArticlePage() {
 
   async function demo() {
 
-    await axios.get('/v1/getallrecipes?limit=3&skip=0')
+    await axios.get('popularRecipes')
       .then((response) => { setList(response.data) })
     //.then((response) => { console.log(response.data) });
 
   }
 
   console.log('list', list)
-  const temp = list.slice(0, 3)
-  console.log("============", temp)
+  // const temp = list.slice(0, 3)
+  // console.log("============", temp)
 
   return (
     <div>
@@ -94,10 +94,10 @@ function BlogListArticlePage() {
                   <a class="nav-link mr-sm-4 ml-5" href="/home">Home </a>
                 </li>
                 <li class="nav-item ml-5">
-                  <a class="nav-link active mr-sm-4" href="/recepi">Recipes</a>
+                  <a class="nav-link active mr-sm-4" href="/recepilist">Recipes</a>
                 </li>
                 <li class="nav-item active ml-5">
-                  <a class="nav-link mr-sm-4" href="/blogdetailpage">Blog</a>
+                  <a class="nav-link mr-sm-4" href="/bloglist">Blog</a>
                 </li>
                 <li class="nav-item ml-5">
                   <a class="nav-link active mr-sm-4" href="/contact">Contact</a>
@@ -153,7 +153,7 @@ function BlogListArticlePage() {
                       <div class="row">
                         <div class="col pb-3">
                           <div class="">
-                            <img src={`http://localhost:8001/${item.image}`} alt="fftgh" style={{ width: "350px", height: "200px" }} />
+                            <img src={`https://foodielandnod.herokuapp.com/${item.image}`} alt="fftgh" style={{ width: "350px", height: "200px" }} />
                           </div>
 
                         </div>
@@ -163,7 +163,7 @@ function BlogListArticlePage() {
                           <div class="row">
                             <div class="col float-right">
                               <p class="text-dark font-weight-bold">
-                                <img src={`http://localhost:8001/${item.userId.Image}`} alt="fftgh"
+                                <img src={`https://foodielandnod.herokuapp.com/${item.userId.Image}`} alt="fftgh"
                                   style={{ width: "50px", height: "50px" }} />
                                 {item.userId.firstName}
                               </p>
@@ -185,17 +185,18 @@ function BlogListArticlePage() {
             {/* get all recepi api apply here */}
             <div class="col-4 float-left">
               <h2 class="float-left pb-3 mr-5">Tasty Recepis</h2>
-              {
-                temp.map((item, index) => {
-                  console.log("gdghdfgsgf", temp)
-                  return (
-                    <div>
-                      <p key={index} value={item._id}> </p>
-                      <div class="row float-left pb-4">
+              <div class="row float-left pb-4">
+
+                {
+                  list.map((item, index) => {
+                    console.log(">>>>>>>>>>>", list)
+                    return (
+                      <div>
+                        <p key={index} value={item._id}> </p>
 
                         <div class="col -4 pb-4">
-                          {/* {item.pageContent[0].recipeId.image} */}
-                          <img src={`http://localhost:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "200px", height: "150px" }} />
+
+                          <img src={`https://foodielandnod.herokuapp.com/${item.recipeId.image}`} alt="fftgh" style={{ width: "200px", height: "150px" }} />
                         </div>
 
                         <div class="col float-left pb-3">
@@ -204,13 +205,14 @@ function BlogListArticlePage() {
                         </div>
 
 
-                      
-
                       </div>
-                    </div>
-                  )
-                })
-              }
+
+
+
+                    )
+                  })
+                }
+              </div>
               <div class="col pt-2 float-left">
                 <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
                   alt="des" style={{ height: '350px', width: "400px" }} class="rounded-lg" />
@@ -253,7 +255,7 @@ function BlogListArticlePage() {
 
       {/* footer */}
 
-      <div class="navbar navbar-expand-lg navbar navbar-light bg-light pt-1 pb-3">
+      <div class="navbar navbar-expand-lg navbar navbar-light bg-light pt-5 pb-5 border-bottom">
         <div class="container-fluid pb-4">
           <div class="float-left ">
 
@@ -291,7 +293,7 @@ function BlogListArticlePage() {
 
       </div>
 
-      <div class=" navbar-expand-lg navbar navbar-light bg-light pb-4 ">
+      <div class=" navbar-expand-lg navbar navbar-light bg-light pb-5  pt-5">
         <div class="container-fluid pt-1">
           <div class="mx-auto bg-light text-muted">
             <h5> @2020 Flowbase.Powered by <span className='text-danger'>Webflow</span> </h5>
@@ -317,6 +319,7 @@ function BlogListArticlePage() {
 
         </div>
       </div>
+
 
     </div>
 

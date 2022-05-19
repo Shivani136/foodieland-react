@@ -43,7 +43,7 @@ function CategoryUpdate() {
     }
     console.log(">>>>>>>>>", _id)
     console.warn("item", item, "oddd")
-    axios.put(`http://localhost:8001/api/updateCategory?id=${_id}`, formData).then(
+    axios.put(`https://foodielandnod.herokuapp.com/api/updateCategory?id=${_id}`, formData).then(
       res => {
         console.log(res, "itennmmmmmmmmmmm", item)
       }

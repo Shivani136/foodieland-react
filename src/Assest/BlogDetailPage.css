@@ -6,11 +6,16 @@
 
   .blog {
     position: absolute;
+    top: 550%;
+    left: 45%;
+    transform: translate(-40%, -40%);
+  }
+  .blogs {
+    position: absolute;
     top: 340%;
     left: 45%;
     transform: translate(-40%, -40%);
   }
-  
   .centeredd {
     position: absolute;
     top: 82%;

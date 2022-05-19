@@ -24,17 +24,17 @@ function RecepiList() {
 
     }
 
-    function selectUser(id) {
-        let index;
-        let item = data[id - 1];
-        setTitle(item.pageContent[index].recipeId.title)
-        setDescription(item.pageContent[index].recipeId.description)
-        setCookTime(item.pageContent[index].recipeId.cookTime)
-        setPrepTime(item.pageContent[index].recipeId.prepTime)
-        setCategoryId(item.pageContent[index].recipeId.categoryId)
-        setImage(item.pageContent[index].recipeId.image)
+    function selectUser(_id) {
+        let recipeId;
+        let item = data[_id - 1];
+        // setTitle(item.recipeId.title)
+        // setDescription(item.recipeId.description)
+        // setCookTime(item.recipeId.cookTime)
+        // setPrepTime(item.recipeId.prepTime)
+        // setCategoryId(item.recipeId.categoryId)
+        // setImage(item.recipeId.image)
 
-        _setId(item.pageContent[index].recipeId.id)
+        _setId(item._id)
     }
 
     console.log("gdghdfgsgf", data)
@@ -178,9 +178,9 @@ function RecepiList() {
                                                 <td scope="row">{item.recipeId.description}</td>
 
                                                 <td scope="row">{item.recipeId.cookTime}
-                                                <br/>
+                                                {/* <br/>
                                                 <td scope="row">{item.recipeId._id}</td>
-                                                <td scope="row">{item.recipeId.categoryId._id}</td>
+                                                <td scope="row">{item.recipeId.categoryId._id}</td> */}
                                                 </td>
                                                 <td scope="row">{item.recipeId.prepTime}
 
@@ -189,7 +189,7 @@ function RecepiList() {
 
                                                 <td scope='row'>
 
-                                                    <img src={`http://localhost:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "200px", height: "200px" }} />
+                                                    <img src={`https://foodielandnod.herokuapp.com/${item.recipeId.image}`} alt="fftgh" style={{ width: "180px", height: "150px" }} />
                                                 </td>
                                                 <td scope="row">
 
@@ -212,7 +212,7 @@ function RecepiList() {
 
                                                     <div class="container" >
                                                         <div class="dropdown">
-                                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{item.status}Pending
+                                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{item.recipeId.status}
                                                             </button>
                                                             <ul class="dropdown-menu">
                                                                 <li><a class="dropdown" onClick={() => recepiapproved(item.recipeId._id)}>Approved</a></li>
@@ -225,7 +225,8 @@ function RecepiList() {
 
                                                 </td>
                                                 <td>
-                                                    <a href='/recepi' onClick={() => selectUser(item.id)}>
+               
+                                                    <a href={`/recepi/${item._id}`} onClick={() => selectUser(item._id)}>
 
 
                                                         <button className="btn btn-outline-primary ml-2 my-2 my-sm-0" >View Detail</button>

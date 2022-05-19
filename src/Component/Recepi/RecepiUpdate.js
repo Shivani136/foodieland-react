@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { EditRecipe ,AllCategory  } from '../../Config/Commonapi';
+import { EditRecipe, AllCategory } from '../../Config/Commonapi';
 
 function RecepiUpdate() {
- const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
+  const [list, setList] = useState([]);
   const [image, setImage] = useState([]);
   const [video, setVideo] = useState([]);
   const [cookTime, setCookTime] = useState("");
@@ -13,25 +14,27 @@ function RecepiUpdate() {
   const [categoryId, setCategoryId] = useState("");
   const [_id, _setId] = useState(null);
 
- useEffect(() => {
+  useEffect(() => {
     fetchData();
   }, []);
   async function fetchData() {
 
     await axios.get('/getAllCategory')
-     .then((response) => { setData(response.data) })
+      .then((response) => { setList(response.data) })
     //.then((response) => { console.log(response.data) });
   }
+
   const saveFile = (e) => {
     setImage(e.target.files[0])
     console.log("imageghgfh ", e.target.files[0])
   }
 
   const saveVideo = (e) => {
-      setVideo(e.target.files[0])
-       console.log("videookh ", e.target.files[0])
-    }
-let index ,item;
+    setVideo(e.target.files[0])
+    console.log("videookh ", e.target.files[0])
+  }
+
+
   useEffect(() => {
     axios.get('/v1/getAllRecipes')
       .then((response) => {
@@ -39,40 +42,42 @@ let index ,item;
         {
           console.log(response.data)
         }
-        setTitle(response.data.pageContent[0].recipeId.title)
-        setDescription(response.data.pageContent[0].recipeId.description)
-        setCookTime(response.data.pageContent[0].recipeId.cookTime)
-        setPrepTime(response.data.pageContent[0].recipeId.prepTime)
-        setCategoryId(response.data.pageContent[0].recipeId.categoryId)
-        setImage(response.data.pageContent[0].recipeId.image)
-       _setId(response.data[0]._id)
+        setTitle(response.data[0].recipeId.title)
+        setDescription(response.data[0].recipeId.description)
+        setCookTime(response.data[0].recipeId.cookTime)
+        setPrepTime(response.data[0].recipeId.prepTime)
+        setCategoryId(response.data[0].categoryId)
+        setImage(response.data[0].recipeId.image)
+        _setId(response.data[0].recipeId._id)
 
       });
- 
+
   }, []);
 
 
-  function selectUser(id) {
-    let item = data[id - 1];
-    setTitle(item.title)
-    setDescription(item.description)
-    setCookTime(item.cookTime)
-    setPrepTime(item.prepTime)
-    setImage(item.image)
-  //   setVideo(item.video)
-   setCategoryId(item.categoryId)
-    _setId(item.id)
+  // function selectUser(id) {
+  //   let item = data[id - 1];
+  //   setTitle(item.title)
+  //   setDescription(item.description)
+  //   setCookTime(item.cookTime)
+  //   setPrepTime(item.prepTime)
+  //   setImage(item.image)
+  // //   setVideo(item.video)
+  //  setCategoryId(item.categoryId)
+  //   _setId(item.id)
 
-  }
+  // }
 
   function Update(e) {
     e.preventDefault();
     console.log(Image, "imagess")
-    let pageContent ;
-    
+
+
     let formData = new FormData();
-    let item = { cookTime, prepTime, title, description, image ,video, categoryId }
-    alert(item.pageContent[index].recipeId._id, "this is id ");
+    let item = { cookTime, prepTime, title, description, image, video, categoryId }
+    let recipeId;
+    // alert(_id, "this is id ");
+    alert(_id, "this is id ");
 
 
     for (var key in item) {
@@ -81,7 +86,7 @@ let index ,item;
     }
     console.log(">>>>>>>>>", _id)
     console.warn("item", item, "oddd")
-    axios.put(`http://localhost:8001/api/editRecipe?id=${_id}`, formData).then(
+    axios.put(`https://foodielandnod.herokuapp.com/api/editRecipe?id=${_id}`, formData).then(
       res => {
         console.log(res, "itennmmmmmmmmmmm", item)
       }
@@ -96,7 +101,7 @@ let index ,item;
 
   console.log(EditRecipe, "EditRecipe")
   return (
- 
+
     <div>
       <div class="container">
         <div class="row">
@@ -132,27 +137,27 @@ let index ,item;
 
 
                   <div class="form-floating mb-3 ">
-               
-               <div class="form-group" value={categoryId} onChange={(e) => { setCategoryId(e.target.value) }} required autofocus>
-               <label class="float-left">Category ID</label>
-                 <select class="form-control" name="category">
-                   <>
-            
-                       <option defaultValue></option>
-                         {data.map((item, index) => (
-                           console.log(item.categoryName,"gitruyrt9"),
-                           <option key={index} value={item._id}>
-                             {item.categoryName}
-                           </option>
-                         ))}
-                      </>
-                 </select>
-                 
-                </div>
-             </div>
-                
 
-           
+                    <div class="form-group" value={categoryId} onChange={(e) => { setCategoryId(e.target.value) }} required autofocus>
+                      <label class="float-left">Category ID</label>
+                      <select class="form-control" name="category">
+                        <>
+
+                          <option defaultValue></option>
+                          {list.map((item, index) => (
+                            console.log(item.categoryName, "list"),
+                            <option key={index} value={item._id}>
+                              {item.categoryName}
+                            </option>
+                          ))}
+                        </>
+                      </select>
+
+                    </div>
+                  </div>
+
+
+
 
 
                   <div class="form-floating mb-3">

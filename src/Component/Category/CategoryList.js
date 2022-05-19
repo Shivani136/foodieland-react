@@ -40,7 +40,7 @@ function CategoryList() {
         }
         console.log(data, "data")
 
-        // fetch(`http://localhost:8001/api/deleteCategory?categorId=${_id}` ,data,{
+        // fetch(`https://foodielandnod.herokuapp.com/api/deleteCategory?categorId=${_id}` ,data,{
         //     method: 'DELETE',
         //     headers: {
         //       'Accept': 'application/json',
@@ -89,7 +89,7 @@ function CategoryList() {
                                             </td>
                                             <td scope='row'>
 
-                                                <img src={`http://localhost:8001/${item.image}`} alt="fftgh" style={{ width: "200px", height: "200px" }} />
+                                                <img src={`https://foodielandnod.herokuapp.com/${item.image}`} alt="fftgh" style={{ width: "110px", height: "110px" }} />
                                             </td>
                                             <td scope="row">
                                                 <a href="/categoryupdate" onClick={() => selectUser(item.id)}>
