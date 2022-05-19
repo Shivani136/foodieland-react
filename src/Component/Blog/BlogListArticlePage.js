@@ -153,7 +153,7 @@ function BlogListArticlePage() {
                       <div class="row">
                         <div class="col pb-3">
                           <div class="">
-                            <img src={`https://foodielandnod.herokuapp.com/${item.image}`} alt="fftgh" style={{ width: "350px", height: "200px" }} />
+                            <img src={`http://95.111.202.157:8001/${item.image}`} alt="fftgh" style={{ width: "350px", height: "200px" }} />
                           </div>
 
                         </div>
@@ -163,7 +163,7 @@ function BlogListArticlePage() {
                           <div class="row">
                             <div class="col float-right">
                               <p class="text-dark font-weight-bold">
-                                <img src={`https://foodielandnod.herokuapp.com/${item.userId.Image}`} alt="fftgh"
+                                <img src={`http://95.111.202.157:8001/${item.userId.Image}`} alt="fftgh"
                                   style={{ width: "50px", height: "50px" }} />
                                 {item.userId.firstName}
                               </p>
@@ -194,14 +194,14 @@ function BlogListArticlePage() {
                       <div>
                         <p key={index} value={item._id}> </p>
 
-                        <div class="col -4 pb-4">
+                        <div class="col-3 pb-4">
 
-                          <img src={`https://foodielandnod.herokuapp.com/${item.recipeId.image}`} alt="fftgh" style={{ width: "200px", height: "150px" }} />
+                          <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "200px", height: "150px" }} />
                         </div>
 
-                        <div class="col float-left pb-3">
-                          <h5 class="pt-3 float-left ">{item.recipeId.description}</h5>
-                          <p class="text-muted ">{item.recipeId.userId.firstName}</p>
+                        <div class="col float-right pb-3 ml-5">
+                          <h5 class="pt-3 float-left ">{item.recipeId.title}</h5>
+                          <p class="text-muted float-left">{item.recipeId.userId.firstName}</p>
                         </div>
 
 

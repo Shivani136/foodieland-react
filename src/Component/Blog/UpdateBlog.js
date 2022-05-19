@@ -11,10 +11,7 @@ function UpdateBlog() {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState([]);
   const [video, setVideo] = useState([]);
-  //  const [blogFAQ, setBlogFAQ] = useState("");
-  // const [blogFAQtitle, setBlogFAQTitle] = useState("");
-  // const [blogFAQdescription, setBlogFAQDescription] = useState("");
-  // const [blogFAQimage, setBlogFAQImage] = useState([]);
+
   const [_id, _setId] = useState(null);
 
   const saveFile = (e) => {
@@ -22,10 +19,7 @@ function UpdateBlog() {
     console.log("imageghgfh ", e.target.files[0])
   }
 
-  // const blogImage = (e) => {
-  //   setBlogFAQImage(e.target.files[0])
-  //   console.log("blog image ", e.target.files[0])
-  // }
+ 
 
   const saveVideo = (e) => {
     setVideo(e.target.files[0])
@@ -57,8 +51,7 @@ function UpdateBlog() {
         _setId(response.data[0]._id)
 
       });
-    // .then(response=> {console.log(response.data)
-    // console.log(data._id,">>>>>>>>>>>>>>")})
+ 
   }, []);
 
  
@@ -76,7 +69,7 @@ function UpdateBlog() {
     }
     console.log(">>>>>>>>>", _id)
     console.warn("item", item, "oddd")
-    axios.put(`https://foodielandnod.herokuapp.com/api/updateBlog?id=${_id}`, formData).then(
+    axios.put(`http://95.111.202.157:8001/api/updateBlog?id=${_id}`, formData).then(
       res => {
         console.log(res, "itennmmmmmmmmmmm", item)
       }
@@ -158,29 +151,8 @@ function UpdateBlog() {
                     <input type="file" class="form-control" onChange={(e) => saveVideo(e)} name="video" required autofocus />
                     <label>Video</label>
                   </div>
-
-
-
-                  {/* <div class="form-floating mb-3">
-                    <input type="text" class="form-control" value={blogFAQtitle} onChange={(e) => { setBlogFAQTitle(e.target.value) }}  />
-                    <label >BlogFAQ Title </label>
-                  </div>
-
-
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" value={blogFAQdescription} onChange={(e) => { setBlogFAQDescription(e.target.value) }}  />
-                    <label >BlogFAQ Description </label>
-                  </div>
-
-
-                  <div class="form-floating mb-3">
-                    <input type="file" class="form-control" onChange={(e) => blogImage(e)} name="image" />
-                    <label >BlogFAQ Image </label>
-                  </div> */}
-
-
-
-                  <div class="d-grid mb-2 pt-2">
+                  
+                <div class="d-grid mb-2 pt-2">
                     <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase">Update Blog</button>
                   </div>
                 </form>

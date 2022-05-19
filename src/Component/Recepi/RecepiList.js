@@ -19,7 +19,7 @@ function RecepiList() {
     async function fetchData() {
 
         await axios.get('/v1/getallrecipes')
-        .then((response) => { setData(response.data) })
+            .then((response) => { setData(response.data) })
         //.then((response) => { console.log(response.data) });
 
     }
@@ -77,7 +77,8 @@ function RecepiList() {
             }).catch(
                 err => {
                     console.log(err)
-                    alert("you are already approved");
+                    fetchData();
+
                 }
             )
     }
@@ -94,7 +95,7 @@ function RecepiList() {
         axios.put('/recipesChangeStatus?status=unapproved', temp).then(
             res => {
                 console.log(res)
-                alert("you are unapproved successfully......");
+                fetchData();
 
             }).catch(
                 err => {
@@ -116,7 +117,8 @@ function RecepiList() {
         axios.put('/recipesChangeStatus?status=draft', temp).then(
             res => {
                 console.log(res)
-                alert("recipe drafted successfully..");
+                fetchData();
+
 
             }).catch(
                 err => {
@@ -126,9 +128,9 @@ function RecepiList() {
             )
     }
 
-     function recepidetail(_id) {
+    function recepidetail(_id) {
         // alert(_id, "id")
-         axios.get(`/recipeDetails?id=${_id}`).then(
+        axios.get(`/recipeDetails?id=${_id}`).then(
             res => {
                 console.log(res)
 
@@ -167,8 +169,8 @@ function RecepiList() {
                                 </tr>
                             </thead>
                             <tbody>
-                                   {
-                                    data.map((item, index)=> {
+                                {
+                                    data.map((item, index) => {
                                         //console.log("gdghdfgsgf", item.pageContent[index].recipeId.title)
                                         return (
 
@@ -178,7 +180,7 @@ function RecepiList() {
                                                 <td scope="row">{item.recipeId.description}</td>
 
                                                 <td scope="row">{item.recipeId.cookTime}
-                                                {/* <br/>
+                                                    {/* <br/>
                                                 <td scope="row">{item.recipeId._id}</td>
                                                 <td scope="row">{item.recipeId.categoryId._id}</td> */}
                                                 </td>
@@ -189,12 +191,12 @@ function RecepiList() {
 
                                                 <td scope='row'>
 
-                                                    <img src={`https://foodielandnod.herokuapp.com/${item.recipeId.image}`} alt="fftgh" style={{ width: "180px", height: "150px" }} />
+                                                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "180px", height: "150px" }} />
                                                 </td>
                                                 <td scope="row">
 
+                                                    <a href={`/recepiupdate/${item._id}`} >
 
-                                                    <a href="/recepiupdate" onClick={() => selectUser(item.recipeId._id)}>
                                                         <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">Edit</button>
 
 
@@ -225,8 +227,8 @@ function RecepiList() {
 
                                                 </td>
                                                 <td>
-               
-                                                    <a href={`/recepi/${item._id}`} onClick={() => selectUser(item._id)}>
+
+                                                    <a href={`/recepi/${item._id}`}>
 
 
                                                         <button className="btn btn-outline-primary ml-2 my-2 my-sm-0" >View Detail</button>

@@ -95,7 +95,7 @@ function UserList() {
         axios.put('/changeStatus?status=approved', temp).then(
             res => {
                 console.log(res)
-                alert("you are approved successfully......");
+                fetchData();
 
             }).catch(
                 err => {
@@ -117,7 +117,8 @@ function UserList() {
         axios.put('/changeStatus?status=unapproved', temp).then(
             res => {
                 console.log(res)
-                alert("you are unapproved successfully......");
+                fetchData();
+
 
             }).catch(
                 err => {
@@ -175,7 +176,7 @@ function UserList() {
 
                                             <td scope='row'>
 
-                                                <img src={`hhttps://foodielandnod.herokuapp.com/${item.Image}`} alt="fftgh" style={{ width: "120px", height: "100px" }} />
+                                                <img src={`http://95.111.202.157:8001/${item.Image}`} alt="fftgh" style={{ width: "120px", height: "100px" }} />
                                             </td>
                                             <td scope="row">
 
@@ -285,7 +286,7 @@ export default UserList;
   <div class="row">
     <div class="col">
       <h6 class="text-dark font-weight-bold ml-5 ">
-      <img src={`https://foodielandnod.herokuapp.com/${item.recipeId.image}`} clas="float-left" alt="fftgh" style={{ width: '50px', height: "50px" }} class="rounded-circle mr-3" />
+      <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} clas="float-left" alt="fftgh" style={{ width: '50px', height: "50px" }} class="rounded-circle mr-3" />
        
       {item.recipeId.userId.firstName}
         <p class="text-muted pb-5 pt-2">12 November 2021</p>
@@ -300,7 +301,7 @@ export default UserList;
 </div>
 </div>
 <div class="col-sm-6 pt-5 ">
-<img src={`https://foodielandnod.herokuapp.com/${item.recipeId.userId.Image}`}
+<img src={`http://95.111.202.157:8001/${item.recipeId.userId.Image}`}
 class="rounded-lg" alt="description"
 style={{ width: "660px", height: "500px" }}  />
 

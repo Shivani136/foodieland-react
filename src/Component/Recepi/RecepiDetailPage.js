@@ -15,23 +15,31 @@ function RecepiDetailPage() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [_id, _setId] = useState(null);
+    const [datas, _setDatas] = useState(null);
+    const ids = []
+    const temps = useParams()
 
-    let newData = []
-    const temp = useParams()
+    console.log(temps.id, "fdsffs")
 
-    useEffect(() => {
+useEffect(() => {
+        ids.push(datas)
         fetchData();
         recepidetail();
 
     }, []);
 
-    async function recepidetail(_id) {
-        await axios.get(`/recipeDetails?id=${_id}`)
-            // .then((response) => { setData(response.data) })
-            .then((response) => {    const ID = response.data.data._id
-                console.log(">>>>>>>>>>",ID)
-            });
-           }
+    async function recepidetail() {
+        console.log(JSON.parse(ids[0]), "idsssssssssssssssss")
+        await axios.get(`/recipeDetails?id=${temps.id}`)
+            // .then((response) => { setData(response.data.data, "response") })
+            .then((response) => { console.log(response.data.data, "response") })
+
+            .catch((err) => {
+                console.log(err, "errrrrrrrr")
+
+            })
+
+    }
 
     async function fetchData() {
         await axios.get('/v1/getallrecipes')
@@ -60,15 +68,10 @@ function RecepiDetailPage() {
 
     }
 
-   console.log("@@@@@@@@@@@@@@@@@@@@@",data)
-  {
-    data.filter((user) => (
-      user._id === temp.id ? newData.push(user) : ""
+    // console.log("@@@@@@@@@@@@@@@@@@@@@",data)
 
-    ))
-  }
 
-    console.log(GetAllRecipe, "GetAllRecipe");
+    //console.log(GetAllRecipe, "GetAllRecipe");
     return (
         <div>
             {/* header */}
@@ -119,12 +122,7 @@ function RecepiDetailPage() {
             </div>
 
             {/* content */}
-            {newData.map((user) => (
-                    <>
-                      {console.log("@@@@@@@@@@@@@@@user", user)}
-                      </>
-            ))
-}
+
             <div class="pt-5 ">
                 <h1 class=" health pt-5 pb-5 ">Health Japanese Fried Rice</h1>
                 <div>
@@ -172,7 +170,7 @@ function RecepiDetailPage() {
                                     </span>
                                     <p className='text-muted pt-5'>SHARE</p>
                                 </div>
-                                
+
                                 <div className='float-right ml-4'>
                                     <span class="rounded-circle bg-info pt-5 pb-3 p-4">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-box-arrow-up mx-auto pb-1 " viewBox="0 0 16 16">
@@ -238,7 +236,7 @@ function RecepiDetailPage() {
                         <div className='content pb-5'>
                             <h4> {description}</h4>
                         </div>
-                       
+
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-8">
@@ -293,13 +291,13 @@ function RecepiDetailPage() {
 
                                         {
                                             list.slice(0, 3).map(item => {
-                                               // console.log("list datavfgfgfgf", list)
+                                                // console.log("list datavfgfgfgf", list)
                                                 return (
 
                                                     <div>
 
                                                         <div class="col-2 float-left pb-4 ">
-                                                            <img src={`https://foodielandnod.herokuapp.com/${item.recipeId.image}`} alt="fftgh" class="rounded-lg" style={{ width: "250px", height: "150px", }} />
+                                                            <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" class="rounded-lg" style={{ width: "250px", height: "150px", }} />
                                                         </div>
 
                                                         <div class="col-2 float-right">
@@ -361,18 +359,18 @@ function RecepiDetailPage() {
             </div>
 
             <div class="container-fluid pt-5 pb-5">
-                <div class="">
+                <div class="row">
                     {
                         list.slice(0, 4).map(item => {
-                           // console.log("list data", list)
+                            // console.log("list data", list)
                             return (
-                                <div style={{ display: "inline-flex" }} className='varru'>
+                                <div className='col-md-3'>
 
 
                                     <div className='sa pb-5'>
 
-                                        <img src={`https://foodielandnod.herokuapp.com/${item.recipeId.image}`} alt="fftgh" style={{ width: "330px", height: "250px", padding: "20px" }} />
-                                        <h6 class=" pt-2 pb-3">{item.recipeId.description}</h6>
+                                        <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "330px", height: "250px", padding: "20px" }} />
+                                        <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
                                         <div className='float-left' >
                                             <p class="text-muted">{item.recipeId.cookTime}
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-3 text-dark" viewBox="0 0 16 16">

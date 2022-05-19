@@ -5,17 +5,6 @@ import { GetAllBlog, DeleteBlog } from '../../Config/Commonapi';
 function BlogList() {
 
     const [data, setData] = useState([]);
-    const [userId, setUserId] = useState("");
-    const [categoryId, setCategoryId] = useState("");
-    const [title, setTitle] = useState("");
-    const [subTitle, setSubTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [image, setImage] = useState([]);
-    const [video, setVideo] = useState([]);
-    const [blogFAQ, setBlogFAQ] = useState("");
-    const [blogFAQtitle, setBlogFAQTitle] = useState("");
-    const [blogFAQdescription, setBlogFAQDescription] = useState("");
-    const [blogFAQimage, setBlogFAQImage] = useState([]);
     const [_id, _setId] = useState(null);
 
 
@@ -76,7 +65,7 @@ function BlogList() {
         axios.put('/statusChanged?status=approved', temp).then(
             res => {
                 console.log(res)
-                alert("you are approved successfully......");
+                fetchData();
 
             }).catch(
                 err => {
@@ -93,16 +82,14 @@ function BlogList() {
             blogId: _id,
             ownerId: user
         }
-        console.log(temp, "temp")
 
         axios.put('/statusChanged?status=unapproved', temp).then(
             res => {
                 console.log(res)
-                alert("you are unapproved successfully......");
+                fetchData();
 
             }).catch(
                 err => {
-                    console.log(err)
                     alert("you are already approved");
                 }
             )
@@ -144,19 +131,17 @@ function BlogList() {
 
                                         <tr key={index} value={item._id}>
                                             <td scope="row">{item.title}
-                                                <br>
-                                                    {/* {item._id} */}
-                                                </br>
+
                                             </td>
                                             <td scope="row">{item.subTitle}
-                                                {/* {item._id} */}
+
                                             </td>
                                             <td scope="row">{item.description}</td>
 
 
                                             <td scope='row'>
 
-                                                <img src={`https://foodielandnod.herokuapp.com/${item.image}`} alt="fftgh" style={{ width: "150px", height: "150px" }} />
+                                                <img src={`http://95.111.202.157:8001/${item.image}`} alt="fftgh" style={{ width: "150px", height: "150px" }} />
                                             </td>
                                             <td scope="row">
 
@@ -192,21 +177,14 @@ function BlogList() {
                                             <td>
 
 
-                                                <a href='blogdetailpage' onClick={() => selectUser(item._id)}>
+                                                <a href={`/blogdetailpage/${item._id}`} >
 
-                                                    <p>{item._id}</p>
                                                     <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">View Detail</button>
 
 
                                                 </a>
 
-                                                {/* <a href={`/blogdetailpage/${item._id}`} onClick={() => selectUser(item._id)}>
 
-                                                    <p>{item._id}</p>
-                                                    <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">View Detail</button>
-
-
-                                                </a> */}
                                             </td>
 
                                         </tr>

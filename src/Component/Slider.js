@@ -98,7 +98,7 @@
 
                <div className='sa pb-5'>
 
-                 <img src={`https://foodielandnod.herokuapp.com/${item.recipeId.image}`} alt="fftgh" style={{ width: "300px", height: "250px", padding: "20px" }} />
+                 <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "300px", height: "250px", padding: "20px" }} />
                  <h6 class=" pt-2 pb-3">{item.recipeId.description}</h6>
                  <div className='float-left' >
                    <p class="text-muted">{item.recipeId.cookTime}

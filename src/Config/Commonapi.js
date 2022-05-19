@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV4YW1wbGVAZ21haWwuY29tIiwiX2lkIjoiNjIzYWExOWM1OGQ4ZjNkNjY0NTNhODMwIiwiaWF0IjoxNjQ4MDEwNDY1LCJleHAiOjE2NDgwOTY4NjV9.5sx18PmtGWbnBNdOLAu2yGm8HPkv_7znvUw9-fEeRPQ"
-const apiUrl = 'https://foodielandnod.herokuapp.com/api/'
+const apiUrl = 'http://95.111.202.157:8001/api'
 
 const authAxios = axios.create({
   baseURL: apiUrl,

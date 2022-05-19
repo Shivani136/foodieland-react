@@ -24,7 +24,7 @@ import Table from '../Component/User/Table';
 // import BlogPostPage from '../Component/Blog/BlogPostPage';
 import AddBlog from '../Component/Blog/AddBlog';
 import BlogList from '../Component/Blog/BlogList';
-import UserListTemp from '../Component/User/UserListTemp'
+//import UserListTemp from '../Component/User/UserListTemp'
 // import Temp from '../Component/User/Temp';
 import Contact from '../Component/Contact';
 import About from '../Component/About';
@@ -49,14 +49,14 @@ function Routing() {
         <Route path="/categorylist" element={<CategoryList />} />
         <Route path="/categoryupdate" element={<CategoryUpdate />} />
         <Route path="/addcategory" element={<AddCategory />} />
-        <Route path="/recepi" element={<RecepiDetailPage />} />
+        <Route path="/recepi/:id" element={<RecepiDetailPage />} />
         <Route path="/recepilist" element={<RecepiList />} />
         <Route path="/addrecepi" element={<AddRecepi />} />
         <Route path="/recepiupdate" element={<RecepiUpdate />} />
         <Route path="/recepimeta" element={<RecepiMetaAdd />} />
-        <Route path="/blogdetailpage" element={<BlogDetailPage />} />
+        <Route path="/blogdetailpage/:id" element={<BlogDetailPage />} />
         <Route path="/blogarticle" element={<BlogListArticlePage />} />
-        <Route path="/tempuserlist" element={<UserListTemp />} />
+        {/* <Route path="/tempuserlist" element={<UserListTemp />} /> */}
         <Route path="/recepiarticle" element={<RecepiListArticle />} />
         <Route path="/addblog" element={<AddBlog />} />
         <Route path="/bloglist" element={<BlogList />} />

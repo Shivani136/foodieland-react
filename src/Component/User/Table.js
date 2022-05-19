@@ -204,7 +204,7 @@ function UserList() {
 
                                             <td scope='row'>
 
-                                                <img src={`http://localhost:8001/${item.Image}`} alt="fftgh" style={{ width: "200px", height: "200px" }} />
+                                                <img src={`http://95.111.202.157:8001/${item.Image}`} alt="fftgh" style={{ width: "200px", height: "200px" }} />
                                             </td>
                                             <td scope="row">
 

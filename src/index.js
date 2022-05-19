@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
 import axios from 'axios';
-axios.defaults.baseURL = "https://foodielandnod.herokuapp.com/api/"
+axios.defaults.baseURL = "http://95.111.202.157:8001/api"
 axios.defaults.headers.common['Authorization'] = 'Bearer :' + localStorage.getItem('token');
 
 

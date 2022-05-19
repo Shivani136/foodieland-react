@@ -63,7 +63,7 @@ function Home() {
 
   }
 
-  console.log(AllCategory, "AllCategory");
+  console.log(list, "AllCategory");
   const temp = data.slice(0, 6)
   console.log("============", temp)
 
@@ -117,29 +117,37 @@ function Home() {
         </nav>
 
 
-        <div clas="container pb-5 pt-5">
+     
+           <div class="container pt-5">
 
-
-
-
-          <div class="container-fluid pt-5">
-
-            <div id="carouselExampleIndicators pt-5" class="carousel slide" data-bs-ride="carousel">
+            {/* <div id="carouselExampleIndicators pt-5" class="carousel slide" data-bs-ride="carousel">
               <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
               </div>
               <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="data:image/jpeg;base64,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" class="d-block w-100 h-50" alt="..." />
-                </div>
-                <div class="carousel-item">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRixp-5F3Cr1F1ybQpx_VQQ5Mx4k356lJkxPpfer5SvF98qb6MFcvjt5-EdcDJ7QkuhiD4&usqp=CAU" class="d-block w-100 h-50" alt="..." />
-                </div>
-                <div class="carousel-item">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWaUfOIEfT0wROPti4uv8BcqTFMqZ-SEg8cbGigL66HMGApROSeuxuea-ENSH5KMDdsjo&usqp=CAU" class="d-block w-100 h-50" alt="..." />
-                </div>
+                {
+                  list.map((item) => (
+
+                    <div class="carousel-item active pt-5 ">
+                      {console.log(item, ">>>>")}
+
+                      <div class="carousel-item">
+
+                        <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="d-block w-100 h-50" alt="fftgh" />
+                        
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRixp-5F3Cr1F1ybQpx_VQQ5Mx4k356lJkxPpfer5SvF98qb6MFcvjt5-EdcDJ7QkuhiD4&usqp=CAU" class="d-block w-100 h-50" alt="..." />
+                        <div class="carousel-item">
+
+                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWaUfOIEfT0wROPti4uv8BcqTFMqZ-SEg8cbGigL66HMGApROSeuxuea-ENSH5KMDdsjo&usqp=CAU" class="d-block w-100 h-50" alt="..." />
+                        </div>
+                      </div>
+                    </div>
+                  ))
+
+                }
+
               </div>
               <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -149,7 +157,7 @@ function Home() {
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
               </button>
-            </div>
+            </div> */}
 
 
 
@@ -165,7 +173,6 @@ function Home() {
               </div>
             </div>
 
-          </div>
 
         </div>
 
@@ -181,7 +188,7 @@ function Home() {
 
                   <div className='sa'>
 
-                    <img src={`https://foodielandnod.herokuapp.com/${item.image}`} clas="float-left" alt="fftgh" style={{ width: "250px", height: "250px", padding: "10px" }} />
+                    <img src={`http://95.111.202.157:8001/${item.image}`} clas="float-left" alt="fftgh" style={{ width: "250px", height: "250px", padding: "10px" }} />
                     <h6 class=" pt-2">{item.categoryName} </h6>
                   </div>
 
@@ -205,18 +212,18 @@ function Home() {
         </div>
 
         <div class="container-fluid pt-5 pb-3">
-          <div class="">
+          <div class="row">
             {
               list.slice(0, 3).map(item => {
                 console.log("list data", list)
                 return (
-                  <div style={{ display: "inline-flex" }} className='varru'>
+                  <div className='col-md-4'>
 
 
                     <div className='sa pb-5'>
 
-                      <img src={`https://foodielandnod.herokuapp.com/${item.recipeId.image}`} alt="fftgh" style={{ width: "430px", height: "300px", padding: "20px" }} />
-                      <h6 class=" pt-2 pb-3">{item.recipeId.description}</h6>
+                      <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "430px", height: "300px", padding: "20px" }} />
+                      <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
                       <div className='float-left' >
                         <p class="text-muted">{item.recipeId.cookTime}
                           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-3 text-dark" viewBox="0 0 16 16">
@@ -244,18 +251,18 @@ function Home() {
 
           </div>
 
-          <div class="">
+          <div class="row">
             {
               list.slice(0, 2).map(item => {
                 console.log("list data", list)
                 return (
-                  <div style={{ display: "inline-flex" }} className='varru'>
+                  <div className='col-md-4'>
 
 
                     <div className='sa pb-5'>
 
-                      <img src={`https://foodielandnod.herokuapp.com/${item.recipeId.image}`} alt="fftgh" style={{ width: "430px", height: "300px", padding: "20px" }} />
-                      <h6 class=" pt-2 pb-3">{item.recipeId.description}</h6>
+                      <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "430px", height: "300px", padding: "20px" }} />
+                      <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
                       <div className='float-left' >
                         <p class="text-muted">{item.recipeId.cookTime}
                           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-3 text-dark" viewBox="0 0 16 16">
@@ -281,7 +288,7 @@ function Home() {
               })
             }
 
-            <div class="float-right">
+            <div class="col float-right">
               <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
                 alt="des" style={{ width: "400px", height: "400px" }} class="rounded-lg" />
             </div>
@@ -291,18 +298,17 @@ function Home() {
 
 
 
-          <div class="">
+          <div class="row">
             {
               list.slice(0, 3).map(item => {
                 console.log("list data", list)
                 return (
-                  <div style={{ display: "inline-flex" }} className='varru'>
-
+                  <div className='col-md-4'>
 
                     <div className='sa pb-5'>
 
-                      <img src={`https://foodielandnod.herokuapp.com/${item.recipeId.image}`} alt="fftgh" style={{ width: "430px", height: "300px", padding: "20px" }} />
-                      <h6 class=" pt-2 pb-3">{item.recipeId.description}</h6>
+                      <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "430px", height: "300px", padding: "20px" }} />
+                      <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
                       <div className='float-left' >
                         <p class="text-muted">{item.recipeId.cookTime}
                           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-3 text-dark" viewBox="0 0 16 16">
@@ -410,18 +416,18 @@ function Home() {
 
 
         <div class="container-fluid pt-3 pb-3">
-          <div class="">
+          <div class="row">
             {
               list.slice(0, 4).map(item => {
                 console.log("list data", list)
                 return (
-                  <div style={{ display: "inline-flex" }} className='varru'>
+                  <div className='col-md-3'>
 
 
                     <div className='sa pb-5'>
 
-                      <img src={`https://foodielandnod.herokuapp.com/${item.recipeId.image}`} alt="fftgh" style={{ width: "300px", height: "250px", padding: "20px" }} />
-                      <h6 class=" pt-2 pb-3">{item.recipeId.description}</h6>
+                      <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "300px", height: "250px", padding: "20px" }} />
+                      <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
                       <div className='float-left' >
                         <p class="text-muted">
                           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-3 text-dark" viewBox="0 0 16 16">
@@ -449,18 +455,18 @@ function Home() {
 
           </div>
 
-          <div class="">
+          <div class="row">
             {
               list.slice(0, 4).map(item => {
                 console.log("list data", list)
                 return (
-                  <div style={{ display: "inline-flex" }} className='varru'>
+                  <div className='col-md-3'>
 
 
                     <div className='sa pb-5'>
 
-                      <img src={`https://foodielandnod.herokuapp.com/${item.recipeId.image}`} alt="fftgh" style={{ width: "300px", height: "250px", padding: "20px" }} />
-                      <h6 class=" pt-2 pb-3">{item.recipeId.description}</h6>
+                      <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "300px", height: "250px", padding: "20px" }} />
+                      <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
                       <div className='float-left' >
                         <p class="text-muted">{item.recipeId.cookTime}
                           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-3 text-dark" viewBox="0 0 16 16">

@@ -145,7 +145,7 @@ function RecepiListArticle() {
                       <div class="row">
                         <div class="col pb-5">
                           <div class="">
-                            <img src={`https://foodielandnod.herokuapp.com/${item.recipeId.image}`} clas="float-left" alt="fftgh" style={{ width: "400px", height: "250px" }} />
+                            <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} clas="float-left" alt="fftgh" style={{ width: "400px", height: "250px" }} />
                           </div>
 
                         </div>
@@ -156,7 +156,7 @@ function RecepiListArticle() {
                           <div class="row">
                             <div class="col float-right">
                               <p class="text-dark font-weight-bold">
-                                <img src={`https://foodielandnod.herokuapp.com/${item.recipeId.userId.Image}`} clas="float-left" alt="fftgh" style={{ width: "50px", height: "50px" }} />
+                                <img src={`http://95.111.202.157:8001/${item.recipeId.userId.Image}`} clas="float-left" alt="fftgh" style={{ width: "50px", height: "50px" }} />
                                 {item.recipeId.userId.firstName}
                               </p>
 
@@ -192,7 +192,7 @@ function RecepiListArticle() {
 
                         <div class="col">
                           <div class="float-left mr-5">
-                            <img src={`https://foodielandnod.herokuapp.com/${item.image}`} clas="float-left" alt="fftgh" style={{ width: "200px", height: "150px" }} />
+                            <img src={`http://95.111.202.157:8001/${item.image}`} clas="float-left" alt="fftgh" style={{ width: "200px", height: "150px" }} />
                           </div>
 
                         </div>

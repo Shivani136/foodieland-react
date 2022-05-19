@@ -241,18 +241,18 @@ function Contact() {
                 </div>
 
                 <div class="container-fluid pt-5 pb-5">
-                    <div class="">
+                    <div class="row">
                         {
                             data.slice(0, 4).map(item => {
                                 console.log("list data", data)
                                 return (
-                                    <div style={{ display: "inline-flex" }} className='varru'>
+                                    <div className='col-md-3'>
 
 
                                         <div className='sa pb-5'>
 
-                                            <img src={`http://localhost:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "320px", height: "200px", padding: "15px" }} />
-                                            <h6 class=" pt-2 pb-3">{item.recipeId.description}</h6>
+                                            <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "320px", height: "200px", padding: "15px" }} />
+                                            <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
                                             <div className='float-left' >
                                                 <p class="text-muted">{item.recipeId.cookTime}
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-3 text-dark" viewBox="0 0 16 16">

@@ -54,7 +54,7 @@ function UserUpdate() {
     }
     console.log(">>>>>>>>>", _id)
     console.warn("item", item, "oddd")
-    axios.put(`https://foodielandnod.herokuapp.com/api/edit-user?id=${_id}`, formData).then(
+    axios.put(`http://95.111.202.157:8001/api/edit-user?id=${_id}`, formData).then(
       res => {
         console.log(res, "itennmmmmmmmmmmm", item)
       }
