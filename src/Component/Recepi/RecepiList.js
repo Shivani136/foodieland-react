@@ -25,14 +25,14 @@ function RecepiList() {
     }
 
     function selectUser(_id) {
-        let recipeId;
+        // let recipeId;
         let item = data[_id - 1];
-        // setTitle(item.recipeId.title)
-        // setDescription(item.recipeId.description)
-        // setCookTime(item.recipeId.cookTime)
-        // setPrepTime(item.recipeId.prepTime)
-        // setCategoryId(item.recipeId.categoryId)
-        // setImage(item.recipeId.image)
+        setTitle(item.recipeId.title)
+        setDescription(item.recipeId.description)
+        setCookTime(item.recipeId.cookTime)
+        setPrepTime(item.recipeId.prepTime)
+        setCategoryId(item.recipeId.categoryId)
+        setImage(item.recipeId.image)
 
         _setId(item._id)
     }
@@ -128,20 +128,7 @@ function RecepiList() {
             )
     }
 
-    function recepidetail(_id) {
-        // alert(_id, "id")
-        axios.get(`/recipeDetails?id=${_id}`).then(
-            res => {
-                console.log(res)
 
-
-            }).catch(
-                err => {
-                    console.log(err)
-
-                }
-            )
-    }
 
     console.log(GetAllRecipe, "GetAllRecipe");
 
@@ -171,7 +158,7 @@ function RecepiList() {
                             <tbody>
                                 {
                                     data.map((item, index) => {
-                                        //console.log("gdghdfgsgf", item.pageContent[index].recipeId.title)
+
                                         return (
 
                                             <tr key={index} value={item._id}>
@@ -180,9 +167,7 @@ function RecepiList() {
                                                 <td scope="row">{item.recipeId.description}</td>
 
                                                 <td scope="row">{item.recipeId.cookTime}
-                                                    {/* <br/>
-                                                <td scope="row">{item.recipeId._id}</td>
-                                                <td scope="row">{item.recipeId.categoryId._id}</td> */}
+
                                                 </td>
                                                 <td scope="row">{item.recipeId.prepTime}
 
@@ -195,7 +180,7 @@ function RecepiList() {
                                                 </td>
                                                 <td scope="row">
 
-                                                    <a href={`/recepiupdate/${item._id}`} >
+                                                    <a href={`/recepiupdate/${item.recipeId._id}`} onClick={() => selectUser(item.id)} >
 
                                                         <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">Edit</button>
 

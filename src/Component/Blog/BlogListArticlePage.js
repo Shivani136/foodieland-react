@@ -184,40 +184,56 @@ function BlogListArticlePage() {
             </div>
             {/* get all recepi api apply here */}
             <div class="col-4 float-left">
-              <h2 class="float-left pb-3 mr-5">Tasty Recepis</h2>
-              <div class="row float-left pb-4">
+              <div class="row ">
+                <h2 class="float-left pb-3 mr-5">Tasty Recepis</h2>
 
                 {
                   list.map((item, index) => {
-                    console.log(">>>>>>>>>>>", list)
+                    console.log("gdghdfgsgf", list)
+
+
+                    // console.log(getCourse, "getCourse")
+
                     return (
                       <div>
                         <p key={index} value={item._id}> </p>
 
-                        <div class="col-3 pb-4">
+                        <div class="col-2">
+                          <div class="float-left mr-5">
+                            <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} clas="float-left" alt="fftgh" style={{ width: "200px", height: "150px" }} />
+                          </div>
 
-                          <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "200px", height: "150px" }} />
                         </div>
+                        <div class="col-2 float-left">
+                          <h6 class=" pt-2 pb-3 text-muted">{item.recipeId.title}</h6>
 
-                        <div class="col float-right pb-3 ml-5">
-                          <h5 class="pt-3 float-left ">{item.recipeId.title}</h5>
-                          <p class="text-muted float-left">{item.recipeId.userId.firstName}</p>
+                          <div class="row">
+                            <div class="col float-right">
+                              <p class="text-dark font-weight-bold">
+
+                              {/* {item.recipeId.userId.firstName} */}
+                              </p>
+
+                            </div>
+
+                          </div>
                         </div>
-
-
                       </div>
-
 
 
                     )
                   })
                 }
-              </div>
-              <div class="col pt-2 float-left">
-                <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
-                  alt="des" style={{ height: '350px', width: "400px" }} class="rounded-lg" />
+
+
+
+                <div class="col pt-5 float-left">
+                  <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                    alt="des" style={{ height: '400px', width: "400px" }} class="rounded-lg" />
+                </div>
               </div>
             </div>
+          
           </div>
         </div>
 

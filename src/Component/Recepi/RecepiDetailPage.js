@@ -21,7 +21,7 @@ function RecepiDetailPage() {
 
     console.log(temps.id, "fdsffs")
 
-useEffect(() => {
+    useEffect(() => {
         ids.push(datas)
         fetchData();
         recepidetail();
@@ -31,8 +31,8 @@ useEffect(() => {
     async function recepidetail() {
         console.log(JSON.parse(ids[0]), "idsssssssssssssssss")
         await axios.get(`/recipeDetails?id=${temps.id}`)
-            // .then((response) => { setData(response.data.data, "response") })
-            .then((response) => { console.log(response.data.data, "response") })
+            .then((response) => { setData(response.data.data, "response") })
+            //.then((response) => { console.log(response.data.data, "response") })
 
             .catch((err) => {
                 console.log(err, "errrrrrrrr")
@@ -40,6 +40,7 @@ useEffect(() => {
             })
 
     }
+    //const temp= data.data;
 
     async function fetchData() {
         await axios.get('/v1/getallrecipes')
@@ -68,7 +69,7 @@ useEffect(() => {
 
     }
 
-    // console.log("@@@@@@@@@@@@@@@@@@@@@",data)
+
 
 
     //console.log(GetAllRecipe, "GetAllRecipe");
@@ -124,17 +125,16 @@ useEffect(() => {
             {/* content */}
 
             <div class="pt-5 ">
-                <h1 class=" health pt-5 pb-5 ">Health Japanese Fried Rice</h1>
+                <h1 class=" health pt-5 pb-5 ">Health Japanese Fried Rice {data.recipeId.title}</h1>
                 <div>
 
                     <div class="container-fluid">
                         <div class="row">
 
                             <div class="col-2">
-                                {/* <img src={`http://94.237.3.78:8001/${item.userId.image}`} class="rounded-circle float-left ml-5" alt="fftgh" style={{ width: "60px", height: "60px" }} /> */}
-
-                                {/* <p class="float-right font-weight-bold">{item.userId.firstName}{item.userId.lastName}</p>
-                                            <span className='text-muted'>  {item.createdAt}</span> */}
+                                 {/* <img src={`http://94.237.3.78:8001/${data.userId.image}`} class="rounded-circle float-left ml-5" alt="fftgh" style={{ width: "60px", height: "60px" }} />  */}
+                                 {/* <p class="float-right font-weight-bold">{data.userId.firstName}{data.userId.lastName}</p> */}
+                                            <span className='text-muted'>  {data.createdAt}</span> 
 
                             </div>
                             <div class="col-2 ">
@@ -142,7 +142,7 @@ useEffect(() => {
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-5" viewBox="0 0 16 16">
                                     <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
                                 </svg>
-                                <p className='text-muted'> {prepTime}</p>
+                                <p className='text-muted'> {data.prepTime}</p>
 
                             </div>
                             <div class="col-2">
@@ -150,11 +150,11 @@ useEffect(() => {
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-5" viewBox="0 0 16 16">
                                     <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
                                 </svg>
-                                <p className='text-muted'> {cookTime}</p>
+                                <p className='text-muted'> {data.cookTime}</p>
 
                             </div>
                             <div class="col-2 ">
-                                <p>Chicken</p>
+                                <p>{data.recipeId}</p>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-apple float-left ml-5" viewBox="0 0 16 16">
                                     <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
                                     <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
@@ -184,7 +184,7 @@ useEffect(() => {
                             </div>
                         </div>
 
-                        {/* <a onClick={() => recepidetail(item._id)}>submit</a> */}
+               
 
 
                         <br />
@@ -206,25 +206,21 @@ useEffect(() => {
                             <div class="col-4 float-right">
                                 <div class="card bg-info rounded">
                                     <div class="card-body float-left">
-                                        <h4 class="card-text">Nutrition Information</h4>
+                                        <h4 class="card-text font-weight-bold">Nutrition Information</h4>
                                     </div>
                                     <div className='card'>
-                                        <label className='text-muted float-left'>Calories</label>
-                                        {/* <p className='float-right border-bottom'>  {item.nutritionInformation.calories} </p> */}
-
-                                        <label className='text-muted float-left '>TotalFat</label>
-                                        {/* <p className='float-right border-bottom'>   {item.nutritionInformation.totalFat} </p> */}
-
-                                        <label className='text-muted float-left '>Protein</label>
-                                        {/* <p className='float-right border-bottom'>{item.nutritionInformation.protein} </p> */}
-
-                                        <label className='text-muted float-left  '>Carbohydrate</label>
-                                        {/* <p className='float-right border-bottom'>  {item.nutritionInformation.carbohydrate} </p> */}
-
-                                        <label className='text-muted float-left '>Cholesterol</label>
-                                        {/* <p className='float-right'> {item.nutritionInformation.cholesterol} </p> */}
+                                        {/* <h5 className='text-muted font-weight-bold float-left pt-2 mr-5'>Calories : <span className='text-dark float-right border-bottom'>{data.nutritionInformation.calories}</span></h5>
                                         <hr />
-                                        {/* <h5 className='float-right pt-5'>{item.nutritionInformation.nutritionTitle}</h5> */}
+                                        <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Total Fat : <span className='text-dark float-right border-bottom'>{data.nutritionInformation.totalFat}</span></h5>
+                                        <hr />
+                                        <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Protein : <span className='text-dark float-right border-bottom'>{data.nutritionInformation.protein}</span></h5>
+                                        <hr />
+                                        <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Carbohydrate : <span className='text-dark float-right border-bottom'>{data.nutritionInformation.carbohydrate}</span></h5>
+                                        <hr />
+                                        <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Cholesterol : <span className='text-dark float-right border-bottom'>{data.nutritionInformation.cholesterol}</span></h5>
+                                       
+                                        <hr />
+                                        <h5 className='float-right text-muted pt-5'>{data.nutritionInformation.nutritionTitle}</h5> */}
 
                                     </div>
                                 </div>
@@ -236,7 +232,7 @@ useEffect(() => {
                         <div className='content pb-5'>
                             <h4> {description}</h4>
                         </div>
-
+                        {/*  section Ingredients*/}
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-8">
@@ -245,40 +241,55 @@ useEffect(() => {
 
                                     <div class="float-left ml-5">
                                         <div class="row-sm  pt-3 ">
-                                            <h4 class="font-weight-bold text-dark pb-2">For Main Dish</h4>
+                                            <h4 class="font-weight-bold text-dark pb-2">For Main Dish
+                                            
+                                            </h4>
                                         </div>
 
                                         <div class="row-sm pb-2">
                                             <div class="form-check ">
                                                 <label class="form-check-label">
-                                                    <input type="checkbox" class="form-check-input rounded-lg" value="" />Option 1
+                                                    {/* <input type="checkbox" class="form-check-input rounded-lg" value="" />{data.ingredient[0].formaindish[0]}  */}
                                                 </label>
                                             </div>
                                             <hr />
                                         </div>
                                         <div class="row-sm pb-2 ">
-                                            <input type="checkbox" class="form-check-input rounded-lg" value="" />Option 2
+                                            {/* <input type="checkbox" class="form-check-input rounded-lg" value="" />{data.ingredient[0].formaindish[1]}   */}
+
+                                        </div>
+                                        <hr />
+                                        <div class="row-sm pb-2 ">
+                                            {/* <input type="checkbox" class="form-check-input rounded-lg" value="" />{data.ingredient[0].formaindish[2]}   */}
 
                                         </div>
                                         <div class="row-sm  pt-3 ">
                                             <hr />
-                                            <h4 class="font-weight-bold text-dark pb-2">For the Sauce</h4>
-                                            <div class="row-sm pb-2">
-                                                <input type="checkbox" class="form-check-input rounded-lg" value="" />Option 3
+                                            <h4 class="font-weight-bold text-dark pb-4">For the Sauce</h4>
+                                            <div class="row-sm pb-4">
+                                                {/* <input type="checkbox" class="form-check-input rounded-lg" value="" />{data.ingredient[0].sauce[0]}   */}
                                                 <hr />
                                             </div>
                                             <div class="row-sm ">
-                                                <input type="checkbox" class="form-check-input rounded-lg" value="" />Option 4
+                                                {/* <input type="checkbox" class="form-check-input rounded-lg" value="" />{data.ingredient[0].sauce[1]}  */}
                                             </div>
                                             <hr />
-                                            <h4 class="font-weight-bold text-dark pb-2">Direction</h4>
-                                            <div class="row-sm pb-2">
-                                                <input type="checkbox" class="form-check-input rounded-lg" value="" />direction 1
+                                            {/* section Direction */}
+                                            <h4 class="font-weight-bold text-dark pt-3 pb-3">Direction</h4>
+                                            <div class="row-sm pb-4">
+                                                {/* <input type="checkbox " class="form-check-input rounded-lg" value="" />{data.direction[0].directionTitle} */}
+
+                                                {/* <p class="text-muted pt-4 pb-5"> {data.direction[0].directionDescription}</p>
+                                                <img src={`http://95.111.202.157:8001/${data.direction[0].directionImage}`} alt="fftgh" style={{ width: '900px', height: "400px" }} class="rounded-lg pt-2" /> */}
+
                                                 <hr />
                                             </div>
                                             <div class="row-sm ">
-                                                <input type="checkbox" class="form-check-input rounded-lg " value="" />direction 2
-                                            </div>
+                                                {/* <input type="checkbox" class="form-check-input rounded-lg " value="" />{data.direction[1].directionTitle}
+                                                <p class="text-muted pt-4 pb-5"> {data.direction[1].directionDescription}</p>
+                                                <img src={`http://95.111.202.157:8001/${data.direction[1].directionImage}`} alt="fftgh" style={{ width: '900px', height: "400px" }} class="rounded-lg pt-2" /> */}
+
+                                           </div>
                                             <hr />
                                         </div>
 
@@ -302,7 +313,7 @@ useEffect(() => {
 
                                                         <div class="col-2 float-right">
                                                             <h5 class="float-right ">{item.recipeId.title}</h5>
-                                                            <p class="text-muted float-right ">{item.recipeId.userId.firstName}</p>
+                                                            {/* <p class="text-muted float-right ">{item.recipeId.userId.firstName}</p> */}
                                                         </div>
                                                     </div>
 
@@ -357,7 +368,7 @@ useEffect(() => {
             <div className='pt-5 pb-5'>
                 <h1>You May Like This Recepi Too !</h1>
             </div>
-
+            {/* get all recepi  */}
             <div class="container-fluid pt-5 pb-5">
                 <div class="row">
                     {

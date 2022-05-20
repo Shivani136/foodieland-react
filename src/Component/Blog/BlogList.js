@@ -60,7 +60,7 @@ function BlogList() {
             blogId: _id,
             ownerId: user
         }
-        console.log(temp, "temp")
+        // console.log(temp, "temp")
 
         axios.put('/statusChanged?status=approved', temp).then(
             res => {
@@ -126,7 +126,7 @@ function BlogList() {
                                 data.map((item, index) => {
 
 
-                                    console.log("gdghdfgsgf", item._id)
+                                    // console.log("gdghdfgsgf", item._id)
                                     return (
 
                                         <tr key={index} value={item._id}>
@@ -146,7 +146,7 @@ function BlogList() {
                                             <td scope="row">
 
 
-                                                <a href="/blogupdate" onClick={() => selectUser(item._id)}>
+                                                <a href={`/blogupdate/${item._id}`} onClick={() => selectUser(item._id)}>
                                                     <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">Edit</button>
 
 

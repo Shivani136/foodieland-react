@@ -156,8 +156,8 @@ function RecepiListArticle() {
                           <div class="row">
                             <div class="col float-right">
                               <p class="text-dark font-weight-bold">
-                                <img src={`http://95.111.202.157:8001/${item.recipeId.userId.Image}`} clas="float-left" alt="fftgh" style={{ width: "50px", height: "50px" }} />
-                                {item.recipeId.userId.firstName}
+                                {/* <img src={`http://95.111.202.157:8001/${item.recipeId.userId.Image}`} clas="float-left" alt="fftgh" style={{ width: "50px", height: "50px" }} /> */}
+                                {/* {item.recipeId.userId.firstName} */}
                               </p>
 
                             </div>
@@ -190,13 +190,13 @@ function RecepiListArticle() {
                       <div>
                         <p key={index} value={item._id}> </p>
 
-                        <div class="col">
+                        <div class="col-2">
                           <div class="float-left mr-5">
                             <img src={`http://95.111.202.157:8001/${item.image}`} clas="float-left" alt="fftgh" style={{ width: "200px", height: "150px" }} />
                           </div>
 
                         </div>
-                        <div class="col float-left">
+                        <div class="col-2 float-left">
                           <h6 class=" pt-2 pb-3 text-muted">{item.title}</h6>
 
                           <div class="row">

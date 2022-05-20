@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { UpdateCategory } from '../../Config/Commonapi';
+import { useParams } from 'react-router-dom';
 
 function CategoryUpdate() {
   const [data, setData] = useState([]);
   const [categoryName, setCategoryName] = useState("");
   const [image, setImage] = useState([]);
   const [_id, _setId] = useState(null);
+  const [datas, _setDatas] = useState(null);
+
+  const ids = []
+  const temp = useParams()
+
+  console.log(temp.id, "fdsffs")
 
   const saveFile = (e) => {
     setImage(e.target.files[0])
@@ -14,27 +21,21 @@ function CategoryUpdate() {
   }
 
   useEffect(() => {
+    ids.push(datas)
     axios.get('/getAllCategory')
       .then((response) => {
         setData(response.data)
-        setCategoryName(response.data[0].categoryName)
-        setImage(response.data[0].image)
-        _setId(response.data[0]._id)
+        
       });
   }, []);
 
 
-  function selectUser(id) {
-    let item = data[id - 1];
-    setCategoryName(item.categoryName)
-    setImage(item.image)
-    _setId(item.id)
-  }
-
   function Update(e) {
     e.preventDefault();
+    ids.push(datas)
+
     console.log(Image, "imagess")
-    alert(_id, "this is id ");
+     alert(temp.id, "this is id ");
     let formData = new FormData();
     let item = { categoryName, image }
     for (var key in item) {
@@ -43,7 +44,8 @@ function CategoryUpdate() {
     }
     console.log(">>>>>>>>>", _id)
     console.warn("item", item, "oddd")
-    axios.put(`http://95.111.202.157:8001/api/updateCategory?id=${_id}`, formData).then(
+    console.log(JSON.parse(ids[0]), "idsssssssssssssssss")
+    axios.put(`http://95.111.202.157:8001/api/updateCategory?id=${temp.id}`, formData).then(
       res => {
         console.log(res, "itennmmmmmmmmmmm", item)
       }

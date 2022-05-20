@@ -47,12 +47,12 @@ function Routing() {
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/sitemanagement" element={<SiteManagement />} />
         <Route path="/categorylist" element={<CategoryList />} />
-        <Route path="/categoryupdate" element={<CategoryUpdate />} />
+        <Route path="/categoryupdate/:id" element={<CategoryUpdate />} />
         <Route path="/addcategory" element={<AddCategory />} />
         <Route path="/recepi/:id" element={<RecepiDetailPage />} />
         <Route path="/recepilist" element={<RecepiList />} />
         <Route path="/addrecepi" element={<AddRecepi />} />
-        <Route path="/recepiupdate" element={<RecepiUpdate />} />
+        <Route path="/recepiupdate/:id" element={<RecepiUpdate />} />
         <Route path="/recepimeta" element={<RecepiMetaAdd />} />
         <Route path="/blogdetailpage/:id" element={<BlogDetailPage />} />
         <Route path="/blogarticle" element={<BlogListArticlePage />} />
@@ -60,7 +60,7 @@ function Routing() {
         <Route path="/recepiarticle" element={<RecepiListArticle />} />
         <Route path="/addblog" element={<AddBlog />} />
         <Route path="/bloglist" element={<BlogList />} />
-        <Route path="/blogupdate" element={<UpdateBlog />} />
+        <Route path="/blogupdate/:id" element={<UpdateBlog />} />
         {/* <Route path="/temp" element={<Temp />} /> */}
         <Route path="/blogarticle" element={<BlogListArticlePage />} />
         <Route path="/contact" element={<Contact />} />

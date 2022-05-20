@@ -164,12 +164,7 @@ function BlogDetailPage(props) {
                                     <img src={`http://95.111.202.157:8001/${data.blogFAQ[1].faqImage}`} alt="fftgh" style={{ width: '900px', height: "400px" }} class="rounded-lg pt-2" />
 
                                 </div>
-                                {/* <div class="col">
-                            <h4 class="pb-3">Hree is FAQ tITLE .</h4>
-                                <p class="text-muted pb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,   </p>
-                                <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8N3x8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
-                                    alt="des" style={{ width: '900px', height: "400px" }} class="rounded-lg pt-2" />
-                            </div> */}
+                               
                             </div>
 
 

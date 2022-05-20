@@ -92,7 +92,8 @@ function CategoryList() {
                                                 <img src={`http://95.111.202.157:8001/${item.image}`} alt="fftgh" style={{ width: "110px", height: "110px" }} />
                                             </td>
                                             <td scope="row">
-                                                <a href="/categoryupdate" onClick={() => selectUser(item.id)}>
+                                          
+                                                <a href={`/categoryupdate/${item._id}`}  onClick={() => selectUser(item.id)}>
                                                     <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">Edit</button>
 
 
