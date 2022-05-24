@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 
 function BlogDetailPage(props) {
     const [data, setData] = useState([]);
+    const [datass, setDatass] = useState([]);
     const [list, setList] = useState([]);
     const [email, setEmail] = useState("");
     const [_id, _setId] = useState(null);
@@ -13,28 +14,43 @@ function BlogDetailPage(props) {
     const ids = []
     const temp = useParams()
 
-    console.log(temp.id, "fdsffs")
+    let item, item1;
+    //console.log(temp.id, "fdsffs")
 
     useEffect(() => {
         ids.push(datas)
-        //blogdetail();
         getRecepi();
         blogsBYID()
     }, []);
 
     async function blogsBYID() {
-        console.log(JSON.parse(ids[0]), "idsssssssssssssssss")
-
-
+        //  console.log(JSON.parse(ids[0]), "idsssssssssssssssss")
         await axios.get(`/getBlog?id=${temp.id}`)
-            .then((response) => { setData(response.data.data, "response") })
-            //.then((response) => { console.log(response.data.data, "response") })
+            .then((response) => {
+                item = response.data.data
+                item1 = response.data.data.blogFAQ
+                // console.log(item, "itemmmmmmmmmm")
+                // console.log(item1, "itemmmmmmmmmm")
+                setData(item)
+                setDatass(item1)
+
+            })
+
+            //     .then((response) => {
+            //         //  console.log(response.data.data, "response") 
+            //      item = response.data.data
+            //      console.log(item.recipeId,"item")
+            // })
+
             .catch((err) => {
                 console.log(err, "errrrrrrrr")
 
             })
 
+
     }
+
+    // console.log(data, data.blogFAQ, "itemmmmmmmmmm")
 
 
 
@@ -69,7 +85,7 @@ function BlogDetailPage(props) {
 
 
 
-    console.log(GetBlog, "GetBlog");
+    //console.log(GetBlog, "GetBlog");
     return (
         <div>
             {/* header */}
@@ -123,16 +139,17 @@ function BlogDetailPage(props) {
 
                     <div className='banner'>
 
-                        <h1 className='banners pb-4 pt-5'> {data.title} </h1>
+                        <h1 className='banners pb-4 pt-5'> {data && data.title ? data.title : ""} </h1>
                     </div>
 
                     <div class="container-fluid  pb-5">
 
 
                         <h6 class="text-dark font-weight-bold pb-5">
-                            <p class="mr-5">
-                                <img src={`http://95.111.202.157:8001/${data.userId.Image}`} alt="fftgh" style={{ width: "50px", height: "50px" }} />
-                                {data.userId.firstName}
+                            <p class="mr-5 text-uppercase">
+                                <img src={`http://95.111.202.157:8001/${data && data.userId && data.userId.Image ? data.userId.Image : ""} `} alt="fftgh" style={{ width: "50px", height: "50px" }} />
+
+                                {data && data.userId && data.userId.firstName ? data.userId.firstName : ""}
                                 <span class=" border-left text-muted ml-5">12 November 2021</span>
                             </p>
 
@@ -140,9 +157,7 @@ function BlogDetailPage(props) {
 
                         </h6>
 
-                        <p class="text-muted pb-5">{data.description}
-
-                        </p>
+                        <h5 class="text-muted pb-5">{data && data.description ? data.description : ""} </h5>
 
                         <div class="container-fluid pb-5">
                             <img src={`http://95.111.202.157:8001/${data.image}`} alt="fftgh" style={{ width: '1300px', height: "500px" }} class="rounded-lg" />
@@ -153,24 +168,40 @@ function BlogDetailPage(props) {
                         <div class="row pt-3">
                             <div class="col-9">
                                 <div class="col pb-5">
-                                    <h4 class="pb-3">{data.blogFAQ[0].faqTitle}</h4>
-                                    <p class="text-muted pb-5"> {data.blogFAQ[0].faqDescription}</p>
-                                    <img src={`http://95.111.202.157:8001/${data.blogFAQ[0].faqImage}`} alt="fftgh" style={{ width: '900px', height: "400px" }} class="rounded-lg pt-2" />
+                                    <h4 class="pb-3"></h4>
+
+                                    {
+                                        datass.map(items => {
+                                            //console.log(items, "otems")
+                                            return (
+                                                <div>
+                                            
+                                                    <h3 className='font-weight-bolder text-uppercase pt-3 float-left ml-5  pt-5'>{items.faqTitle} </h3>
+                                                    <br/>
+                                                    <div style={{marginRight: "670px"}}>
+                                                    <h4 class="text-muted float-left pt-3 pb-4 ml-5">{items.faqDescription} </h4>
+                                                        </div>
+
+                                                    <img src={`http://95.111.202.157:8001/${items.faqImage}`} alt="fftgh" style={{ width: '940px', height: "400px" }} class="rounded-lg pt-2" />
+
+
+
+                                                </div>
+                                            )
+                                        })
+                                    }
+
+
+
 
                                 </div>
-                                <div class="col pb-5">
-                                    <h4 class="pb-3">{data.blogFAQ[1].faqTitle}</h4>
-                                    <p class="text-muted pb-5"> {data.blogFAQ[1].faqDescription}</p>
-                                    <img src={`http://95.111.202.157:8001/${data.blogFAQ[1].faqImage}`} alt="fftgh" style={{ width: '900px', height: "400px" }} class="rounded-lg pt-2" />
 
-                                </div>
-                               
                             </div>
 
 
 
                             <div class="col-3 pt-3">
-                                <h5 class="pb-3">SHARE THIS ON. .</h5>
+                                <h5 class=" font-weight-bolder pb-3">SHARE THIS ON. .</h5>
                                 <div class="col pb-5">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-facebook  mr-sm-4" viewBox="0 0 16 16">
                                         <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />

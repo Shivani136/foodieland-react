@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 
 function RecepiDetailPage() {
     const [data, setData] = useState([]);
+    const [datass, setDatass] = useState([]);
+    const [direction, setDirection] = useState([]);
     const [list, setList] = useState([]);
     const [email, setEmail] = useState("");
     const [image, setImage] = useState([]);
@@ -19,7 +21,8 @@ function RecepiDetailPage() {
     const ids = []
     const temps = useParams()
 
-    console.log(temps.id, "fdsffs")
+    let item, item1, item2;
+
 
     useEffect(() => {
         ids.push(datas)
@@ -29,26 +32,41 @@ function RecepiDetailPage() {
     }, []);
 
     async function recepidetail() {
-        console.log(JSON.parse(ids[0]), "idsssssssssssssssss")
+
         await axios.get(`/recipeDetails?id=${temps.id}`)
-            .then((response) => { setData(response.data.data, "response") })
-            //.then((response) => { console.log(response.data.data, "response") })
+            .then((response) => {
+                item = response.data.data;
+                item1 = response.data.data.ingredient;
+                item2 = response.data.data.direction;
+                // console.log(item, "response item")
+                // console.log(item1, "ingredient")
+                // console.log(item2, "direction")
+                setData(item)
+                setDatass(item1)
+                setDirection(item2)
+            })
+
 
             .catch((err) => {
-                console.log(err, "errrrrrrrr")
 
             })
 
     }
-    //const temp= data.data;
+    // console.log(data, data.ingredient, data.direction, 'daatttttttttttta')
+
+
 
     async function fetchData() {
         await axios.get('/v1/getallrecipes')
-            .then((response) => { setList(response.data) })
-        // .then((response) => { console.log(response.data) });
+            .then((response) => {
+                item1 = response.data
+
+                setList(item1, "response")
+
+            })
+
 
     }
-
 
     function subscrib(e) {
         e.preventDefault();
@@ -59,20 +77,15 @@ function RecepiDetailPage() {
         axios.post('/subscribe', data).then(
             res => {
 
-                console.log(res)
             }).catch(
                 err => {
-                    console.log(err)
+
                 }
             )
 
 
     }
 
-
-
-
-    //console.log(GetAllRecipe, "GetAllRecipe");
     return (
         <div>
             {/* header */}
@@ -125,16 +138,25 @@ function RecepiDetailPage() {
             {/* content */}
 
             <div class="pt-5 ">
-                <h1 class=" health pt-5 pb-5 ">Health Japanese Fried Rice {data.recipeId.title}</h1>
+
+
+
+                <h1 class=" health pt-5 pb-5 "> {data && data.recipeId && data.recipeId.title ? data.recipeId.title : ""}</h1>
+
                 <div>
 
                     <div class="container-fluid">
                         <div class="row">
 
                             <div class="col-2">
-                                 {/* <img src={`http://94.237.3.78:8001/${data.userId.image}`} class="rounded-circle float-left ml-5" alt="fftgh" style={{ width: "60px", height: "60px" }} />  */}
-                                 {/* <p class="float-right font-weight-bold">{data.userId.firstName}{data.userId.lastName}</p> */}
-                                            <span className='text-muted'>  {data.createdAt}</span> 
+
+                                <img src={`http://95.111.202.157:8001/${data && data.recipeId && data.recipeId.userId && data.recipeId.userId.Image ? data.recipeId.userId.Image : ""}`} class="rounded-circle float-left ml-5" alt="fftgh" style={{ width: "60px", height: "60px" }} />
+                                <p class="float-right font-weight-bold">
+                                    {data && data.recipeId && data.recipeId.userId && data.recipeId.userId.firstName ? data.recipeId.userId.firstName : ""}
+                                    {data && data.recipeId && data.recipeId.userId && data.recipeId.userId.lastName ? data.recipeId.userId.lastName : ""}
+
+                                </p>
+                                {/* <span className='text-muted'>  {data.createdAt}</span> */}
 
                             </div>
                             <div class="col-2 ">
@@ -142,7 +164,9 @@ function RecepiDetailPage() {
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-5" viewBox="0 0 16 16">
                                     <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
                                 </svg>
-                                <p className='text-muted'> {data.prepTime}</p>
+                                <p className='text-muted'>
+                                    {data && data.recipeId && data.recipeId.prepTime ? data.recipeId.prepTime : ""}
+                                </p>
 
                             </div>
                             <div class="col-2">
@@ -150,15 +174,19 @@ function RecepiDetailPage() {
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-5" viewBox="0 0 16 16">
                                     <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
                                 </svg>
-                                <p className='text-muted'> {data.cookTime}</p>
+                                <p className='text-muted'> {data && data.recipeId && data.recipeId.cookTime ? data.recipeId.cookTime : ""}</p>
 
                             </div>
                             <div class="col-2 ">
-                                <p>{data.recipeId}</p>
+
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-apple float-left ml-5" viewBox="0 0 16 16">
                                     <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
                                     <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
                                 </svg>
+                                <p className='text-muted'>
+                                    {data && data.recipeId && data.recipeId.categoryId && data.recipeId.categoryId.categoryName ? data.recipeId.categoryId.categoryName : ""}
+                                </p>
+
                             </div>
                             <div class="col-4 ">
                                 <div className='float-right ml-3'>
@@ -183,10 +211,6 @@ function RecepiDetailPage() {
                                 </div>
                             </div>
                         </div>
-
-               
-
-
                         <br />
                         <div class="row pt-5 pb-5">
                             <div class="col-8  ">
@@ -194,7 +218,8 @@ function RecepiDetailPage() {
 
                                     <div class="card-body text-center rounded">
                                         <video width="860" height="510" controls>
-                                            <source src={video} type="video/mp4" />
+
+                                            <source src={data && data.recipeId && data.recipeId.video ? data.recipeId.video : ""} type="video/mp4" />
 
 
                                         </video>
@@ -209,27 +234,47 @@ function RecepiDetailPage() {
                                         <h4 class="card-text font-weight-bold">Nutrition Information</h4>
                                     </div>
                                     <div className='card'>
-                                        {/* <h5 className='text-muted font-weight-bold float-left pt-2 mr-5'>Calories : <span className='text-dark float-right border-bottom'>{data.nutritionInformation.calories}</span></h5>
+                                        <h5 className='text-muted font-weight-bold float-left pt-2 mr-5'>Calories : <span className='text-dark float-right border-bottom'>
+                                            {data && data.nutritionInformation && data.nutritionInformation.calories ? data.nutritionInformation.calories : ""}
+                                        </span></h5>
                                         <hr />
-                                        <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Total Fat : <span className='text-dark float-right border-bottom'>{data.nutritionInformation.totalFat}</span></h5>
+                                        <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Total Fat : <span className='text-dark float-right border-bottom'>
+                                            {data && data.nutritionInformation && data.nutritionInformation.totalFat ? data.nutritionInformation.totalFat : ""}
+                                        </span></h5>
                                         <hr />
-                                        <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Protein : <span className='text-dark float-right border-bottom'>{data.nutritionInformation.protein}</span></h5>
+                                        <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Protein : <span className='text-dark float-right border-bottom'>
+
+                                            {data && data.nutritionInformation && data.nutritionInformation.protein ? data.nutritionInformation.protein : ""}
+                                        </span></h5>
                                         <hr />
-                                        <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Carbohydrate : <span className='text-dark float-right border-bottom'>{data.nutritionInformation.carbohydrate}</span></h5>
+                                        <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Carbohydrate : <span className='text-dark float-right border-bottom'>
+                                            {data && data.nutritionInformation && data.nutritionInformation.carbohydrate ? data.nutritionInformation.carbohydrate : ""}
+                                        </span></h5>
                                         <hr />
-                                        <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Cholesterol : <span className='text-dark float-right border-bottom'>{data.nutritionInformation.cholesterol}</span></h5>
-                                       
+                                        <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Cholesterol : <span className='text-dark float-right border-bottom'>
+
+                                            {data && data.nutritionInformation && data.nutritionInformation.cholesterol ? data.nutritionInformation.cholesterol : ""}
+                                        </span></h5>
+
                                         <hr />
-                                        <h5 className='float-right text-muted pt-5'>{data.nutritionInformation.nutritionTitle}</h5> */}
+                                        <h5 className='float-right text-muted pt-5'>
+                                            {data && data.nutritionInformation && data.nutritionInformation.nutritionTitle ? data.nutritionInformation.nutritionTitle : ""}
+                                        </h5>
 
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="container text-muted pt-5 pb-3">
+                                <h5>{data && data.recipeId && data.recipeId.description ? data.recipeId.description : ""}</h5>
+
+
                             </div>
                         </div>
 
 
 
-                        <div className='content pb-5'>
+                        <div className='content pb-2'>
                             <h4> {description}</h4>
                         </div>
                         {/*  section Ingredients*/}
@@ -237,63 +282,107 @@ function RecepiDetailPage() {
                             <div class="row">
                                 <div class="col-8">
 
-                                    <h1 className='pb-3 text-dark font-weight-bold'>Ingredients</h1>
-
+                                    <h1 className='pb-3 text-dark font-weight-bold float-left'>Ingredients</h1>
                                     <div class="float-left ml-5">
                                         <div class="row-sm  pt-3 ">
-                                            <h4 class="font-weight-bold text-dark pb-2">For Main Dish
-                                            
-                                            </h4>
+                                            <h4 class="font-weight-bold text-dark pb-5 float-left ">For Main Dish</h4>
                                         </div>
+                                        {
+                                            datass.map(items => {
+                                                //  console.log(items, "otems")
+                                                return (
+                                                    <div>
 
-                                        <div class="row-sm pb-2">
-                                            <div class="form-check ">
-                                                <label class="form-check-label">
-                                                    {/* <input type="checkbox" class="form-check-input rounded-lg" value="" />{data.ingredient[0].formaindish[0]}  */}
-                                                </label>
-                                            </div>
-                                            <hr />
-                                        </div>
-                                        <div class="row-sm pb-2 ">
-                                            {/* <input type="checkbox" class="form-check-input rounded-lg" value="" />{data.ingredient[0].formaindish[1]}   */}
+                                                        <div class="row-sm pb-2 ">
+                                                            <div class="form-check pt-2" style={{ marginRight: "700px" }}>
+                                                                <label class="form-check-label float-left pt-2" >
+                                                                    <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.formaindish[0]}</span>
 
-                                        </div>
-                                        <hr />
-                                        <div class="row-sm pb-2 ">
-                                            {/* <input type="checkbox" class="form-check-input rounded-lg" value="" />{data.ingredient[0].formaindish[2]}   */}
+                                                                </label>
+                                                            </div>
+                                                            {/* <hr /> */}
+                                                        </div>
+                                                        <div class="row-sm pb-2 ">
+                                                            <div class="form-check pt-5" style={{ marginRight: "700px" }}>
+                                                                <label class="form-check-label float-left pt-5" >
+                                                                    <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.formaindish[1]}</span>
 
-                                        </div>
-                                        <div class="row-sm  pt-3 ">
-                                            <hr />
-                                            <h4 class="font-weight-bold text-dark pb-4">For the Sauce</h4>
-                                            <div class="row-sm pb-4">
-                                                {/* <input type="checkbox" class="form-check-input rounded-lg" value="" />{data.ingredient[0].sauce[0]}   */}
-                                                <hr />
-                                            </div>
-                                            <div class="row-sm ">
-                                                {/* <input type="checkbox" class="form-check-input rounded-lg" value="" />{data.ingredient[0].sauce[1]}  */}
-                                            </div>
-                                            <hr />
-                                            {/* section Direction */}
-                                            <h4 class="font-weight-bold text-dark pt-3 pb-3">Direction</h4>
-                                            <div class="row-sm pb-4">
-                                                {/* <input type="checkbox " class="form-check-input rounded-lg" value="" />{data.direction[0].directionTitle} */}
+                                                                </label>
+                                                            </div>
+                                                            {/* <hr /> */}
+                                                        </div>
+                                                        <div class="row-sm pb-5 ">
+                                                            <div class="form-check pt-5" style={{ marginRight: "700px" }}>
+                                                                <label class="form-check-label float-left pt-5 pb-5" >
+                                                                    <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.formaindish[2]}</span>
 
-                                                {/* <p class="text-muted pt-4 pb-5"> {data.direction[0].directionDescription}</p>
-                                                <img src={`http://95.111.202.157:8001/${data.direction[0].directionImage}`} alt="fftgh" style={{ width: '900px', height: "400px" }} class="rounded-lg pt-2" /> */}
+                                                                </label>
+                                                            </div>
+                                                            {/* <hr /> */}
+                                                        </div>
 
-                                                <hr />
-                                            </div>
-                                            <div class="row-sm ">
-                                                {/* <input type="checkbox" class="form-check-input rounded-lg " value="" />{data.direction[1].directionTitle}
-                                                <p class="text-muted pt-4 pb-5"> {data.direction[1].directionDescription}</p>
-                                                <img src={`http://95.111.202.157:8001/${data.direction[1].directionImage}`} alt="fftgh" style={{ width: '900px', height: "400px" }} class="rounded-lg pt-2" /> */}
+                                                        <div class="row-sm pt-5 ">
 
-                                           </div>
-                                            <hr />
-                                        </div>
+                                                            <h4 class="font-weight-bold text-dark pt-5 pb-3 float-left" style={{ marginRight: "550px" }}>For the Sauce</h4>
+
+                                                            {/* <div class="form-check pt-2 pb-5" style={{ marginRight: "500px" }}>
+                                                                <label class="form-check-label float-left pt-4 pb-5" >
+                                                                    <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.sauce[0]}</span>
+
+                                                                </label>
+                                                            </div>
+
+                                                            <div class="form-check pt-5 pb-5" style={{ marginRight: "500px" }}>
+                                                                <label class="form-check-label float-left pt-2 pb-5" >
+                                                                    <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.sauce[1]}</span>
+
+                                                                </label>
+                                                            </div> */}
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+
+
+                                        <h1 className="font-weight-bold text-dark pt-5 pb-3 float-left" style={{marginRight: "500px"}}>Direction</h1>
+                                        {
+                                            direction.map(items => {
+                                                //console.log(items, "direcccctionsssssssss")
+                                                return (
+                                                    <div>
+                                                        <div class="row-sm pb-2">
+
+                                                            <div class="form-check pt-2 pb-5" style={{ marginRight: "500px" }}>
+                                                                <label class="form-check-label float-left pt-4 pb-5" >
+                                                                    <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.directionTitle}</span>
+                                                                    <br></br>
+                                                                    <p class="text-muted pt-4 pb-5"> {items.directionDescription}</p>
+
+
+                                                                    <img src={`http://95.111.202.157:8001/${items.directionImage}`} alt="fftgh" style={{ width: '750px', height: "400px" }} class="rounded-lg pt-2 pb-4" />
+                                                                </label>
+                                                            </div>
+
+
+
+
+
+
+
+                                                        </div>
+
+                                                    </div>
+                                                )
+
+                                            })
+                                        }
+
+
 
                                     </div>
+
+
 
                                 </div>
                                 <div class="col-4">
@@ -301,19 +390,19 @@ function RecepiDetailPage() {
                                         <h2 class="float-left pb-3 text-dark font-weight-bold">Other Recepis</h2>
 
                                         {
-                                            list.slice(0, 3).map(item => {
-                                                // console.log("list datavfgfgfgf", list)
+                                            list.slice(0, 3).map(item1 => {
+
                                                 return (
 
                                                     <div>
 
                                                         <div class="col-2 float-left pb-4 ">
-                                                            <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" class="rounded-lg" style={{ width: "250px", height: "150px", }} />
+                                                            <img src={`http://95.111.202.157:8001/${item1.recipeId.image}`} alt="fftgh" class="rounded-lg" style={{ width: "250px", height: "150px", }} />
                                                         </div>
 
                                                         <div class="col-2 float-right">
-                                                            <h5 class="float-right ">{item.recipeId.title}</h5>
-                                                            {/* <p class="text-muted float-right ">{item.recipeId.userId.firstName}</p> */}
+                                                            <h5 class="float-right ">{item1.recipeId.title}</h5>
+                                                            {/* <p class="text-muted float-right ">{item1.recipeId.userId.firstName}</p> */}
                                                         </div>
                                                     </div>
 
@@ -372,25 +461,25 @@ function RecepiDetailPage() {
             <div class="container-fluid pt-5 pb-5">
                 <div class="row">
                     {
-                        list.slice(0, 4).map(item => {
-                            // console.log("list data", list)
+                        list.slice(0, 4).map(item1 => {
+
                             return (
                                 <div className='col-md-3'>
 
 
                                     <div className='sa pb-5'>
 
-                                        <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "330px", height: "250px", padding: "20px" }} />
-                                        <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
+                                        <img src={`http://95.111.202.157:8001/${item1.recipeId.image}`} alt="fftgh" style={{ width: "330px", height: "250px", padding: "20px" }} />
+                                        <h6 class=" pt-2 pb-3">{item1.recipeId.title}</h6>
                                         <div className='float-left' >
-                                            <p class="text-muted">{item.recipeId.cookTime}
+                                            <p class="text-muted">{item1.recipeId.cookTime}
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-3 text-dark" viewBox="0 0 16 16">
                                                     <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
                                                 </svg>
                                             </p>
                                         </div>
                                         <div className='float-right' >
-                                            <p class="text-muted">{item.recipeId.categoryId.categoryName}
+                                            <p class="text-muted">{item1.recipeId.categoryId.categoryName}
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-apple float-left ml-4 text-dark" viewBox="0 0 16 16">
                                                     <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
                                                     <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
