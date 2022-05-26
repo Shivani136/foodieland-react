@@ -1,19 +1,24 @@
 import logo from './logo.svg';
+import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import Registration from './Component/User/Registration';
 import Route from './Routing/Route';
 import './App.css';
 import Slideshow from './Component/Slider';
+import './style.scss';
 
 function App() {
-  return (
+
+ return (
     <div className="App">
-    {/* <Slideshow /> */}
-  <Route />
-</div>
+      {/* <Slideshow /> */}
+      <Route />
+   
+    </div>
   );
 }
 
 export default App;
+
+
 

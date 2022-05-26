@@ -1,12 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import axios from 'axios'
 import { GetAllBlog, DeleteBlog } from '../../Config/Commonapi';
+import Pagination from '../Paginations';
+import '../../../src/style.scss';
 
 function BlogList() {
 
     const [data, setData] = useState([]);
     const [_id, _setId] = useState(null);
 
+    let PageSize = 2;
+    const [currentPage, setCurrentPage] = useState(1);
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * PageSize;
+        const lastPageIndex = firstPageIndex + PageSize;
+        return data.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage]);
 
     useEffect(() => {
         fetchData();
@@ -19,17 +28,14 @@ function BlogList() {
 
     }
 
-    function selectUser(id) {
-   
-
-    }
+    function selectUser(id) { }
 
     const student = JSON.parse(localStorage.getItem("userdata"))
-   // console.log("student", student.data._id)
+    // console.log("student", student.data._id)
     const user = student.data._id
 
     function blogdelete(_id) {
-    
+
         const temp = {
 
             blogId: _id,
@@ -99,9 +105,7 @@ function BlogList() {
             <div class="content px-5 py-5">
 
                 <div className=''>
-
-
-                    <table class="table table-striped table-bordered h-100" >
+            <table class="table table-striped table-bordered h-100" >
                         <thead>
                             <tr>
                                 <th scope="col">Title</th>
@@ -116,9 +120,9 @@ function BlogList() {
                         </thead>
                         <tbody>
 
-
-                            {
-                                data.map((item, index) => {
+                        {currentTableData.map((item ,index) => {
+                              
+                            // { data.map((item, index) => {
 
 
                                     // console.log("gdghdfgsgf", item._id)
@@ -184,7 +188,7 @@ function BlogList() {
 
                                         </tr>
 
-                                    )
+                                    );
                                 })
                             }
 
@@ -192,6 +196,13 @@ function BlogList() {
                         </tbody>
 
                     </table>
+                    <Pagination
+                        className="pagination-bar"
+                        currentPage={currentPage}
+                        totalCount={data.length}
+                        pageSize={PageSize}
+                        onPageChange={page => setCurrentPage(page)}
+                    />
 
 
                 </div>

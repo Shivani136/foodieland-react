@@ -3,20 +3,77 @@ import ReactDOM from "react-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import Pagination from "react-js-pagination";
 //import "bootstrap/less/bootstrap.less"
+import classnames from 'classnames';
+import { usePagination, DOTS } from '../Component/usePagination';
+import '../../src/Pagination.scss';
+const Pagination = props => {
+  const {
+    onPageChange,
+    totalCount,
+    siblingCount = 1,
+    currentPage,
+    pageSize,
+    className
+  } = props;
 
-import Pagination from 'react-responsive-pagination';
+  const paginationRange = usePagination({
+    currentPage,
+    totalCount,
+    siblingCount,
+    pageSize
+  });
 
-function Paginations() {
-  const [currentPage, setCurrentPage] = useState(4);
+  if (currentPage === 0 || paginationRange.length < 2) {
+    return null;
+  }
 
-  const totalPages = 17;
+  const onNext = () => {
+    onPageChange(currentPage + 1);
+  };
 
+  const onPrevious = () => {
+    onPageChange(currentPage - 1);
+  };
+
+  let lastPage = paginationRange[paginationRange.length - 1];
   return (
-    <Pagination
-      current={currentPage}
-      total={5}
-      onPageChange={setCurrentPage}
-    />
+    <ul
+      className={classnames('pagination-container', { [className]: className })}
+    >
+      <li
+        className={classnames('pagination-item', {
+          disabled: currentPage === 1
+        })}
+        onClick={onPrevious}
+      >
+        <div className="arrow left" />
+      </li>
+      {paginationRange.map(pageNumber => {
+        if (pageNumber === DOTS) {
+          return <li className="pagination-item dots">&#8230;</li>;
+        }
+
+        return (
+          <li
+            className={classnames('pagination-item', {
+              selected: pageNumber === currentPage
+            })}
+            onClick={() => onPageChange(pageNumber)}
+          >
+            {pageNumber}
+          </li>
+        );
+      })}
+      <li
+        className={classnames('pagination-item', {
+          disabled: currentPage === lastPage
+        })}
+        onClick={onNext}
+      >
+        <div className="arrow right" />
+      </li>
+    </ul>
   );
-}
-export default Paginations;
+};
+
+export default Pagination;
