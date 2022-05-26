@@ -89,7 +89,6 @@ function RecepiDetailPage() {
     return (
         <div>
             {/* header */}
-
             <div id="page-content-wrapper">
 
                 <nav class="navbar navbar-expand-lg navbar navbar-light bg-light border-bottom">
@@ -134,301 +133,302 @@ function RecepiDetailPage() {
                     </div>
                 </nav>
             </div>
-
             {/* content */}
-
             <div class="pt-5 ">
-
-
-
                 <h1 class=" health pt-5 pb-5 "> {data && data.recipeId && data.recipeId.title ? data.recipeId.title : ""}</h1>
+                <div class="container-fluid">
+                    <div class="row">
 
-                <div>
+                        <div class="col-2">
 
-                    <div class="container-fluid">
-                        <div class="row">
+                            <img src={`http://95.111.202.157:8001/${data && data.recipeId && data.recipeId.userId && data.recipeId.userId.Image ? data.recipeId.userId.Image : ""}`} class="rounded-circle float-left ml-5" alt="fftgh" style={{ width: "60px", height: "60px" }} />
+                            <p class="float-right font-weight-bold">
+                                {data && data.recipeId && data.recipeId.userId && data.recipeId.userId.firstName ? data.recipeId.userId.firstName : ""}
+                                {data && data.recipeId && data.recipeId.userId && data.recipeId.userId.lastName ? data.recipeId.userId.lastName : ""}
 
-                            <div class="col-2">
+                            </p>
+                            {/* <span className='text-muted'>  {data.createdAt}</span> */}
 
-                                <img src={`http://95.111.202.157:8001/${data && data.recipeId && data.recipeId.userId && data.recipeId.userId.Image ? data.recipeId.userId.Image : ""}`} class="rounded-circle float-left ml-5" alt="fftgh" style={{ width: "60px", height: "60px" }} />
-                                <p class="float-right font-weight-bold">
-                                    {data && data.recipeId && data.recipeId.userId && data.recipeId.userId.firstName ? data.recipeId.userId.firstName : ""}
-                                    {data && data.recipeId && data.recipeId.userId && data.recipeId.userId.lastName ? data.recipeId.userId.lastName : ""}
+                        </div>
+                        <div class="col-2 ">
+                            <p>PREP TIME</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-5" viewBox="0 0 16 16">
+                                <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
+                            </svg>
+                            <p className='text-muted'>
+                                {data && data.recipeId && data.recipeId.prepTime ? data.recipeId.prepTime : ""}
+                            </p>
 
-                                </p>
-                                {/* <span className='text-muted'>  {data.createdAt}</span> */}
+                        </div>
+                        <div class="col-2">
+                            <p>COOK TIME</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-5" viewBox="0 0 16 16">
+                                <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
+                            </svg>
+                            <p className='text-muted'> {data && data.recipeId && data.recipeId.cookTime ? data.recipeId.cookTime : ""}</p>
 
+                        </div>
+                        <div class="col-2 ">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-apple float-left ml-5" viewBox="0 0 16 16">
+                                <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
+                                <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
+                            </svg>
+                            <p className='text-muted'>
+                                {data && data.recipeId && data.recipeId.categoryId && data.recipeId.categoryId.categoryName ? data.recipeId.categoryId.categoryName : ""}
+                            </p>
+
+                        </div>
+                        <div class="col-4 ">
+                            <div className='float-right ml-3'>
+                                <span class="rounded-circle bg-info pt-5 pb-3 p-4 pl-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-box-arrow-up mx-auto pb-1" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1h-2z" />
+                                        <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 1.707V10.5a.5.5 0 0 1-1 0V1.707L5.354 3.854a.5.5 0 1 1-.708-.708l3-3z" />
+                                    </svg>
+                                </span>
+                                <p className='text-muted pt-5'>SHARE</p>
                             </div>
-                            <div class="col-2 ">
-                                <p>PREP TIME</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-5" viewBox="0 0 16 16">
-                                    <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
-                                </svg>
-                                <p className='text-muted'>
-                                    {data && data.recipeId && data.recipeId.prepTime ? data.recipeId.prepTime : ""}
-                                </p>
 
-                            </div>
-                            <div class="col-2">
-                                <p>COOK TIME</p>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-5" viewBox="0 0 16 16">
-                                    <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
-                                </svg>
-                                <p className='text-muted'> {data && data.recipeId && data.recipeId.cookTime ? data.recipeId.cookTime : ""}</p>
+                            <div className='float-right ml-4'>
+                                <span class="rounded-circle bg-info pt-5 pb-3 p-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-box-arrow-up mx-auto pb-1 " viewBox="0 0 16 16">
+                                        <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
+                                        <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z" />
+                                    </svg>
+                                </span>
+                                <p className='text-muted pt-5'>PRINT</p>
 
-                            </div>
-                            <div class="col-2 ">
-
-                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-apple float-left ml-5" viewBox="0 0 16 16">
-                                    <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
-                                    <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
-                                </svg>
-                                <p className='text-muted'>
-                                    {data && data.recipeId && data.recipeId.categoryId && data.recipeId.categoryId.categoryName ? data.recipeId.categoryId.categoryName : ""}
-                                </p>
-
-                            </div>
-                            <div class="col-4 ">
-                                <div className='float-right ml-3'>
-                                    <span class="rounded-circle bg-info pt-5 pb-3 p-4 pl-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-box-arrow-up mx-auto pb-1" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1h-2z" />
-                                            <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 1.707V10.5a.5.5 0 0 1-1 0V1.707L5.354 3.854a.5.5 0 1 1-.708-.708l3-3z" />
-                                        </svg>
-                                    </span>
-                                    <p className='text-muted pt-5'>SHARE</p>
-                                </div>
-
-                                <div className='float-right ml-4'>
-                                    <span class="rounded-circle bg-info pt-5 pb-3 p-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-box-arrow-up mx-auto pb-1 " viewBox="0 0 16 16">
-                                            <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
-                                            <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z" />
-                                        </svg>
-                                    </span>
-                                    <p className='text-muted pt-5'>PRINT</p>
-
-                                </div>
                             </div>
                         </div>
-                        <br />
-                        <div class="row pt-5 pb-5">
-                            <div class="col-8  ">
-                                <div class="card bg-info mx-auto border-rounded-lg ml-4 mr-4">
+                    </div>
+                    <br />
+                    <div class="row  pb-5">
+                        <div class="col-8  ">
+                            <div class=" border-rounded-lg  mr-4">
 
-                                    <div class="card-body text-center rounded">
-                                        <video width="860" height="510" controls>
+                                <div class="rounded" style={{ marginTop: "-50px" }}>
 
-                                            <source src={data && data.recipeId && data.recipeId.video ? data.recipeId.video : ""} type="video/mp4" />
+                                    {data.length == "0" ?
+                                        ""
+                                        :
+                                        <video width="860" height="600" controls >
+
+                                            <source src={`http://95.111.202.157:8001/${data.recipeId.video}`} type="video/mp4" />
+                                            <button type="button" class="btn btn-primary btn-lg rounded-circle">Large</button>
+                                            <source src="movie.ogg" type="video/ogg" />
+                                            Your browser does not support the video tag.
 
 
                                         </video>
-                                    </div>
+                                    }
+
+
 
                                 </div>
 
                             </div>
-                            <div class="col-4 float-right">
-                                <div class="card bg-info rounded">
-                                    <div class="card-body float-left">
-                                        <h4 class="card-text font-weight-bold">Nutrition Information</h4>
-                                    </div>
-                                    <div className='card'>
-                                        <h5 className='text-muted font-weight-bold float-left pt-2 mr-5'>Calories : <span className='text-dark float-right border-bottom'>
-                                            {data && data.nutritionInformation && data.nutritionInformation.calories ? data.nutritionInformation.calories : ""}
-                                        </span></h5>
-                                        <hr />
-                                        <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Total Fat : <span className='text-dark float-right border-bottom'>
-                                            {data && data.nutritionInformation && data.nutritionInformation.totalFat ? data.nutritionInformation.totalFat : ""}
-                                        </span></h5>
-                                        <hr />
-                                        <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Protein : <span className='text-dark float-right border-bottom'>
 
-                                            {data && data.nutritionInformation && data.nutritionInformation.protein ? data.nutritionInformation.protein : ""}
-                                        </span></h5>
-                                        <hr />
-                                        <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Carbohydrate : <span className='text-dark float-right border-bottom'>
-                                            {data && data.nutritionInformation && data.nutritionInformation.carbohydrate ? data.nutritionInformation.carbohydrate : ""}
-                                        </span></h5>
-                                        <hr />
-                                        <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Cholesterol : <span className='text-dark float-right border-bottom'>
-
-                                            {data && data.nutritionInformation && data.nutritionInformation.cholesterol ? data.nutritionInformation.cholesterol : ""}
-                                        </span></h5>
-
-                                        <hr />
-                                        <h5 className='float-right text-muted pt-5'>
-                                            {data && data.nutritionInformation && data.nutritionInformation.nutritionTitle ? data.nutritionInformation.nutritionTitle : ""}
-                                        </h5>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="container text-muted pt-5 pb-3">
-                                <h5>{data && data.recipeId && data.recipeId.description ? data.recipeId.description : ""}</h5>
-
-
-                            </div>
                         </div>
-
-
-
-                        <div className='content pb-2'>
-                            <h4> {description}</h4>
-                        </div>
-                        {/*  section Ingredients*/}
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-8">
-
-                                    <h1 className='pb-3 text-dark font-weight-bold float-left'>Ingredients</h1>
-                                    <div class="float-left ml-5">
-                                        <div class="row-sm  pt-3 ">
-                                            <h4 class="font-weight-bold text-dark pb-5 float-left ">For Main Dish</h4>
-                                        </div>
-                                        {
-                                            datass.map(items => {
-                                                //  console.log(items, "otems")
-                                                return (
-                                                    <div>
-
-                                                        <div class="row-sm pb-2 ">
-                                                            <div class="form-check pt-2" style={{ marginRight: "700px" }}>
-                                                                <label class="form-check-label float-left pt-2" >
-                                                                    <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.formaindish[0]}</span>
-
-                                                                </label>
-                                                            </div>
-                                                            {/* <hr /> */}
-                                                        </div>
-                                                        <div class="row-sm pb-2 ">
-                                                            <div class="form-check pt-5" style={{ marginRight: "700px" }}>
-                                                                <label class="form-check-label float-left pt-5" >
-                                                                    <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.formaindish[1]}</span>
-
-                                                                </label>
-                                                            </div>
-                                                            {/* <hr /> */}
-                                                        </div>
-                                                        <div class="row-sm pb-5 ">
-                                                            <div class="form-check pt-5" style={{ marginRight: "700px" }}>
-                                                                <label class="form-check-label float-left pt-5 pb-5" >
-                                                                    <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.formaindish[2]}</span>
-
-                                                                </label>
-                                                            </div>
-                                                            {/* <hr /> */}
-                                                        </div>
-
-                                                        <div class="row-sm pt-5 ">
-
-                                                            <h4 class="font-weight-bold text-dark pt-5 pb-3 float-left" style={{ marginRight: "550px" }}>For the Sauce</h4>
-
-                                                            {/* <div class="form-check pt-2 pb-5" style={{ marginRight: "500px" }}>
-                                                                <label class="form-check-label float-left pt-4 pb-5" >
-                                                                    <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.sauce[0]}</span>
-
-                                                                </label>
-                                                            </div>
-
-                                                            <div class="form-check pt-5 pb-5" style={{ marginRight: "500px" }}>
-                                                                <label class="form-check-label float-left pt-2 pb-5" >
-                                                                    <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.sauce[1]}</span>
-
-                                                                </label>
-                                                            </div> */}
-                                                        </div>
-                                                    </div>
-                                                )
-                                            })
-                                        }
-
-
-                                        <h1 className="font-weight-bold text-dark pt-5 pb-3 float-left" style={{marginRight: "500px"}}>Direction</h1>
-                                        {
-                                            direction.map(items => {
-                                                //console.log(items, "direcccctionsssssssss")
-                                                return (
-                                                    <div>
-                                                        <div class="row-sm pb-2">
-
-                                                            <div class="form-check pt-2 pb-5" style={{ marginRight: "500px" }}>
-                                                                <label class="form-check-label float-left pt-4 pb-5" >
-                                                                    <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.directionTitle}</span>
-                                                                    <br></br>
-                                                                    <p class="text-muted pt-4 pb-5"> {items.directionDescription}</p>
-
-
-                                                                    <img src={`http://95.111.202.157:8001/${items.directionImage}`} alt="fftgh" style={{ width: '750px', height: "400px" }} class="rounded-lg pt-2 pb-4" />
-                                                                </label>
-                                                            </div>
-
-
-
-
-
-
-
-                                                        </div>
-
-                                                    </div>
-                                                )
-
-                                            })
-                                        }
-
-
-
-                                    </div>
-
-
-
+                        <div class="col-4 float-right">
+                            <div class="card bg-info rounded">
+                                <div class="card-body float-left">
+                                    <h4 class="card-text font-weight-bold">Nutrition Information</h4>
                                 </div>
-                                <div class="col-4">
-                                    <div class="row pt-3 pb-4">
-                                        <h2 class="float-left pb-3 text-dark font-weight-bold">Other Recepis</h2>
+                                <div className='card'>
+                                    <h5 className='text-muted font-weight-bold float-left pt-2 mr-5'>Calories : <span className='text-dark float-right border-bottom'>
+                                        {data && data.nutritionInformation && data.nutritionInformation.calories ? data.nutritionInformation.calories : ""}
+                                    </span></h5>
+                                    <hr />
+                                    <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Total Fat : <span className='text-dark float-right border-bottom'>
+                                        {data && data.nutritionInformation && data.nutritionInformation.totalFat ? data.nutritionInformation.totalFat : ""}
+                                    </span></h5>
+                                    <hr />
+                                    <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Protein : <span className='text-dark float-right border-bottom'>
 
-                                        {
-                                            list.slice(0, 3).map(item1 => {
+                                        {data && data.nutritionInformation && data.nutritionInformation.protein ? data.nutritionInformation.protein : ""}
+                                    </span></h5>
+                                    <hr />
+                                    <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Carbohydrate : <span className='text-dark float-right border-bottom'>
+                                        {data && data.nutritionInformation && data.nutritionInformation.carbohydrate ? data.nutritionInformation.carbohydrate : ""}
+                                    </span></h5>
+                                    <hr />
+                                    <h5 className='text-muted font-weight-bold float-left p-1 mr-5'>Cholesterol : <span className='text-dark float-right border-bottom'>
 
-                                                return (
+                                        {data && data.nutritionInformation && data.nutritionInformation.cholesterol ? data.nutritionInformation.cholesterol : ""}
+                                    </span></h5>
 
-                                                    <div>
+                                    <hr />
+                                    <h5 className='float-right text-muted pt-5'>
+                                        {data && data.nutritionInformation && data.nutritionInformation.nutritionTitle ? data.nutritionInformation.nutritionTitle : ""}
+                                    </h5>
 
-                                                        <div class="col-2 float-left pb-4 ">
-                                                            <img src={`http://95.111.202.157:8001/${item1.recipeId.image}`} alt="fftgh" class="rounded-lg" style={{ width: "250px", height: "150px", }} />
-                                                        </div>
-
-                                                        <div class="col-2 float-right">
-                                                            <h5 class="float-right ">{item1.recipeId.title}</h5>
-                                                            {/* <p class="text-muted float-right ">{item1.recipeId.userId.firstName}</p> */}
-                                                        </div>
-                                                    </div>
-
-
-                                                )
-                                            })
-                                        }
-
-
-
-                                        <div class="col pt-5 float-left">
-                                            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
-                                                alt="des" style={{ height: '600px', width: "400px" }} class="rounded-lg" />
-                                        </div>
-
-                                    </div>
                                 </div>
                             </div>
                         </div>
 
+                        <div class="container text-muted pt-5 pb-3">
+                            <h5>{data && data.recipeId && data.recipeId.description ? data.recipeId.description : ""}</h5>
+
+
+                        </div>
                     </div>
+                    <div className='content pb-2'>
+                        {/* <h4> {description}</h4> */}
+                    </div>
+                    {/*  section Ingredients*/}
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-8">
+
+                                
+                                <div class="row text-left">
+                                    <div class="row-sm  pt-3 ">
+                                    <h1 className='pb-3 text-dark font-weight-bold '>Ingredients</h1>
+                                        <h4 class="font-weight-bold text-dark pb-5 ">For Main Dish</h4>
+                                    </div>
+                                    {
+                                        datass.map(items => {
+                                            //  console.log(items, "otems")
+                                            return (
+                                                <div className='row'>
+
+                                                    <div class="pb-5 ">
+                                                        <div class="form-check " >
+                                                            <label class="form-check-label" >
+                                                                <input type="checkbox" class="form-check-input " value="" /><span className='text-uppercase'>{items.formaindish[2]}</span>
+
+                                                            </label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="pb-5 ">
+                                                        <div class="form-check">
+                                                            <label class="form-check-label " >
+                                                                <input type="checkbox" class="form-check-input " value="" /><span className='text-uppercase'>{items.formaindish[2]}</span>
+
+                                                            </label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="pb-3 ">
+                                                        <div class="form-check">
+                                                            <label class="form-check-label" >
+                                                                <input type="checkbox" class="form-check-input " value="" /><span className='text-uppercase'>{items.formaindish[2]}</span>
+
+                                                            </label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="pt-5 ">
+
+                                                        <h4 class="font-weight-bold text-dark  pb-3 float-left" style={{ marginRight: "550px" }}>For the Sauce</h4>
+
+                                                        <div class="form-check pt-5 pb-5" style={{ marginRight: "500px" }}>
+                                                            <label class="form-check-label float-left pt-2 pb-5" >
+                                                                <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.sauce[1]}</span>
+
+                                                            </label>
+                                                        </div>
+
+                                                        <div class="form-check pt-5 pb-5" style={{ marginRight: "500px" }}>
+                                                            <label class="form-check-label float-left pt-2 pb-5" >
+                                                                <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.sauce[1]}</span>
+
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+
+
+                                    <h1 className="font-weight-bold text-dark pt-5 pb-3 float-left" style={{ marginRight: "500px" }}>Direction</h1>
+                                    {
+                                        direction.map(items => {
+                                            //console.log(items, "direcccctionsssssssss")
+                                            return (
+                                                <div>
+                                                    <div class="row-sm pb-2">
+
+                                                        <div class="form-check pt-2 pb-5" style={{ marginRight: "500px" }}>
+                                                            <label class="form-check-label float-left pt-4 pb-5" >
+                                                                <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.directionTitle}</span>
+                                                                <br></br>
+                                                                <h5 class="text-muted pt-4 pb-5"> {items.directionDescription}</h5>
+
+
+                                                                <img src={`http://95.111.202.157:8001/${items.directionImage}`} alt="fftgh" style={{ width: '750px', height: "400px" }} class="rounded-lg pt-2 pb-4" />
+                                                            </label>
+                                                        </div>
+
+
+
+
+
+
+
+                                                    </div>
+
+                                                </div>
+                                            )
+
+                                        })
+                                    }
+
+
+
+                                </div>
+
+
+
+                            </div>
+                            <div class="col-4">
+                                <div class="row pt-3 pb-4">
+                                    <h2 class="float-left pb-3 text-dark font-weight-bold">Other Recepis</h2>
+
+                                    {
+                                        list.slice(0, 3).map(item1 => {
+
+                                            return (
+
+                                                <div>
+
+                                                    <div class="col-2 float-left pb-4 ">
+                                                        <img src={`http://95.111.202.157:8001/${item1.recipeId.image}`} alt="fftgh" class="rounded-lg" style={{ width: "250px", height: "150px", }} />
+                                                    </div>
+
+                                                    <div class="col-2 float-right">
+                                                        <h5 class="float-right ">{item1.recipeId.title}</h5>
+                                                        {/* <p class="text-muted float-right ">{item1.recipeId.userId.firstName}</p> */}
+                                                    </div>
+                                                </div>
+
+
+                                            )
+                                        })
+                                    }
+
+
+
+                                    <div class="col pt-5 float-left">
+                                        <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                                            alt="des" style={{ height: '600px', width: "400px" }} class="rounded-lg" />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-
-
-
             </div>
+
+
+
+
 
             {/* subscription text */}
             <div className='pt-5'>

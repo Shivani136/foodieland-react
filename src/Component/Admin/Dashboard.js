@@ -7,12 +7,12 @@ import UserList from '../User/UserList';
 function Dashboard() {
 
   const student = JSON.parse(localStorage.getItem("userdata"))
-  console.log("student", student.data.firstName)
+  // console.log("student", student.data.firstName)
   const user = student.data.firstName
 
 
 
-  console.log(api, "api")
+  // console.log(api, "api")
   return (
     <div>
       <div class="d-flex" id="wrapper">
@@ -20,23 +20,13 @@ function Dashboard() {
         <div class="border-end bg-white" id="sidebar-wrapper">
           <div class="sidebar-heading border-bottom bg-light font-weight-bolder text-uppercase font-italic">Foodien Land</div>
           <div class="list-group list-group-flush pt-5">
-
             <a class="list-group-item list-group-item-action list-group-item-light font-weight-bold   text-uppercase p-3" href="/addblog">Add Blog</a>
-            {/* <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/bloglist">Blog List</a> */}
             <a class="list-group-item list-group-item-action list-group-item-light font-weight-bold text-uppercase p-3" href="/">Add User</a>
             <a class="list-group-item list-group-item-action list-group-item-light font-weight-bold   text-uppercase p-3" href="/userlist">UserList</a>
-            {/* <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/tempuserlist">UserListTemp</a>   */}
-            {/* <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/userlist">UserList</a> */}
             <a class="list-group-item list-group-item-action list-group-item-light  font-weight-bold   text-uppercase p-3" href="/addcategory">Add Category</a>
-            {/* <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/categorylist">Category List</a> */}
-            {/* <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/recepi">Recepi</a> */}
             <a class="list-group-item list-group-item-action list-group-item-light  font-weight-bold   text-uppercase p-3" href="/addrecepi">Add Recepi</a>
-            {/* <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/recepilist">Recepi List</a> */}
-
             <a class="list-group-item list-group-item-action list-group-item-light font-weight-bold   text-uppercase p-3" href="/recepimeta">Add Recepi Meta</a>
             <a class="list-group-item list-group-item-action list-group-item-light font-weight-bold   text-uppercase p-3" href="/sitemanagement">Site Management</a>
-
-
           </div>
         </div>
 

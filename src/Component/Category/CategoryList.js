@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
 import { AllCategory, DeleteCategory } from '../../Config/Commonapi';
+import Paginations from '../Paginations';
 
 function CategoryList() {
     const [data, setData] = useState([]);
@@ -29,29 +29,23 @@ function CategoryList() {
     }
 
     const student = JSON.parse(localStorage.getItem("userdata"))
-    console.log("student", student.data._id)
+    // console.log("student", student.data._id)
     const user = student.data._id
 
     function categorydelete(_id) {
-        alert(_id, "id")
+       // alert(_id, "id")
         const data = {
             categorId: _id,
             ownerId: user
         }
-        console.log(data, "data")
+        //  console.log(data, "data")
 
-        // fetch(`http://95.111.202.157:8001/api/deleteCategory?categorId=${_id}` ,data,{
-        //     method: 'DELETE',
-        //     headers: {
-        //       'Accept': 'application/json',
-        //       'Content-Type': 'application/json'
-        //     },
-        //     })
+
 
         axios.delete(`/deleteCategory?categorId=${_id}&ownerId=${user}`, data).then(
             res => {
                 console.log(res)
-
+                alert("Category deleted SuccessFully ..");
             }).catch(
                 err => {
                     console.log(err)
@@ -63,9 +57,9 @@ function CategoryList() {
             <div class="content  px-5 py-5">
 
                 <div className=' '>
-
-
-                    <table class="table table-striped table-bordered h-100" >
+{/* 
+                    <Paginations /> */}
+                    <table class="table table-striped table-bordered h-75" >
                         <thead>
                             <tr>
                                 <th scope="col">Category Name</th>
@@ -80,7 +74,7 @@ function CategoryList() {
                                 data.map(item => {
 
 
-                                    console.log("gdghdfgsgf", data)
+                                    //console.log("gdghdfgsgf", data)
                                     return (
 
                                         <tr>
@@ -89,11 +83,11 @@ function CategoryList() {
                                             </td>
                                             <td scope='row'>
 
-                                                <img src={`http://95.111.202.157:8001/${item.image}`} alt="fftgh" style={{ width: "110px", height: "110px" }} />
+                                                <img src={`http://95.111.202.157:8001/${item.image}`} alt="fftgh" style={{ width: "60px", height: "60px" }} />
                                             </td>
                                             <td scope="row">
-                                          
-                                                <a href={`/categoryupdate/${item._id}`}  onClick={() => selectUser(item.id)}>
+
+                                                <a href={`/categoryupdate/${item._id}`} onClick={() => selectUser(item.id)}>
                                                     <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">Edit</button>
 
 

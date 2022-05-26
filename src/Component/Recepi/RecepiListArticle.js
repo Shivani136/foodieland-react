@@ -135,8 +135,8 @@ function RecepiListArticle() {
             <div class="col-8">
 
               {
-                list.map((item, index) => {
-                  console.log("<<<<<<<<<<<<<<<", list)
+                list.slice(0,4).map((item, index) => {
+                // console.log("<<<<<<<<<<<<<<<", list)
                   //recipeId
                   return (
                     <div>
@@ -156,8 +156,8 @@ function RecepiListArticle() {
                           <div class="row">
                             <div class="col float-right">
                               <p class="text-dark font-weight-bold">
-                                {/* <img src={`http://95.111.202.157:8001/${item.recipeId.userId.Image}`} clas="float-left" alt="fftgh" style={{ width: "50px", height: "50px" }} /> */}
-                                {/* {item.recipeId.userId.firstName} */}
+                                <img src={`http://95.111.202.157:8001/${item.recipeId.userId.Image}`} clas="float-left" alt="fftgh" style={{ width: "50px", height: "50px" }} />
+                                {item.recipeId.userId.firstName}
                               </p>
 
                             </div>
@@ -180,8 +180,8 @@ function RecepiListArticle() {
                 <h2 class="float-left pb-3 mr-5">Tasty BLOG</h2>
 
                 {
-                  data.map((item, index) => {
-                    console.log("gdghdfgsgf", data)
+                  data.slice(0,3).map((item, index) => {
+                   // console.log("gdghdfgsgf", data)
 
 
                     // console.log(getCourse, "getCourse")

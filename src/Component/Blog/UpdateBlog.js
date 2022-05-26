@@ -15,26 +15,23 @@ function UpdateBlog() {
   const [_id, _setId] = useState(null);
   const [datas, _setDatas] = useState(null);
 
-  const ids = []
+  let newData = []
   const temp = useParams()
-
-  console.log(temp.id, "fdsffs")
+  //  console.log(temp.id, "fdsffs")
 
 
   const saveFile = (e) => {
     setImage(e.target.files[0])
-    console.log("imageghgfh ", e.target.files[0])
+    // console.log("imageghgfh ", e.target.files[0])
   }
-
-
 
   const saveVideo = (e) => {
     setVideo(e.target.files[0])
-    console.log("videookh ", e.target.files[0])
+    // console.log("videookh ", e.target.files[0])
   }
 
   useEffect(() => {
-    ids.push(datas)
+    //ids.push(datas)
     fetchData();
     GetBlog();
   }, []);
@@ -43,25 +40,17 @@ function UpdateBlog() {
     await axios.get('/getAllCategory')
       .then((response) => { setList(response.data) })
     //.then((response) => { console.log(response.data) });
-    }
-
-   async function GetBlog() {
-    await axios.get('/getAllBlog')
-      .then((response) => { setData(response.data)});
-
-
-      
   }
 
+  async function GetBlog() {
+    await axios.get('/getAllBlog')
+      .then((response) => { setData(response.data) });
 
-
-
-  function Update(e) {
+ }
+ function Update(e) {
     e.preventDefault();
 
-    ids.push(datas)
-    console.log(Image, "imagess")
-    console.log(video, "video")
+
 
     alert(temp.id, "this is id ");
     let formData = new FormData();
@@ -70,9 +59,9 @@ function UpdateBlog() {
       console.log(key, "Gggg", item[key])
       formData.append(key, item[key])
     }
-   
+
     console.warn("item", item, "oddd")
-    console.log(JSON.parse(ids[0]), "idsssssssssssssssss")
+
     axios.put(`http://95.111.202.157:8001/api/updateBlog?id=${temp.id}`, formData).then(
       res => {
         console.log(res, "itennmmmmmmmmmmm", item)
@@ -82,11 +71,17 @@ function UpdateBlog() {
         console.log(err.response.data.message, "ffff")
       }
     )
-
-
   }
 
-  console.log(EditUser, "EditUser")
+
+  {
+    data.filter((user) => (
+      user._id === temp.id ? newData.push(user) : ""
+
+    ))
+  }
+
+
   return (
     <div className='container pt-5'>
 
@@ -103,62 +98,67 @@ function UpdateBlog() {
 
                 <form onSubmit={Update}>
 
+                  {
+                    newData.map((user) => (
+
+                      <>
+                        {console.log(user, ">>>>>>>>>>>>>")}
+
+                        <label class='float-left pb-1'>Title</label>
+                        <input type="text" class="form-control pb-1 text-dark" placeholder={user.title} onChange={(e) => { setTitle(e.target.value) }} required autofocus />
+
+                        <label class='float-left pt-2'>SubTitle</label>
+                        <input type="text" class="form-control" placeholder={user.subTitle} onChange={(e) => { setSubTitle(e.target.value) }} required autofocus />
 
 
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" value={title} onChange={(e) => { setTitle(e.target.value) }} required autofocus />
-                    <label >Title</label>
-                  </div>
-
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" value={subTitle} onChange={(e) => { setSubTitle(e.target.value) }} required autofocus />
-                    <label >SubTitle </label>
-                  </div>
-
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" value={description} onChange={(e) => { setDescription(e.target.value) }} required autofocus />
-                    <label >Description</label>
-                  </div>
+                        <label class='float-left pt-3'>Description</label>
+                        <input type="text" class="form-control" placeholder={user.description} onChange={(e) => { setDescription(e.target.value) }} required autofocus />
 
 
 
-                  <div class="form-floating mb-3 ">
-
-                    <div class="form-group" required autofocus>
-                      <label class="float-left">Category ID</label>
-                      <select onChange={(e) => { setCategoryId(e.target.value) }}
-                        class="form-control" name="category">
-                        <>
-
-                          <option defaultValue></option>
-                          {list.map((item, index) => (
-                            console.log(item.categoryName, "list"),
-                            <option key={index} value={item._id}>
-                              {item.categoryName}
-                            </option>
-                          ))}
-                        </>
-                      </select>
-
-                    </div>
-                  </div>
 
 
-                  <div class="form-floating mb-3">
+                        <div class="form-floating mb-3 ">
 
-                    <input type="file" class="form-control" onChange={(e) => saveFile(e)} name="image" required autofocus />
-                    <label>Image</label>
-                  </div>
+                          <div class="form-group" required autofocus>
+                            <label class="float-left pt-3">Category ID</label>
+                            <select onChange={(e) => { setCategoryId(e.target.value) }}
+                              class="form-control" name="category" required autofocus>
+                              <>
 
-                  <div class="form-floating mb-3">
+                                <option defaultValue></option>
+                                {list.map((item, index) => (
+                                  console.log(item.categoryName, "list"),
+                                  <option key={index} value={item._id}>
+                                    {item.categoryName}
+                                  </option>
+                                ))}
+                              </>
+                            </select>
 
-                    <input type="file" class="form-control" onChange={(e) => saveVideo(e)} name="video" required autofocus />
-                    <label>Video</label>
-                  </div>
+                          </div>
+                        </div>
 
-                  <div class="d-grid mb-2 pt-2">
-                    <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase">Update Blog</button>
-                  </div>
+
+                        <div class="form-floating mb-3">
+
+                          <input type="file" class="form-control" onChange={(e) => saveFile(e)} name="image" required autofocus />
+                          <label>Image</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+
+                          <input type="file" class="form-control" onChange={(e) => saveVideo(e)} name="video" required autofocus />
+                          <label>Video</label>
+                        </div>
+
+                        <div class="d-grid mb-2 pt-2">
+                          <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase">Update Blog</button>
+                        </div>
+                      </>
+                    ))
+                  }
+
                 </form>
 
               </div>

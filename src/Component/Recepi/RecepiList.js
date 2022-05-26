@@ -37,13 +37,13 @@ function RecepiList() {
         _setId(item._id)
     }
 
-    console.log("gdghdfgsgf", data)
+   // console.log("gdghdfgsgf", data)
     const student = JSON.parse(localStorage.getItem("userdata"))
-    console.log("student", student.data._id)
+   // console.log("student", student.data._id)
     const user = student.data._id
 
     function recepidelete(_id) {
-        alert(_id, "id")
+       // alert(_id, "id")
         const temp = {
 
             recipeId: _id,
@@ -53,6 +53,7 @@ function RecepiList() {
         axios.put('/recipesChangeStatus?status=isDeleted', temp).then(
             res => {
                 console.log(res)
+                alert("Recipes Deleted SuccessFully ..");
 
             }).catch(
                 err => {
@@ -72,7 +73,8 @@ function RecepiList() {
         axios.put('/recipesChangeStatus?status=approved', temp).then(
             res => {
                 console.log(res)
-                alert("you are approved successfully......");
+                fetchData();
+                // alert("you are approved successfully......");
 
             }).catch(
                 err => {
@@ -130,7 +132,7 @@ function RecepiList() {
 
 
 
-    console.log(GetAllRecipe, "GetAllRecipe");
+  //  console.log(GetAllRecipe, "GetAllRecipe");
 
     return (
         <div>
@@ -162,7 +164,7 @@ function RecepiList() {
                                         return (
 
                                             <tr key={index} value={item._id}>
-                                                {console.log("gdghdfgsgf", item.recipeId.title)}
+                                                {/* {console.log("gdghdfgsgf", item.recipeId.title)} */}
                                                 <td scope="row">{item.recipeId.title}</td>
                                                 <td scope="row">{item.recipeId.description}</td>
 

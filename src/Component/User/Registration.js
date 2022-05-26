@@ -43,7 +43,7 @@ import { Register } from '../../Config/Commonapi';
    }
 
 
-   console.log(Register, "Register")
+  // console.log(Register, "Register")
 
   return (
 

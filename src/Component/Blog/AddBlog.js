@@ -53,8 +53,8 @@ const saveFile = (e) => {
 
   function Update(e) {
     e.preventDefault();
-   console.log(image, "imagess")
-   console.log(video, "videojj")
+  // console.log(image, "imagess")
+ //  console.log(video, "videojj")
      let formData = new FormData();
     let item = {image ,video, userId, categoryId,subTitle, title,description,blogFAQtitle,
         blogFAQdescription,blogFAQimage}
@@ -116,12 +116,12 @@ const saveFile = (e) => {
                
                <div class="form-group" value={categoryId} onChange={(e) => { setCategoryId(e.target.value) }} required autofocus>
                <label class="float-left">Category ID</label>
-                 <select class="form-control" name="category">
+                 <select class="form-control" name="category" required autofocus>
                    <>
             
                        <option defaultValue></option>
                          {data.map((item, index) => (
-                           console.log(item.categoryName,"gitruyrt9"),
+                          // console.log(item.categoryName,"gitruyrt9"),
                            <option key={index} value={item._id}>
                              {item.categoryName}
                            </option>

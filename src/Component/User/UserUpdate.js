@@ -18,7 +18,7 @@ function UserUpdate() {
 
   const saveFile = (e) => {
     setImage(e.target.files[0])
-    console.log("imageghgfh ", e.target.files[0])
+    //console.log("imageghgfh ", e.target.files[0])
   }
 
   useEffect(() => {
@@ -31,30 +31,22 @@ function UserUpdate() {
   }, []);
 
   // console.log("$$$$$$$$$$$$$$$idd",( idd.id))
-  
-  // function selectUser(id) {
-  //   let item = data[id - 1];
-  //   setFirstName(item.firstName)
-  //   setLastName(item.lastName)
-  //   setEmail(item.email)
-  //   setPhone(item.phone)
-  //   setRoleId.roleName(item.roleId)
-  //   _setId(item.id)
-  // }
+
+
 
   function Update(e) {
     e.preventDefault();
-    console.log(Image, "imagess")
-    alert(_id, "this is id ");
+    //console.log(Image, "imagess")
+    alert(temp.id, "this is id ");
     let formData = new FormData();
     let item = { roleId, firstName, lastName, email, phone, Image }
     for (var key in item) {
       console.log(key, "Gggg", item[key])
       formData.append(key, item[key])
     }
-    console.log(">>>>>>>>>", _id)
+    // console.log(">>>>>>>>>", temp.id)
     console.warn("item", item, "oddd")
-    axios.put(`http://95.111.202.157:8001/api/edit-user?id=${_id}`, formData).then(
+    axios.put(`http://95.111.202.157:8001/api/edit-user?id=${temp.id}`, formData).then(
       res => {
         console.log(res, "itennmmmmmmmmmmm", item)
       }
@@ -73,7 +65,9 @@ function UserUpdate() {
 
     ))
   }
-  console.log(EditUser, "EditUser")
+  //console.log(temp.id,">>>>>>>>>>>>>>")
+
+  // console.log(EditUser, "EditUser")
   return (
     <div className='container pt-5'>
 
@@ -83,47 +77,36 @@ function UserUpdate() {
           <div class="col-lg-10 col-xl-9 mx-auto">
             <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
               <div class="card-img-left d-none d-md-flex">
-           
+
               </div>
               <div class="card-body p-5 p-sm-5">
                 <h5 class="card-title text-center mb-5 fw-light fs-5">Welcome To Recipe Blog Page</h5>
                 {/* {console.log("#################newData",newData)} */}
+
                 <form onSubmit={Update}>
                   {newData.map((user) => (
                     <>
                       {console.log("@@@@@@@@@@@@@@@user", user)}
-                      <div class="form-floating mb-3 ">
-                        <input type="text" class="form-control" onChange={(e) => { setRoleId(e.target.value) }} placeholder={user.roleId.roleName} required autofocus/>
-                        <label>ROLE ID</label>
-                      
-                      </div>
+
+                      <label className='float-left pb-1'>ROLE ID</label>
+                      <input type="text" class="form-control pb-1 text-dark"  onChange={(e) => { setRoleId(e.target.value) }} placeholder={user.roleId.roleName} required autofocus />
+
+                      <label className='float-left pt-2'>First Name</label>
+                      <input type="text" class="form-control text-dark" placeholder={user.firstName} onChange={(e) => { setFirstName(e.target.value) }} required autofocus />
+
+                      <label className='float-left pt-3' >Last Name</label>
+                      <input type="text" class="form-control text-dark" onChange={(e) => { setLastName(e.target.value) }} placeholder={user.lastName} id="lastName" required autofocus />
 
 
-
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control" placeholder="dbfhvdsh" onChange={(e) => { setFirstName(e.target.value) }} required autofocus/>
-                        <label >First Name</label>
-                      </div>
-
-
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control" onChange={(e) => { setLastName(e.target.value) }} required autofocus/>
-                        <label >Last Name</label>
-                      </div>
-
-                      <div class="form-floating mb-3">
-                        <input type="email" class="form-control" value={user.email} onChange={(e) => { setEmail(e.target.value) }} required autofocus/>
-                        <label >Email</label>
-                      </div>
-
-                      <div class="form-floating mb-3">
-                        <input type="number" class="form-control" value={user.phone} onChange={(e) => { setPhone(e.target.value) }} required autofocus/>
-                        <label >Phone</label>
-                      </div>
+                      <label className='float-left pt-3'>Email</label>
+                      <input type="email" class="form-control text-dark" onChange={(e) => { setEmail(e.target.value) }} placeholder={user.email} id="email" required autofocus />
+                     
+                      <label className='float-left pt-3'>Phone</label>
+                      <input type="number" class="form-control text-dark"  onChange={(e) => { setPhone(e.target.value) }} placeholder={user.phone} required autofocus />
 
                       <div class="form-floating mb-3">
 
-                        <input type="file" class="form-control" onChange={(e) => saveFile(e)} name="image" required autofocus/>
+                        <input type="file" class="form-control text-dark" onChange={(e) => saveFile(e)} name="image" required autofocus />
                         <label>Image</label>
                       </div>
 
@@ -131,7 +114,7 @@ function UserUpdate() {
                         <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase">Update User</button>
                       </div>
                     </>
-                    ))}
+                  ))}
                 </form>
 
               </div>

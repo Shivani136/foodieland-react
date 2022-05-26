@@ -20,22 +20,16 @@ function BlogList() {
     }
 
     function selectUser(id) {
-        let item = data[id - 1];
-        // setFirstName(item.firstName)
-        // setLastName(item.lastName)
-        // setEmail(item.email)
-        // setPhone(item.phone)
-        // setRoleId(item.roleId)
-        // _setId(item.id)
+   
 
     }
 
     const student = JSON.parse(localStorage.getItem("userdata"))
-    console.log("student", student.data._id)
+   // console.log("student", student.data._id)
     const user = student.data._id
 
     function blogdelete(_id) {
-        alert(_id, "id")
+    
         const temp = {
 
             blogId: _id,
@@ -45,6 +39,7 @@ function BlogList() {
         axios.put('/statusChanged?status=isDeleted', temp).then(
             res => {
                 console.log(res)
+                alert("Blog Deleted SuccessFully ..");
 
             }).catch(
                 err => {

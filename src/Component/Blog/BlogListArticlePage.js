@@ -74,7 +74,7 @@ function BlogListArticlePage() {
 
   }
 
-  console.log('list', list)
+  //console.log('list', list)
   // const temp = list.slice(0, 3)
   // console.log("============", temp)
 
@@ -144,8 +144,8 @@ function BlogListArticlePage() {
             <div class="col-8">
 
               {
-                data.map((item, index) => {
-                  console.log("gdghdfgsgf", data)
+                data.slice(0,5).map((item, index) => {
+                  //console.log("gdghdfgsgf", data)
                   return (
                     <div>
                       <p key={index} value={item._id}> </p>
@@ -188,8 +188,8 @@ function BlogListArticlePage() {
                 <h2 class="float-left pb-3 mr-5">Tasty Recepis</h2>
 
                 {
-                  list.map((item, index) => {
-                    console.log("gdghdfgsgf", list)
+                  list.slice(0,3).map((item, index) => {
+                  //  console.log("gdghdfgsgf", list)
 
 
                     // console.log(getCourse, "getCourse")

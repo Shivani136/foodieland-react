@@ -10,41 +10,41 @@ function CategoryUpdate() {
   const [_id, _setId] = useState(null);
   const [datas, _setDatas] = useState(null);
 
-  const ids = []
+  let newData = []
   const temp = useParams()
 
-  console.log(temp.id, "fdsffs")
+
 
   const saveFile = (e) => {
     setImage(e.target.files[0])
-    console.log("imageghgfh ", e.target.files[0])
+  //  console.log("imageghgfh ", e.target.files[0])
   }
 
   useEffect(() => {
-    ids.push(datas)
+
     axios.get('/getAllCategory')
       .then((response) => {
         setData(response.data)
-        
+
       });
   }, []);
 
 
   function Update(e) {
     e.preventDefault();
-    ids.push(datas)
 
-    console.log(Image, "imagess")
-     alert(temp.id, "this is id ");
+
+    // console.log(Image, "imagess")
+    alert(temp.id, "this is id ");
     let formData = new FormData();
     let item = { categoryName, image }
     for (var key in item) {
       console.log(key, "Gggg", item[key])
       formData.append(key, item[key])
     }
-    console.log(">>>>>>>>>", _id)
+
     console.warn("item", item, "oddd")
-    console.log(JSON.parse(ids[0]), "idsssssssssssssssss")
+
     axios.put(`http://95.111.202.157:8001/api/updateCategory?id=${temp.id}`, formData).then(
       res => {
         console.log(res, "itennmmmmmmmmmmm", item)
@@ -54,11 +54,17 @@ function CategoryUpdate() {
         console.log(err.response.data.message, "ffff")
       }
     )
-
-
   }
 
-  console.log(UpdateCategory, "UpdateCategory")
+  {
+    data.filter((user) => (
+      user._id === temp.id ? newData.push(user) : ""
+
+    ))
+  }
+
+
+
 
   return (
     <div className='container pt-5'>
@@ -69,27 +75,38 @@ function CategoryUpdate() {
           <div class="col-lg-10 col-xl-9 mx-auto">
             <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
               <div class="card-img-left d-none d-md-flex">
-                {/* <!-- Background image for card set in CSS! --> */}
+
               </div>
               <div class="card-body p-5 p-sm-5">
                 <h5 class="card-title text-center mb-5 fw-light fs-5">Welcome To Recipe Blog Page</h5>
 
                 <form onSubmit={Update}>
-                  <div class="form-floating mb-3 ">
-                    <input type="text" class="form-control" value={categoryName} onChange={(e) => { setCategoryName(e.target.value) }} />
-                    <label>Category Name </label>
-                    {/* required autofocus for required */}
-                  </div>
+                  {
+                    newData.map((user) => (
 
-                  <div class="form-floating mb-3">
+                      <>
+                        {/* {console.log(user, ">>>>>>>>>>>>>")} */}
+                        <label className='float-left'>Category Name </label>
 
-                    <input type="file" class="form-control" onChange={(e) => saveFile(e)} name="image" />
-                    <label>Image</label>
-                  </div>
+                        <input type="text" class="form-control text-dark" placeholder={user.categoryName} onChange={(e) => { setCategoryName(e.target.value) }} required autofocus />
 
-                  <div class="d-grid mb-2 pt-2">
-                    <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase">Update Category</button>
-                  </div>
+
+
+                        <div class="form-floating mb-3">
+
+                          <input type="file" class="form-control" onChange={(e) => saveFile(e)} name="image" required autofocus/>
+                          <label>Image</label>
+                        </div>
+
+                        <div class="d-grid mb-2 pt-2">
+                          <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase">Update Category</button>
+                        </div>
+                      </>
+                    ))
+                  }
+
+
+
                 </form>
 
               </div>
@@ -104,3 +121,4 @@ function CategoryUpdate() {
   )
 }
 export default CategoryUpdate
+

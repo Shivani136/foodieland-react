@@ -40,8 +40,8 @@ function AddRecepi() {
 
   function Update(e) {
     e.preventDefault();
-    console.log(image, "imagess")
-    console.log(video, "videojj")
+    // console.log(image, "imagess")
+    // console.log(video, "videojj")
     let formData = new FormData();
     let item = { video, userId, cookTime, prepTime, title, description, categoryId, image }
 
@@ -63,7 +63,7 @@ function AddRecepi() {
 
   }
 
-  console.log(AddRecipe, "AddRecipe")
+  //console.log(AddRecipe, "AddRecipe")
 
   return (
 
@@ -111,7 +111,7 @@ function AddRecepi() {
                
                     <div class="form-group" value={categoryId} onChange={(e) => { setCategoryId(e.target.value) }} required autofocus>
                     <label class="float-left">Category ID</label>
-                      <select class="form-control" name="category">
+                      <select class="form-control" name="category" required autofocus>
                         <>
                  
                             <option defaultValue></option>

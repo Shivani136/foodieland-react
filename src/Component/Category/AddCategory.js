@@ -38,7 +38,7 @@ function AddCategory() {
 
   }
 
-  console.log(addCategory, "addCategory")
+  //console.log(addCategory, "addCategory")
   return (
 
     <div>

@@ -3,6 +3,9 @@ import axios from 'axios'
 import '../Assest/Home.css'
 import { AllCategory, Subscribe, GetAllRecipe, GetRecipe } from '../Config/Commonapi';
 import { Carousel } from 'react-bootstrap';
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Slider from './Slider'
 // import Slideshow from '../Component/Slider';
 
 function Home() {
@@ -20,21 +23,16 @@ function Home() {
   useEffect(() => {
     fetchData();
     category();
-    getoneRecepi();
+    // getoneRecepi();
   }, []);
+
+
   async function fetchData() {
 
     await axios.get('/v1/getallrecipes')
       .then((response) => { setList(response.data) })
     //.then((response) => { console.log(response.data) });
 
-  }
-  async function getoneRecepi(_id) {
-
-    await axios.get(`/recipeDetails?id=${_id}`)
-      //.then((response) => { setList(response.data) })
-      .then((response) => { console.log(response.data._id, "daaaaaaaaaaaaaaaaa") });
-    // console.log("kghgfghh",_id)
   }
 
   async function category() {
@@ -44,6 +42,7 @@ function Home() {
     //.then((response) => { console.log(response.data,"category") });
 
   }
+
   function subscrib(e) {
     e.preventDefault();
 
@@ -56,22 +55,22 @@ function Home() {
         console.log(res)
       }).catch(
         err => {
-          console.log(err)
+          // console.log(err)
         }
       )
 
 
   }
 
-  console.log(list, "AllCategory");
+  //console.log(list, "AllCategory");
   const temp = data.slice(0, 6)
-  console.log("============", temp)
+  //console.log("============", temp)
 
   return (
     <div>
 
 
-      {/* navigation  */}
+      {/* navigation */}
       <div id="page-content-wrapper">
 
         <nav class="navbar navbar-expand-lg navbar navbar-light bg-light border-bottom  fixed-top ">
@@ -115,63 +114,17 @@ function Home() {
 
           </div>
         </nav>
+         <div class="container pt-5">
+           <Slider />
 
-
-     
-           <div class="container pt-5">
-
-            {/* <div id="carouselExampleIndicators pt-5" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-              </div>
-              <div class="carousel-inner">
-                {
-                  list.map((item) => (
-
-                    <div class="carousel-item active pt-5 ">
-                      {console.log(item, ">>>>")}
-
-                      <div class="carousel-item">
-
-                        <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="d-block w-100 h-50" alt="fftgh" />
-                        
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRixp-5F3Cr1F1ybQpx_VQQ5Mx4k356lJkxPpfer5SvF98qb6MFcvjt5-EdcDJ7QkuhiD4&usqp=CAU" class="d-block w-100 h-50" alt="..." />
-                        <div class="carousel-item">
-
-                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWaUfOIEfT0wROPti4uv8BcqTFMqZ-SEg8cbGigL66HMGApROSeuxuea-ENSH5KMDdsjo&usqp=CAU" class="d-block w-100 h-50" alt="..." />
-                        </div>
-                      </div>
-                    </div>
-                  ))
-
-                }
-
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div> */}
-
-
-
-
-
-
-            <div class="row pt-5">
-              <div class="col pt-5">
-                <h1 class="pt-5 pb-5 float-left ml-5 text-dark font-weight-bold ">Categories </h1>
-              </div>
-              <div class="col pt-5 ">
-                <a href="/categorylist" type="button" class="btn btn-info btn-lg rounded-lg float-right ml-5">VIEW All Categories</a>
-              </div>
+      <div class="row pt-5">
+            <div class="col pt-5">
+              <h1 class="pt-5 pb-5 float-left ml-5 text-dark font-weight-bold ">Categories </h1>
             </div>
+            <div class="col pt-5 ">
+              <a href="/categorylist" type="button" class="btn btn-info btn-lg rounded-lg float-right ml-5">VIEW All Categories</a>
+            </div>
+          </div>
 
 
         </div>
@@ -181,7 +134,7 @@ function Home() {
         <div class="">
           {
             temp.slice(0, 5).map(item => {
-              console.log("category data", temp)
+              // console.log("category data", temp)
               return (
                 <div style={{ display: "inline-flex" }} className='varru'>
 
@@ -189,7 +142,7 @@ function Home() {
                   <div className='sa'>
 
                     <img src={`http://95.111.202.157:8001/${item.image}`} clas="float-left" alt="fftgh" style={{ width: "250px", height: "250px", padding: "10px" }} />
-                    <h6 class=" pt-2">{item.categoryName} </h6>
+                    <h4 class=" font-weight-bold text-dark pt-2">{item.categoryName} </h4>
                   </div>
 
                 </div>
@@ -207,7 +160,7 @@ function Home() {
         <div class="container pt-5 pb-5">
           <h1 class="pt-5 pb-3 text-dark font-weight-bold"> Simple and Tasty Recepi </h1>
           <p class="text-muted pb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit.<br /> Maxime mollitia,
-            molestiae quas vel sint  voluptatum laborum
+            molestiae quas vel sint voluptatum laborum
           </p>
         </div>
 
@@ -215,7 +168,7 @@ function Home() {
           <div class="row">
             {
               list.slice(0, 3).map(item => {
-                console.log("list data", list)
+                // console.log("list data", list)
                 return (
                   <div className='col-md-4'>
 
@@ -224,14 +177,14 @@ function Home() {
 
                       <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "430px", height: "300px", padding: "20px" }} />
                       <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
-                      <div className='float-left' >
+                      <div className='float-left'>
                         <p class="text-muted">{item.recipeId.cookTime}
                           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-3 text-dark" viewBox="0 0 16 16">
                             <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
                           </svg>
                         </p>
                       </div>
-                      <div className='float-right' >
+                      <div className='float-right'>
                         <p class="text-muted">{item.recipeId.categoryId.categoryName}
                           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-apple float-left ml-4 text-dark" viewBox="0 0 16 16">
                             <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
@@ -254,7 +207,7 @@ function Home() {
           <div class="row">
             {
               list.slice(0, 2).map(item => {
-                console.log("list data", list)
+                /// console.log("list data", list)
                 return (
                   <div className='col-md-4'>
 
@@ -263,14 +216,14 @@ function Home() {
 
                       <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "430px", height: "300px", padding: "20px" }} />
                       <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
-                      <div className='float-left' >
+                      <div className='float-left'>
                         <p class="text-muted">{item.recipeId.cookTime}
                           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-3 text-dark" viewBox="0 0 16 16">
                             <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
                           </svg>
                         </p>
                       </div>
-                      <div className='float-right' >
+                      <div className='float-right'>
                         <p class="text-muted">{item.recipeId.categoryId.categoryName}
                           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-apple float-left ml-4 text-dark" viewBox="0 0 16 16">
                             <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
@@ -289,8 +242,7 @@ function Home() {
             }
 
             <div class="col float-right">
-              <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
-                alt="des" style={{ width: "400px", height: "400px" }} class="rounded-lg" />
+              <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="des" style={{ width: "400px", height: "400px" }} class="rounded-lg" />
             </div>
 
           </div>
@@ -301,7 +253,7 @@ function Home() {
           <div class="row">
             {
               list.slice(0, 3).map(item => {
-                console.log("list data", list)
+                // console.log("list data", list)
                 return (
                   <div className='col-md-4'>
 
@@ -309,14 +261,14 @@ function Home() {
 
                       <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "430px", height: "300px", padding: "20px" }} />
                       <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
-                      <div className='float-left' >
+                      <div className='float-left'>
                         <p class="text-muted">{item.recipeId.cookTime}
                           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-3 text-dark" viewBox="0 0 16 16">
                             <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
                           </svg>
                         </p>
                       </div>
-                      <div className='float-right' >
+                      <div className='float-right'>
                         <p class="text-muted">{item.recipeId.categoryId.categoryName}
                           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-apple float-left ml-4 text-dark" viewBox="0 0 16 16">
                             <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
@@ -340,24 +292,22 @@ function Home() {
 
         {/* static image */}
         <div class="container-fluid pt-3 pb-5">
-          <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTd8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-            alt="dec" style={{ width: "1300px", height: "600px" }} />
+          <img src="https://cdn.pixabay.com/photo/2017/12/10/14/47/pizza-3010062__340.jpg" alt="dec" style={{ width: "1300px", height: "600px" }} />
         </div>
         {/* instagram section */}
         <div class="container pt-5 pb-5">
           <h1 class="pt-5 pb-3 text-dark font-weight-bold "> CheckOut @foodienland on INSTAGRAM </h1>
           <p class="text-muted pb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit.<br /> Maxime mollitia,
-            molestiae quas vel sint  voluptatum laborum
+            molestiae quas vel sint voluptatum laborum
           </p>
         </div>
 
-        <div class="container-fluid pt-5 pb-5 bg-info">
+        <div class="container-fluid pt-5 pb-5 ">
           <div class="row pb-5">
             <div class="col pb-3">
 
               <div class="">
-                <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                  alt="des" style={{ width: '300px', height: '300px' }} class="rounded-lg" />
+                <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="des" style={{ width: '300px', height: '300px' }} class="rounded-lg" />
                 <h6 class=" pt-2">Lorem ipsum </h6>
               </div>
 
@@ -366,22 +316,19 @@ function Home() {
             </div>
             <div class="col ">
               <div class="">
-                <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                  alt="des" style={{ width: '300px', height: '300px' }} class="rounded-lg" />
+                <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="des" style={{ width: '300px', height: '300px' }} class="rounded-lg" />
                 <h6 class=" pt-2">Lorem ipsum </h6>
               </div>
             </div>
             <div class="col ">
               <div class="">
-                <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                  alt="des" style={{ width: '300px', height: '300px' }} class="rounded-lg" />
+                <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="des" style={{ width: '300px', height: '300px' }} class="rounded-lg" />
                 <h6 class=" pt-2">Lorem ipsum </h6>
               </div>
             </div>
             <div class="col">
               <div class="">
-                <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-                  alt="des" style={{ width: '300px', height: '300px' }} class="rounded-lg" />
+                <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="des" style={{ width: '300px', height: '300px' }} class="rounded-lg" />
                 <h6 class=" pt-2">Lorem ipsum </h6>
               </div>
             </div>
@@ -407,7 +354,7 @@ function Home() {
             </div>
             <div class="col">
               <p class="text-muted pb-5 float-right pt-5 pb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit.<br /> Maxime mollitia,
-                molestiae quas vel sint  voluptatum laborum
+                molestiae quas vel sint voluptatum laborum
               </p>
             </div>
 
@@ -419,7 +366,7 @@ function Home() {
           <div class="row">
             {
               list.slice(0, 4).map(item => {
-                console.log("list data", list)
+                // console.log("list data", list)
                 return (
                   <div className='col-md-3'>
 
@@ -428,14 +375,14 @@ function Home() {
 
                       <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "300px", height: "250px", padding: "20px" }} />
                       <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
-                      <div className='float-left' >
-                        <p class="text-muted">
+                      <div className='float-left'>
+                        <p class="text-muted">{item.recipeId.cookTime}
                           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-3 text-dark" viewBox="0 0 16 16">
                             <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
                           </svg>
                         </p>
                       </div>
-                      <div className='float-right' >{item.recipeId.cookTime}
+                      <div className='float-right'>
                         <p class="text-muted">{item.recipeId.categoryId.categoryName}
                           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-apple float-left ml-4 text-dark" viewBox="0 0 16 16">
                             <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
@@ -458,7 +405,7 @@ function Home() {
           <div class="row">
             {
               list.slice(0, 4).map(item => {
-                console.log("list data", list)
+                // console.log("list data", list)
                 return (
                   <div className='col-md-3'>
 
@@ -467,14 +414,14 @@ function Home() {
 
                       <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "300px", height: "250px", padding: "20px" }} />
                       <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
-                      <div className='float-left' >
+                      <div className='float-left'>
                         <p class="text-muted">{item.recipeId.cookTime}
                           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-3 text-dark" viewBox="0 0 16 16">
                             <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
                           </svg>
                         </p>
                       </div>
-                      <div className='float-right' >
+                      <div className='float-right'>
                         <p class="text-muted">{item.recipeId.categoryId.categoryName}
                           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-apple float-left ml-4 text-dark" viewBox="0 0 16 16">
                             <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
@@ -500,9 +447,7 @@ function Home() {
         <div className='pt-5'>
           <div className='container-fluid pt-5 pb-5'>
 
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMmMUwsaaDSDhZOSOq7H6jG9NHXsX6txVBA&usqp=CAU"
-              class="rounded-lg" alt="description"
-              style={{ width: "1200px", height: "500px" }} />
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMmMUwsaaDSDhZOSOq7H6jG9NHXsX6txVBA&usqp=CAU" class="rounded-lg" alt="description" style={{ width: "1200px", height: "500px" }} />
 
             <div className='centered'>
               <h1 className=''>Deliciousness to your inbox</h1>
@@ -512,19 +457,13 @@ function Home() {
 
               <form onSubmit={subscrib}>
 
-                <input type="email" class="form-control form-rounded rounded-pill p-5" placeholder='your email address'
-                  value={email} onChange={(e) => { setEmail(e.target.value) }} required autofocus />
+                <input type="email" class="form-control form-rounded rounded-pill p-5" placeholder='your email address' value={email} onChange={(e) => { setEmail(e.target.value) }} required autofocus />
 
                 <button class="centeredd btn btn-lg btn-dark rounded-lg pt-2 pb-2">subscribe</button>
               </form>
             </div>
           </div>
         </div>
-
-
-
-
-
       </div>
 
       {/* footer */}
@@ -600,4 +539,3 @@ function Home() {
 }
 
 export default Home;
-

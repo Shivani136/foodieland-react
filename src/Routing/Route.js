@@ -21,25 +21,20 @@ import UpdateBlog from '../Component/Blog/UpdateBlog';
 import BlogListArticlePage from '../Component/Blog/BlogListArticlePage';
 import RecepiListArticle from '../Component/Recepi/RecepiListArticle';
 import Table from '../Component/User/Table';
-// import BlogPostPage from '../Component/Blog/BlogPostPage';
 import AddBlog from '../Component/Blog/AddBlog';
 import BlogList from '../Component/Blog/BlogList';
-//import UserListTemp from '../Component/User/UserListTemp'
-// import Temp from '../Component/User/Temp';
 import Contact from '../Component/Contact';
 import About from '../Component/About';
 import Home from '../Component/Home';
-import Newslider from '../Component/Newslider';
+
 
 function Routing() {
 
   return (
     <BrowserRouter>
       <Routes>
-
         <Route path="/" element={<Registration />} />
         <Route path="/login" index element={<Login />} />
-
         <Route path="/userlist" element={<UserList />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/userupdate/:id" element={<UserUpdate />} />
@@ -56,18 +51,15 @@ function Routing() {
         <Route path="/recepimeta" element={<RecepiMetaAdd />} />
         <Route path="/blogdetailpage/:id" element={<BlogDetailPage />} />
         <Route path="/blogarticle" element={<BlogListArticlePage />} />
-        {/* <Route path="/tempuserlist" element={<UserListTemp />} /> */}
         <Route path="/recepiarticle" element={<RecepiListArticle />} />
         <Route path="/addblog" element={<AddBlog />} />
         <Route path="/bloglist" element={<BlogList />} />
         <Route path="/blogupdate/:id" element={<UpdateBlog />} />
-        {/* <Route path="/temp" element={<Temp />} /> */}
         <Route path="/blogarticle" element={<BlogListArticlePage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/table" element={<Table />} />
         <Route path="/about" element={<About />} />
-        <Route path="/home" element={<Home/>} />
-        <Route path="/new" element={<Newslider/>} />
+        <Route path="/home" element={<Home />} />
         {/* <Route path="*" element={<NoPage />} />  */}
 
       </Routes>

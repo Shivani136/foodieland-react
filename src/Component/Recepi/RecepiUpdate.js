@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 
 function RecepiUpdate() {
   const [data, setData] = useState([]);
-  // const [user, setUser] = useState([]);
   const [list, setList] = useState([]);
   const [image, setImage] = useState([]);
   const [video, setVideo] = useState([]);
@@ -16,19 +15,26 @@ function RecepiUpdate() {
   const [categoryId, setCategoryId] = useState("");
   const [_id, _setId] = useState(null);
   const [datas, _setDatas] = useState(null);
+  const [recepiData, setRecepiData] =  useState([])
 
-  const ids = []
+  let newData = []
   const temp = useParams()
 
-  console.log(temp.id, "fdsffs")
+
+  //console.log(temp.id, "fdsffs")
 
   useEffect(() => {
-    ids.push(datas)
+    //ids.push(datas)
     fetchData();
     GetRecipe();
+  
+  
 
   }, []);
 
+
+  
+ 
 
   async function fetchData() {
 
@@ -38,32 +44,27 @@ function RecepiUpdate() {
   }
 
   async function GetRecipe() {
-   await axios.get('/v1/getAllRecipes')
+    await axios.get('/v1/getAllRecipes')
       .then((response) => { setData(response.data) });
 
-
- }
+  }
 
 
   function Update(e) {
     e.preventDefault();
-    ids.push(datas)
+    //ids.push(datas)
 
-    console.log(Image, "imagess")
-
-
-    let formData = new FormData();
+   console.log(Image, "imagess")
+  let formData = new FormData();
     let item = { cookTime, prepTime, title, description, image, video, categoryId }
     alert(temp.id, "this is id ");
 
     for (var key in item) {
-      console.log(key, "Gggg", item[key])
       formData.append(key, item[key])
     }
     //console.log(">>>>>>>>>",temp.id)
-    console.warn("item", item, "oddd")
 
-    //console.log(JSON.parse(ids[0]), "idsssssssssssssssss")
+   // console.log(JSON.parse(ids[0]), "idsssssssssssssssss")
     axios.put(`http://95.111.202.157:8001/api/editRecipe?id=${temp.id}`, formData).then(
       res => {
         console.log(res, "itennmmmmmmmmmmm", item)
@@ -75,28 +76,31 @@ function RecepiUpdate() {
     )
   }
 
-  const user = temp.id;
-  console.log(user, "user")
+
 
   const saveFile = (e) => {
     setImage(e.target.files[0])
-    console.log("imageghgfh ", e.target.files[0])
+    //console.log("imageghgfh ", e.target.files[0])
   }
 
   const saveVideo = (e) => {
     setVideo(e.target.files[0])
-    console.log("videookh ", e.target.files[0])
+    // console.log("videookh ", e.target.files[0])
   }
 
 
-// data.filter((user) => (
-  //   user._id === temp.id ? newData.push(user) : "",
-  //   console.log("@@@@@@@@@@@@@@@@@@@@@", temp.id)
+  
+   const hello = data.filter((user) => (
+     user.recipeId._id === temp.id ? newData.push(user) : ""
+  
 
-  // ))
+    ))
+    console.log(newData && newData.length ?newData[0].recipeId.title:"","jjjjjjjjjjjjjjj")
+    
+  
 
 
-  //console.log(EditRecipe, "EditRecipe")
+
   return (
 
     <div>
@@ -111,38 +115,32 @@ function RecepiUpdate() {
                 <h5 class="card-title text-center mb-5 fw-light fs-5">Welcome To Recipe Blog Page</h5>
 
                 <form onSubmit={Update}>
-                  {/* {
-                    ids.map((user) => (
-                      <>
-                        {console.log("@@@@@@@@@@@@@@@user", user)}
 
-                     */}
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" value={user.title} onChange={(e) => { setTitle(e.target.value) }} required autofocus />
-                    <label >Title</label>
-                  </div>
 
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" value={description} onChange={(e) => { setDescription(e.target.value) }} required autofocus />
-                    <label >Description</label>
-                  </div>
 
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" value={cookTime} onChange={(e) => { setCookTime(e.target.value) }} required autofocus />
-                    <label >Cook Time</label>
-                  </div>
-
-                  <div class="form-floating mb-3">
-                    <input type="text" class="form-control" value={prepTime} onChange={(e) => { setPrepTime(e.target.value) }} required autofocus />
-                    <label >Preep Time</label>
-                  </div>
+                <label className='float-left pb-1 '>Title</label> 
+         
+                 <input type="text"  class="form-control pb-2"  placeholder={newData && newData.length ?newData[0].recipeId.title:""} onChange={(e) => { setTitle(e.target.value) }} required autofocus />
+                 
+                 <label className='float-left pt-2'>Description</label>
+                    <input type="text" class="form-control" placeholder={newData && newData.length ?newData[0].recipeId.description:""} onChange={(e) => { setDescription(e.target.value) }} required autofocus />
+                 
+                    <label className='float-left pt-2 '>Cook Time</label>
+                     <input type="text" class="form-control" placeholder={newData && newData.length ?newData[0].recipeId.cookTime:""} onChange={(e) => { setCookTime(e.target.value) }} required autofocus />
+               
+                  
+                    <label className='float-left pt-2'>Preep Time</label>
+   
+                    <input type="text" class="form-control" placeholder={newData && newData.length ?newData[0].recipeId.prepTime:""} onChange={(e) => { setPrepTime(e.target.value) }} required autofocus />
+                 
+  
 
 
                   <div class="form-floating mb-3 ">
 
-                    <div class="form-group" value={categoryId} onChange={(e) => { setCategoryId(e.target.value) }} required autofocus>
-                      <label class="float-left">Category ID</label>
-                      <select class="form-control" name="category">
+                    <div class="form-group" placeholder={categoryId} onChange={(e) => { setCategoryId(e.target.value) }} required autofocus>
+                      <label class="float-left pt-2">Category ID</label>
+                      <select class="form-control" name="category" required autofocus >
                         <>
 
                           <option defaultValue></option>
@@ -177,9 +175,9 @@ function RecepiUpdate() {
                   <div class="d-grid mb-2 pt-2">
                     <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase">Update Recepi</button>
                   </div>
+                  
 
-                  {/* </>
-                    ))} */}
+
 
                 </form>
 

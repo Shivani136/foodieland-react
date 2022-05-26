@@ -69,7 +69,7 @@ function Contact() {
 
 
 
-    console.log(AddContact, "AddContact");
+   // console.log(AddContact, "AddContact");
     return (
         <div>
             {/* navigation  */}
@@ -244,7 +244,7 @@ function Contact() {
                     <div class="row">
                         {
                             data.slice(0, 4).map(item => {
-                                console.log("list data", data)
+                              //  console.log("list data", data)
                                 return (
                                     <div className='col-md-3'>
 
