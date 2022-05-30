@@ -1,13 +1,23 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import axios from 'axios'
 import { AllCategory, DeleteCategory } from '../../Config/Commonapi';
-import Paginations from '../Paginations';
+import Pagination from '../Paginations';
+import '../../../src/style.scss';
 
 function CategoryList() {
     const [data, setData] = useState([]);
     const [categoryName, setcategoryName] = useState("");
     const [image, setImage] = useState("");
     const [_id, _setId] = useState(null);
+
+    let PageSize = 3;
+    const [currentPage, setCurrentPage] = useState(1);
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * PageSize;
+        const lastPageIndex = firstPageIndex + PageSize;
+        return data.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage]);
+
 
     useEffect(() => {
         fetchData();
@@ -33,7 +43,7 @@ function CategoryList() {
     const user = student.data._id
 
     function categorydelete(_id) {
-       // alert(_id, "id")
+        // alert(_id, "id")
         const data = {
             categorId: _id,
             ownerId: user
@@ -57,7 +67,7 @@ function CategoryList() {
             <div class="content  px-5 py-5">
 
                 <div className=' '>
-{/* 
+                    {/* 
                     <Paginations /> */}
                     <table class="table table-striped table-bordered h-75" >
                         <thead>
@@ -71,46 +81,55 @@ function CategoryList() {
                         </thead>
                         <tbody>
                             {
-                                data.map(item => {
+
+                                currentTableData.map(item => {
+                                    // data.map(item => {
 
 
-                                    //console.log("gdghdfgsgf", data)
-                                    return (
+                                        //console.log("gdghdfgsgf", data)
+                                        return (
 
-                                        <tr>
-                                            <td scope="row">{item.categoryName}
+                                            <tr>
+                                                <td scope="row">{item.categoryName}
 
-                                            </td>
-                                            <td scope='row'>
+                                                </td>
+                                                <td scope='row'>
 
-                                                <img src={`http://95.111.202.157:8001/${item.image}`} alt="fftgh" style={{ width: "60px", height: "60px" }} />
-                                            </td>
-                                            <td scope="row">
+                                                    <img src={`http://95.111.202.157:8001/${item.image}`} alt="fftgh" style={{ width: "60px", height: "60px" }} />
+                                                </td>
+                                                <td scope="row">
 
-                                                <a href={`/categoryupdate/${item._id}`} onClick={() => selectUser(item.id)}>
-                                                    <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">Edit</button>
+                                                    <a href={`/categoryupdate/${item._id}`} onClick={() => selectUser(item.id)}>
+                                                        <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">Edit</button>
 
 
-                                                </a>
-                                            </td>
-                                            <td scope="row">
-                                                <a onClick={() => categorydelete(item._id)}>
+                                                    </a>
+                                                </td>
+                                                <td scope="row">
+                                                    <a onClick={() => categorydelete(item._id)}>
 
-                                                    <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">Delete</button>
+                                                        <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">Delete</button>
 
-                                                </a>
-                                            </td>
+                                                    </a>
+                                                </td>
 
-                                        </tr>
+                                            </tr>
 
-                                    )
-                                })
-                            }
+                                        )
+                                    })
+                                }
 
 
                         </tbody>
 
                     </table>
+                    <Pagination
+                        className="pagination-bar"
+                        currentPage={currentPage}
+                        totalCount={data.length}
+                        pageSize={PageSize}
+                        onPageChange={page => setCurrentPage(page)}
+                    />
 
 
                 </div>

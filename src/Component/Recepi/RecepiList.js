@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect,useMemo } from 'react'
 import axios from 'axios'
 import { GetAllRecipe, DeleteRecipe } from '../../Config/Commonapi';
+import Pagination from '../Paginations';
+import '../../../src/style.scss';
 
 function RecepiList() {
     const [data, setData] = useState([]);
@@ -12,6 +14,15 @@ function RecepiList() {
     const [description, setDescription] = useState("");
     const [categoryId, setCategoryId] = useState("");
     const [_id, _setId] = useState(null);
+
+
+    let PageSize = 3;
+    const [currentPage, setCurrentPage] = useState(1);
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * PageSize;
+        const lastPageIndex = firstPageIndex + PageSize;
+        return data.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage]);
 
     useEffect(() => {
         fetchData();
@@ -130,9 +141,7 @@ function RecepiList() {
             )
     }
 
-
-
-  //  console.log(GetAllRecipe, "GetAllRecipe");
+ //  console.log(GetAllRecipe, "GetAllRecipe");
 
     return (
         <div>
@@ -159,7 +168,8 @@ function RecepiList() {
                             </thead>
                             <tbody>
                                 {
-                                    data.map((item, index) => {
+                                    currentTableData.map((item ,index) => {
+                                    // data.map((item, index) => {
 
                                         return (
 
@@ -234,7 +244,13 @@ function RecepiList() {
                             </tbody>
 
                         </table>
-
+                        <Pagination
+                        className="pagination-bar"
+                        currentPage={currentPage}
+                        totalCount={data.length}
+                        pageSize={PageSize}
+                        onPageChange={page => setCurrentPage(page)}
+                    />
 
                     </div>
 

@@ -9,7 +9,7 @@ function BlogList() {
     const [data, setData] = useState([]);
     const [_id, _setId] = useState(null);
 
-    let PageSize = 2;
+    let PageSize = 3;
     const [currentPage, setCurrentPage] = useState(1);
     const currentTableData = useMemo(() => {
         const firstPageIndex = (currentPage - 1) * PageSize;
@@ -28,9 +28,7 @@ function BlogList() {
 
     }
 
-    function selectUser(id) { }
-
-    const student = JSON.parse(localStorage.getItem("userdata"))
+  const student = JSON.parse(localStorage.getItem("userdata"))
     // console.log("student", student.data._id)
     const user = student.data._id
 
@@ -145,7 +143,7 @@ function BlogList() {
                                             <td scope="row">
 
 
-                                                <a href={`/blogupdate/${item._id}`} onClick={() => selectUser(item._id)}>
+                                                <a href={`/blogupdate/${item._id}`} >
                                                     <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">Edit</button>
 
 

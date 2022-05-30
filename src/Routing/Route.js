@@ -20,7 +20,8 @@ import BlogDetailPage from '../Component/Blog/BlogDetailPage';
 import UpdateBlog from '../Component/Blog/UpdateBlog';
 import BlogListArticlePage from '../Component/Blog/BlogListArticlePage';
 import RecepiListArticle from '../Component/Recepi/RecepiListArticle';
-
+import PopUp from '../Component/PopUp';
+// import Popupform from '../Component/Popupform.html';
 import AddBlog from '../Component/Blog/AddBlog';
 import BlogList from '../Component/Blog/BlogList';
 import Contact from '../Component/Contact';
@@ -57,7 +58,8 @@ function Routing() {
         <Route path="/blogupdate/:id" element={<UpdateBlog />} />
         <Route path="/blogarticle" element={<BlogListArticlePage />} />
         <Route path="/contact" element={<Contact />} />
-     
+        <Route path="/popup" element={<PopUp />} />
+        {/* <Route path="/popups" element={<Popupform />} /> */}
         <Route path="/about" element={<About />} />
         <Route path="/home" element={<Home />} />
         {/* <Route path="*" element={<NoPage />} />  */}

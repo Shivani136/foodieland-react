@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import axios from 'axios'
 import { AllUser, EditUser, DelUser, } from '../../Config/Commonapi';
+import Pagination from '../Paginations';
+import '../../../src/style.scss';
 
 function UserList() {
     const [data, setData] = useState([]);
@@ -14,6 +16,14 @@ function UserList() {
     const [limit, setLimit] = useState(20);
     const [skip, setSkip] = useState(0);
 
+    let PageSize =4;
+    const [currentPage, setCurrentPage] = useState(1);
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * PageSize;
+        const lastPageIndex = firstPageIndex + PageSize;
+        return data.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage]);
+
     const nextPage = () => {
         setSkip(skip + limit)
     }
@@ -21,16 +31,6 @@ function UserList() {
     const previousPage = () => {
         setSkip(skip - limit)
     }
-
-    //    const fetchUsers = (limit, skip) => {
-    //         // Make sure you send 'limit' and 'skip' as query parameters to your node.js server
-    //         fetch(`/getAllUsers?limit=${limit}&skip=${skip}`) 
-    //             .then((res) => {
-    //                 this.setState({
-    //                     users: res.data.data
-    //                 })
-    //             })
-    //     }
 
     useEffect(() => {
         fetchData(limit, skip);
@@ -61,17 +61,17 @@ function UserList() {
     }
 
     const student = JSON.parse(localStorage.getItem("userdata"))
-   // console.log("student", student.data._id)
+    // console.log("student", student.data._id)
     const user = student.data._id
 
     function userdelete(_id) {
-       // alert(_id, "id")
+        // alert(_id, "id")
         const temp = {
 
             userId: _id,
             ownerId: user
         }
-       // console.log(temp, "temp")
+        // console.log(temp, "temp")
         axios.put('/changeStatus?status=isDeleted', temp).then(
             res => {
                 console.log(res)
@@ -90,7 +90,7 @@ function UserList() {
             userId: _id,
             ownerId: user
         }
-     //   console.log(temp, "temp")
+        //   console.log(temp, "temp")
 
         axios.put('/changeStatus?status=approved', temp).then(
             res => {
@@ -112,7 +112,7 @@ function UserList() {
             userId: _id,
             ownerId: user
         }
-      //  console.log(temp, "temp")
+        //  console.log(temp, "temp")
 
         axios.put('/changeStatus?status=unapproved', temp).then(
             res => {
@@ -127,9 +127,6 @@ function UserList() {
                 }
             )
     }
-
-
-
 
     return (
 
@@ -157,100 +154,85 @@ function UserList() {
 
 
                             {
-                                data.map(item => {
+                                currentTableData.map(item => {
+                                    // data.map(item => {
 
 
-                                   // console.log("gdghdfgsgf", data)
-                                    return (
+                                        // console.log("gdghdfgsgf", data)
+                                        return (
 
-                                        <tr>
-                                            <td scope="row">{item.firstName}</td>
-                                            <td scope="row">{item.lastName}</td>
+                                            <tr>
+                                                <td scope="row">{item.firstName}</td>
+                                                <td scope="row">{item.lastName}</td>
 
-                                            <td scope="row">{item.email}</td>
-                                            <td scope="row">{item.phone}</td>
-                                            <td scope="row">{item.roleId.roleName}
-
-
-                                            </td>
-
-                                            <td scope='row'>
-
-                                                <img src={`http://95.111.202.157:8001/${item.Image}`} alt="fftgh" style={{ width: "120px", height: "100px" }} />
-                                            </td>
-                                            <td scope="row">
-
-                                          
-                                                <a href={`/userupdate/${item._id}`} onClick={() => selectUser(item.id)}>
-                                                    <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">Edit</button>
+                                                <td scope="row">{item.email}</td>
+                                                <td scope="row">{item.phone}</td>
+                                                <td scope="row">{item.roleId.roleName}
 
 
-                                                </a>
-                                            </td>
+                                                </td>
 
-                                            <td scope="row">
-                                                <a onClick={() => userdelete(item._id)}>
+                                                <td scope='row'>
 
-                                                    <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">Delete</button>
+                                                    <img src={`http://95.111.202.157:8001/${item.Image}`} alt="fftgh" style={{ width: "120px", height: "100px" }} />
+                                                </td>
+                                                <td scope="row">
 
-                                                </a>
-                                            </td>
-                                            <td scope="row">
 
-                                                <div class="container" >
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{item.status}
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                            <li><a class="dropdown" onClick={() => userapproved(item._id)}>Approved</a></li>
-                                                            <li><a class="dropdown" onClick={() => userunapproved(item._id)}>UnApproved</a></li>
+                                                    <a href={`/userupdate/${item._id}`} onClick={() => selectUser(item.id)}>
+                                                        <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">Edit</button>
 
-                                                        </ul>
+
+                                                    </a>
+                                                </td>
+
+                                                <td scope="row">
+                                                    <a onClick={() => userdelete(item._id)}>
+
+                                                        <button className="btn btn-outline-primary ml-2 my-2 my-sm-0">Delete</button>
+
+                                                    </a>
+                                                </td>
+                                                <td scope="row">
+
+                                                    <div class="container" >
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{item.status}
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown" onClick={() => userapproved(item._id)}>Approved</a></li>
+                                                                <li><a class="dropdown" onClick={() => userunapproved(item._id)}>UnApproved</a></li>
+
+                                                            </ul>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                            </td>
+                                                </td>
 
-                                        </tr>
+                                            </tr>
 
-                                    )
-                                })
-                            }
+                                        )
+                                    })
+                                }
 
 
                         </tbody>
 
-                        {/* <tfoot>
-                    <tr>
-                        <th scope="col">FirstName</th>
-                        <th scope="col">LastName</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">RoleId</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">USER UPDATE</th>
-                        <th scope="col"> USER DELETE</th>
-                        <th scope="col"> Status </th>
-                    </tr>
-                        </tfoot> */}
+                
                     </table>
-                    {/* <div>
-                        <div onClick={nextPage}> Previous Page </div>
-                        <div onClick={previousPage}> Next Page </div>
-                    </div> */}
-                    {/* <Pagination
+                    <Pagination
                         className="pagination-bar"
                         currentPage={currentPage}
                         totalCount={data.length}
                         pageSize={PageSize}
-                        onPageChange={page => setCurrentPage(4)}
-                    /> */}
+                        onPageChange={page => setCurrentPage(page)}
+                    />
 
                 </div>
 
             </div>
 
-         
+
         </div>
 
     )
