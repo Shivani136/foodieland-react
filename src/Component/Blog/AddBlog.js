@@ -14,7 +14,6 @@ function AddBlog() {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState([]);
   const [video, setVideo] = useState([]);
-  // const [blogFAQ, setBlogFAQ] = useState("");
   const [blogFAQtitle, setBlogFAQTitle] = useState("");
   const [blogFAQdescription, setBlogFAQDescription] = useState("");
   const [blogFAQimage, setBlogFAQImage] = useState([]);

@@ -10,7 +10,7 @@ function CategoryList() {
     const [image, setImage] = useState("");
     const [_id, _setId] = useState(null);
 
-    let PageSize = 3;
+    let PageSize = 4;
     const [currentPage, setCurrentPage] = useState(1);
     const currentTableData = useMemo(() => {
         const firstPageIndex = (currentPage - 1) * PageSize;
@@ -95,7 +95,7 @@ function CategoryList() {
                                                 </td>
                                                 <td scope='row'>
 
-                                                    <img src={`http://95.111.202.157:8001/${item.image}`} alt="fftgh" style={{ width: "60px", height: "60px" }} />
+                                                    <img src={`http://95.111.202.157:8001/${item.image}`} alt="fftgh" style={{ width: "100px", height: "100px" }} />
                                                 </td>
                                                 <td scope="row">
 

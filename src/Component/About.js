@@ -5,12 +5,7 @@ import { Subscribe, GetAllRecipe } from '../Config/Commonapi';
 
 function About() {
   const [data, setData] = useState([]);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
-  const [Image, setImage] = useState([]);
   const [_id, _setId] = useState(null);
 
   function subscrib(e) {

@@ -6,28 +6,11 @@ import { GetAllBlog, Subscribe, SearchBlog, GetAllRecipe, PopularRecipes } from 
 function BlogListArticlePage() {
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [search, setSearch] = useState([]);
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
-  const [Image, setImage] = useState([]);
   const [_id, _setId] = useState(null);
 
-
-
-  useEffect(() => {
-    // ttmo();
-    fetchData();
-  }, []);
-  async function fetchData() {
-    await axios.get('searchBlog?key=Lorem Ipsum')
-      .then((response) => { setData(response.data) })
-    //.then((response) => { console.log(response.data) });
-
-  }
-
-  useEffect(() => {
+useEffect(() => {
     fetchData();
     demo()
   }, []);
@@ -38,8 +21,29 @@ function BlogListArticlePage() {
     //.then((response) => { console.log(response.data) });
 
   }
+  async function demo() {
 
-  function subscrib(e) {
+    await axios.get('popularRecipes')
+      .then((response) => { setList(response.data) })
+    //.then((response) => { console.log(response.data) });
+
+  }
+
+
+  function SearchBlog(e) {
+    e.preventDefault();
+    axios.get('searchBlog?key=Crochet Projects For ').then(
+      res => {
+
+        console.log(res)
+      }).catch(
+        err => {
+          console.log(err)
+        }
+      )
+  }
+
+function subscrib(e) {
     e.preventDefault();
 
     const data = {
@@ -58,21 +62,8 @@ function BlogListArticlePage() {
 
   }
 
-  // async function ttmo() {
 
-  //   await axios.get('/v1/getallrecipes?perPage=2')
-  //     .then((response) => { console.log(response.data,"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&") })
-  //   //.then((response) => { console.log(response.data) });
 
-  // }
-
-  async function demo() {
-
-    await axios.get('popularRecipes')
-      .then((response) => { setList(response.data) })
-    //.then((response) => { console.log(response.data) });
-
-  }
 
   //console.log('list', list)
   // const temp = list.slice(0, 3)
@@ -133,9 +124,11 @@ function BlogListArticlePage() {
         </div>
         <p class="text-muted pb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,Lorem ipsum dolor sit amet consectetur adipisicing elit.mollitia,  </p>
         <div class="content-container ">
-          <input type="text" class="form-control border rounded-pill h-50 text-centered" placeholder='Search Article News or Blog' />
-          <button class="centeredds btn btn-lg btn-dark rounded-lg pt-2 pb-2" onClick={fetchData}>Search</button>
 
+          <form onSubmit={SearchBlog}>
+            <input type="text" class="form-control border rounded-pill h-50 text-centered p-4" placeholder='Search Article News or Blog'  required autofocus />
+            <button class="centeredds btn btn-lg btn-dark rounded-lg pt-2 pb-2" >Search</button>
+          </form>
         </div>
 
 
@@ -144,7 +137,7 @@ function BlogListArticlePage() {
             <div class="col-8">
 
               {
-                data.slice(0,5).map((item, index) => {
+                data.slice(0, 5).map((item, index) => {
                   //console.log("gdghdfgsgf", data)
                   return (
                     <div>
@@ -188,8 +181,8 @@ function BlogListArticlePage() {
                 <h2 class="float-left pb-3 mr-5">Tasty Recepis</h2>
 
                 {
-                  list.slice(0,3).map((item, index) => {
-                  //  console.log("gdghdfgsgf", list)
+                  list.slice(0, 3).map((item, index) => {
+                    //  console.log("gdghdfgsgf", list)
 
 
                     // console.log(getCourse, "getCourse")
@@ -211,7 +204,7 @@ function BlogListArticlePage() {
                             <div class="col float-right">
                               <p class="text-dark font-weight-bold">
 
-                              {/* {item.recipeId.userId.firstName} */}
+                                {/* {item.recipeId.userId.firstName} */}
                               </p>
 
                             </div>
@@ -233,7 +226,7 @@ function BlogListArticlePage() {
                 </div>
               </div>
             </div>
-          
+
           </div>
         </div>
 
@@ -261,13 +254,7 @@ function BlogListArticlePage() {
             </div>
           </div>
         </div>
-
-
-
-
-
-
-      </div>
+         </div>
 
       {/* footer */}
 

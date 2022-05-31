@@ -30,8 +30,8 @@ function RecepiList() {
     async function fetchData() {
 
         await axios.get('/v1/getallrecipes')
-            .then((response) => { setData(response.data) })
-        //.then((response) => { console.log(response.data) });
+        .then((response) => { setData(response.data) })
+       // .then((response) => { console.log(response.data) });
 
     }
 
@@ -168,8 +168,8 @@ function RecepiList() {
                             </thead>
                             <tbody>
                                 {
-                                    currentTableData.map((item ,index) => {
-                                    // data.map((item, index) => {
+                                    // currentTableData.map((item ,index) => {
+                                     data.map((item, index) => {
 
                                         return (
 

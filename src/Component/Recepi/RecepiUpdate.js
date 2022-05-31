@@ -15,7 +15,6 @@ function RecepiUpdate() {
   const [categoryId, setCategoryId] = useState("");
   const [_id, _setId] = useState(null);
   const [datas, _setDatas] = useState(null);
-  const [recepiData, setRecepiData] =  useState([])
 
   let newData = []
   const temp = useParams()

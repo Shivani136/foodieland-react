@@ -9,7 +9,7 @@ function BlogList() {
     const [data, setData] = useState([]);
     const [_id, _setId] = useState(null);
 
-    let PageSize = 3;
+    let PageSize = 4;
     const [currentPage, setCurrentPage] = useState(1);
     const currentTableData = useMemo(() => {
         const firstPageIndex = (currentPage - 1) * PageSize;
@@ -138,7 +138,7 @@ function BlogList() {
 
                                             <td scope='row'>
 
-                                                <img src={`http://95.111.202.157:8001/${item.image}`} alt="fftgh" style={{ width: "150px", height: "150px" }} />
+                                                <img src={`http://95.111.202.157:8001/${item.image}`} alt="fftgh" style={{ width: "120px", height: "120px" }} />
                                             </td>
                                             <td scope="row">
 

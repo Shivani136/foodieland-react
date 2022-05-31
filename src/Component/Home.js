@@ -11,12 +11,7 @@ import Slider from './Slider'
 function Home() {
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
-  const [Image, setImage] = useState([]);
   const [_id, _setId] = useState(null);
 
 

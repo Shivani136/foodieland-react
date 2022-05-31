@@ -1,50 +1,51 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import '../../Assest/Recepiarticle.css'
-
 import { Subscribe, SearchRecepi, GetAllBlog, GetAllRecipe,PopularBlog } from '../../Config/Commonapi';
 
 function RecepiListArticle() {
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
   const [search, setSearch] = useState([]);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
-  const [Image, setImage] = useState([]);
   const [_id, _setId] = useState(null);
 
 
   useEffect(() => {
     blog();
-    demo()
+    demo();
+    //fetchData();
   }, []);
-  async function blog() {
 
-    await axios.get('/popularBlog')
+  async function blog() {
+   await axios.get('/popularBlogs')
       .then((response) => { setData(response.data) })
-      //.then((response) => { console.log(response.data) });
+     // .then((response) => { console.log(response.data) });
 
   }
 
   async function demo() {
-
     await axios.get('/v1/getallrecipes')
       .then((response) => { setList(response.data) })
     //.then((response) => { console.log(response.data) });
 
   }
 
+function fetchData(e) {
+  e.preventDefault();
+ axios.get('searcRecipe?key=Health japanese').then(
+    res => {
 
-  async function fetchData() {
+      console.log(res)
+    }).catch(
+      err => {
+        console.log(err)
+      }
+    )
 
-    await axios.get('searcRecipe?key=barbeque')
-      .then((response) => { setSearch(response.data) })
-      //.then((response) => { console.log(response.data) });
 
-  }
+}
+
 
   function subscrib(e) {
     e.preventDefault();
@@ -64,10 +65,6 @@ function RecepiListArticle() {
 
 
   }
-
-  // console.log('data', data)
-  // const temp = data.slice(0, 3)
-  // console.log("============", temp)
 
   return (
     <div>
@@ -124,9 +121,10 @@ function RecepiListArticle() {
         </div>
         <p class="text-muted pb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,Lorem ipsum dolor sit amet consectetur adipisicing elit.mollitia,  </p>
         <div class="content-container ">
-          <input type="text" class="form-control border rounded-pill h-50 " placeholder='Search Article News or Recepi' />
-          <button class="centeredds btn btn-lg btn-dark rounded-lg pt-2 pb-2" onClick={fetchData}>Search</button>
-
+          <form onSubmit={fetchData}>
+          <input type="text" class="form-control border rounded-pill h-50 p-4" placeholder='Search Article News or Recepi' required autofocus/>
+          <button class="centeredds btn btn-lg btn-dark rounded-lg pt-2 pb-2">Search </button>
+          </form>
         </div>
 
 
@@ -135,9 +133,9 @@ function RecepiListArticle() {
             <div class="col-8">
 
               {
-                list.slice(0,4).map((item, index) => {
+                list.slice(0,3).map((item, index) => {
                 // console.log("<<<<<<<<<<<<<<<", list)
-                  //recipeId
+                
                   return (
                     <div>
                       <p key={index} value={item._id}> </p>
@@ -180,11 +178,8 @@ function RecepiListArticle() {
                 <h2 class="float-left pb-3 mr-5">Tasty BLOG</h2>
 
                 {
-                  data.slice(0,3).map((item, index) => {
-                   // console.log("gdghdfgsgf", data)
-
-
-                    // console.log(getCourse, "getCourse")
+                  data.slice(0,2).map((item, index) => {
+                 // console.log(getCourse, "getCourse")
 
                     return (
                       <div>
@@ -237,7 +232,7 @@ function RecepiListArticle() {
               class="rounded-lg" alt="description"
               style={{ width: "1200px", height: "500px" }} />
 
-            <div className='delicious '>
+            <div className='delicious'>
               <h1 className=''>Deliciousness to your inbox</h1>
               <p className='text-muted pt-3 pb-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
                 molestiae quas vel sint commodi repudiandae consequuntur voluptatum iusto</p>

@@ -10,12 +10,6 @@ function RecepiDetailPage() {
     const [direction, setDirection] = useState([]);
     const [list, setList] = useState([]);
     const [email, setEmail] = useState("");
-    const [image, setImage] = useState([]);
-    const [video, setVideo] = useState([]);
-    const [cookTime, setCookTime] = useState("");
-    const [prepTime, setPrepTime] = useState("");
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
     const [_id, _setId] = useState(null);
     const [datas, _setDatas] = useState(null);
     const ids = []

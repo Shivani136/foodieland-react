@@ -11,6 +11,7 @@ function BlogDetailPage(props) {
     const [email, setEmail] = useState("");
     const [_id, _setId] = useState(null);
     const [datas, _setDatas] = useState(null);
+
     const ids = []
     const temp = useParams()
 
@@ -50,7 +51,7 @@ function BlogDetailPage(props) {
 
     }
 
-    // console.log(data, data.blogFAQ, "itemmmmmmmmmm")
+  //  console.log(data, data.blogFAQ, "itemmmmmmmmmm")
 
 
 

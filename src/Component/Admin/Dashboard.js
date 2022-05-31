@@ -40,18 +40,7 @@ function Dashboard() {
                 <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                   <li class="nav-item active"><a class="nav-link" href="#!">{user}</a></li>
                   <li class="nav-item font-weight-bolder text-uppercase"><a class="nav-link" href="/">LOGOUT</a></li>
-
-
-                  {/* <div class="dropdown ml-3">
-                    <button class="btn btn-dark dropdown-toggle" type="button" data-toggle="dropdown">Login with
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown" >Admin</a></li>
-                      <li><a class="dropdown">User</a></li>
-
-                    </ul>
-                  </div> */}
-                </ul>
+                  </ul>
               </div>
             </div>
           </nav>

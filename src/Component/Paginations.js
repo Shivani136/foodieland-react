@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import Pagination from "react-js-pagination";
-//import "bootstrap/less/bootstrap.less"
 import classnames from 'classnames';
 import { usePagination, DOTS } from '../Component/usePagination';
 import '../../src/Pagination.scss';
