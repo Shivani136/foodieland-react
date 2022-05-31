@@ -72,7 +72,7 @@ function Login() {
                   <div class="d-grid mb-2 pt-2">
                     {/* <a class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" href="/dashboard">Login</a> */}
                     <a href="/dashboard" class="btn btn-lg btn-primary btn-login fw-bold text-uppercase">
-                      <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" >Login</button>
+                      <button  class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" >Login</button>
                     </a>
                   </div>
 

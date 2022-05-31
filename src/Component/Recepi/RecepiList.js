@@ -168,8 +168,8 @@ function RecepiList() {
                             </thead>
                             <tbody>
                                 {
-                                    // currentTableData.map((item ,index) => {
-                                     data.map((item, index) => {
+                                    currentTableData.map((item ,index) => {
+                                    // data.map((item, index) => {
 
                                         return (
 
