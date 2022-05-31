@@ -83,7 +83,7 @@ function Contact() {
                         <div class="collapse navbar-collapse mx-auto ml-5  mx-3 my-3">
                             <ul class="navbar-nav mx-auto ml-5">
                                 <li class="nav-item active ml-5">
-                                    <a class="nav-link mr-sm-4 ml-5" href="/home">Home </a>
+                                    <a class="nav-link mr-sm-4 ml-5" href="/">Home </a>
                                 </li>
                                 <li class="nav-item ml-5">
                                 <a class="nav-link active mr-sm-4" href="/recepilist">Recipes</a>

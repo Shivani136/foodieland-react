@@ -21,7 +21,7 @@ function Dashboard() {
           <div class="sidebar-heading border-bottom bg-light font-weight-bolder text-uppercase font-italic">Foodien Land</div>
           <div class="list-group list-group-flush pt-5">
             <a class="list-group-item list-group-item-action list-group-item-light font-weight-bold   text-uppercase p-3" href="/addblog">Add Blog</a>
-            <a class="list-group-item list-group-item-action list-group-item-light font-weight-bold text-uppercase p-3" href="/">Add User</a>
+            <a class="list-group-item list-group-item-action list-group-item-light font-weight-bold text-uppercase p-3" href="/registration">Add User</a>
             <a class="list-group-item list-group-item-action list-group-item-light font-weight-bold   text-uppercase p-3" href="/userlist">UserList</a>
             <a class="list-group-item list-group-item-action list-group-item-light  font-weight-bold   text-uppercase p-3" href="/addcategory">Add Category</a>
             <a class="list-group-item list-group-item-action list-group-item-light  font-weight-bold   text-uppercase p-3" href="/addrecepi">Add Recepi</a>
@@ -39,7 +39,7 @@ function Dashboard() {
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                   <li class="nav-item active"><a class="nav-link" href="#!">{user}</a></li>
-                  <li class="nav-item font-weight-bolder text-uppercase"><a class="nav-link" href="/">LOGOUT</a></li>
+                  <li class="nav-item font-weight-bolder text-uppercase"><a class="nav-link" href="/login">LOGOUT</a></li>
                   </ul>
               </div>
             </div>

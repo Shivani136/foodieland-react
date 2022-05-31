@@ -34,9 +34,10 @@ function Routing() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Registration />} />
+        <Route path="/" element={<Home  />} />
         <Route path="/login" index element={<Login />} />
         <Route path="/userlist" element={<UserList />} />
+        <Route path="/registration" element={< Registration />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/userupdate/:id" element={<UserUpdate />} />
         <Route path="/forgetpassword" element={<ForgetPassword />} />
@@ -61,7 +62,7 @@ function Routing() {
         <Route path="/popup" element={<PopUp />} />
         {/* <Route path="/popups" element={<Popupform />} /> */}
         <Route path="/about" element={<About />} />
-        <Route path="/home" element={<Home />} />
+        {/* <Route path="/home" element={<Home />} /> */}
         {/* <Route path="*" element={<NoPage />} />  */}
 
       </Routes>

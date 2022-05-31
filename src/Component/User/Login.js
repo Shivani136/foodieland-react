@@ -70,11 +70,13 @@ function Login() {
                   </div>
                   <a class="d-block text-center mt-2 small" href="/forgetpassword">Forget Password</a>
                   <div class="d-grid mb-2 pt-2">
-                    <a class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" href="/dashboard">Login</a>
-                    {/* <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase">Login</button> */}
+                    {/* <a class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" href="/dashboard">Login</a> */}
+                    <a href="/dashboard" class="btn btn-lg btn-primary btn-login fw-bold text-uppercase">
+                      <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" >Login</button>
+                    </a>
                   </div>
 
-                  <a class="d-block text-center mt-2 small" href="/dashboard">Have you have not account? Sign Up</a>
+                  <a class="d-block text-center mt-2 small" href="/registration">Have you have not account? Sign Up</a>
 
 
 

@@ -56,7 +56,7 @@ import { Register } from '../../Config/Commonapi';
              {/* <!-- Background image for card set in CSS! --> */}
            </div>
           <div class="card-body p-5 p-sm-5">
-            <h5 class="card-title text-center mb-5 fw-light fs-5">Welcome To Recipe Blog Page</h5>
+            {/* <h5 class="card-title text-center mb-5 fw-light fs-5">Welcome To Registration  Page</h5> */}
 
             <form onSubmit={Update}>
             {/* <div class="form-floating mb-3 ">
