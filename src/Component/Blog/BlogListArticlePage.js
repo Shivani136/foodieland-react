@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import '../../Assest/Blogarticle.css'
-import { GetAllBlog, Subscribe, SearchBlog, GetAllRecipe, PopularRecipes } from '../../Config/Commonapi';
+import { GetAllBlog, Subscribe, SearchBlog, GetAllRecipe, PopularRecipes, SiteOptions } from '../../Config/Commonapi';
 
 function BlogListArticlePage() {
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
+  const [option, setOption] = useState([]);
+
   const [search, setSearch] = useState([]);
   const [email, setEmail] = useState("");
   const [_id, _setId] = useState(null);
 
-useEffect(() => {
+  useEffect(() => {
     fetchData();
-    demo()
+    demo();
+    SiteOption();
   }, []);
+
+
   async function fetchData() {
 
     await axios.get('/getAllBlog')
@@ -21,6 +26,7 @@ useEffect(() => {
     //.then((response) => { console.log(response.data) });
 
   }
+
   async function demo() {
 
     await axios.get('popularRecipes')
@@ -28,6 +34,17 @@ useEffect(() => {
     //.then((response) => { console.log(response.data) });
 
   }
+
+  async function SiteOption() {
+
+    await axios.get('getAllSitOptions')
+      .then((response) => { setOption(response.data) })
+    //.then((response) => { console.log(response.data) });
+
+  }
+
+
+
 
 
   function SearchBlog(e) {
@@ -43,7 +60,7 @@ useEffect(() => {
       )
   }
 
-function subscrib(e) {
+  function subscrib(e) {
     e.preventDefault();
 
     const data = {
@@ -76,26 +93,36 @@ function subscrib(e) {
 
         <nav class="navbar navbar-expand-lg navbar navbar-light bg-light border-bottom  fixed-top ">
           <div class="container-fluid">
-            <div class="sidebar-logo  mr-5">
-              Foodien Land
-            </div>
+            {
+              option.slice(0, 1).map(item => {
+                console.log(item, "item")
+                return (
+                  <div>
+                    {/* <p>{item.title}</p> */}
+                    <img src={`http://95.111.202.157:8001/${item.logo}`} class="img-fluid" alt="fftgh" style={{ width: "140px", height: "30px" }} />
+                  </div>
+                )
+              })
+            }
+
             <div class="collapse navbar-collapse mx-auto ml-5  mx-3 my-3">
               <ul class="navbar-nav mx-auto ml-5">
                 <li class="nav-item active ml-5">
-                  <a class="nav-link mr-sm-4 ml-5" href="/">Home </a>
+                  <a class="nav-link mr-sm-4 ml-5 text-dark text-uppercase" href="/"><b>Home</b> </a>
                 </li>
                 <li class="nav-item ml-5">
-                  <a class="nav-link active mr-sm-4" href="/recepilist">Recipes</a>
+                  <a class="nav-link active mr-sm-4 text-dark" href="/recepilist"><b>Recipes</b> </a>
                 </li>
                 <li class="nav-item active ml-5">
-                  <a class="nav-link mr-sm-4" href="/bloglist">Blog</a>
+                  <a class="nav-link mr-sm-4 text-dark" href="/bloglist"> <b>Blog</b></a>
                 </li>
                 <li class="nav-item ml-5">
-                  <a class="nav-link active mr-sm-4" href="/contact">Contact</a>
+                  <a class="nav-link active mr-sm-4 text-dark" href="/contact"> <b>Contact</b></a>
                 </li>
                 <li class="nav-item ml-5">
-                  <a class="nav-link active mr-sm-4" href="/about">About Us</a>
+                  <a class="nav-link active mr-sm-4 text-dark" href="/about"> <b>About Us</b></a>
                 </li>
+
 
               </ul>
               <div class="form-inline my-2 my-lg-0">
@@ -126,15 +153,15 @@ function subscrib(e) {
         <div class="content-container ">
 
           <form onSubmit={SearchBlog}>
-            <input type="text" class="form-control border rounded-pill h-50 text-centered p-4" placeholder='Search Article News or Blog'  required autofocus />
+            <input type="text" class="form-control border rounded-pill h-50 text-centered p-4" placeholder='Search Article News or Blog' required autofocus />
             <button class="centeredds btn btn-lg btn-dark rounded-lg pt-2 pb-2" >Search</button>
           </form>
         </div>
 
 
-        <div class="cntainer">
+        <div class="cntainer-fluid">
           <div class="row">
-            <div class="col-8">
+            <div class="col-md-8">
 
               {
                 data.slice(0, 5).map((item, index) => {
@@ -146,7 +173,7 @@ function subscrib(e) {
                       <div class="row">
                         <div class="col pb-3">
                           <div class="">
-                            <img src={`http://95.111.202.157:8001/${item.image}`} alt="fftgh" style={{ width: "350px", height: "200px" }} />
+                            <img src={`http://95.111.202.157:8001/${item.image}`} alt="fftgh" style={{ width: "350px", height: "200px", borderRadius: "36px" }} />
                           </div>
 
                         </div>
@@ -176,7 +203,7 @@ function subscrib(e) {
               }
             </div>
             {/* get all recepi api apply here */}
-            <div class="col-4 float-left">
+            <div class="col-md-4 float-left">
               <div class="row ">
                 <h2 class="float-left pb-3 mr-5">Tasty Recepis</h2>
 
@@ -191,25 +218,25 @@ function subscrib(e) {
                       <div>
                         <p key={index} value={item._id}> </p>
 
-                        <div class="col-2">
+                        <div class="col-md-2">
                           <div class="float-left mr-5">
-                            <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} clas="float-left" alt="fftgh" style={{ width: "200px", height: "150px" }} />
+                            <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} clas="float-left" alt="fftgh" style={{ width: "220px", height: "150px", borderRadius: "36px" }} />
                           </div>
 
                         </div>
-                        <div class="col-2 float-left">
+                        <div class="col-md-2 float-left">
                           <h6 class=" pt-2 pb-3 text-muted">{item.recipeId.title}</h6>
-
-                          <div class="row">
+                          <p class="text-dark font-weight-bold"> {item.recipeId.userId.firstName}</p>
+                          {/* <div class="row">
                             <div class="col float-right">
                               <p class="text-dark font-weight-bold">
 
-                                {/* {item.recipeId.userId.firstName} */}
+                                {item.recipeId.userId.firstName}
                               </p>
 
                             </div>
 
-                          </div>
+                          </div> */}
                         </div>
                       </div>
 
@@ -220,7 +247,7 @@ function subscrib(e) {
 
 
 
-                <div class="col pt-5 float-left">
+                <div class="col-md-4 pt-5 float-left">
                   <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
                     alt="des" style={{ height: '400px', width: "400px" }} class="rounded-lg" />
                 </div>
@@ -237,7 +264,7 @@ function subscrib(e) {
 
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMmMUwsaaDSDhZOSOq7H6jG9NHXsX6txVBA&usqp=CAU"
               class="rounded-lg" alt="description"
-              style={{ width: "1200px", height: "500px" }} />
+              style={{ width: "1200px", height: "500px", borderRadius: "156px" }} />
 
             <div className='blog '>
               <h1 className=''>Deliciousness to your inbox</h1>
@@ -254,37 +281,49 @@ function subscrib(e) {
             </div>
           </div>
         </div>
-         </div>
+      </div>
 
       {/* footer */}
 
       <div class="navbar navbar-expand-lg navbar navbar-light bg-light pt-5 pb-5 border-bottom">
         <div class="container-fluid pb-4">
           <div class="float-left ">
-
-            <h4 class="float-left font-italic text-dark pt-3  ">Foodien Land </h4>
-            <p class="float-left text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            {
+              option.slice(0, 1).map(item => {
+                console.log(item, "item")
+                return (
+                  <div>
+                    {/* <p>{item.title}</p> */}
+                    <img src={`http://95.111.202.157:8001/${item.logo}`} class="img-fluid" alt="fftgh" style={{ width: "120px", height: "30px" }} />
+                  </div>
+                )
+              })
+            }
+            {/* <h4 class=" font-italic text-dark pt-3  ">Foodien Land </h4> */}
+            <h6 class="float-left text-muted pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
 
 
 
           </div>
 
-          <div class="float-right">
-            <ul class="navbar-nav mr-auto ml-5">
-              <li class="nav-item active ml-5">
-                <a class="nav-link mr-sm-4 ml-5" href="#">Home </a>
+          <div class="mx-auto">
+            <ul class="navbar-nav mr-auto ">
+
+              <li class="nav-item active ">
+                <a class="nav-link mr-sm-4 text-dark text-uppercase" href="/"><b>Home</b></a>
               </li>
-              <li class="nav-item ml-5">
-                <a class="nav-link active mr-sm-4" href="#">Recipes</a>
+              <li class="nav-item ">
+                <a class="nav-link  mr-sm-4 text-dark" href="/recepilist"><b>Recipes</b> </a>
+
               </li>
-              <li class="nav-item active ml-5">
-                <a class="nav-link mr-sm-4" href="#">Blog</a>
+              <li class="nav-item active ">
+                <a class="nav-link mr-sm-4 text-dark" href="/bloglist"> <b>Blog</b></a>
               </li>
-              <li class="nav-item ml-5">
-                <a class="nav-link active mr-sm-4" href="#">Contact</a>
+              <li class="nav-item ">
+                <a class="nav-link active mr-sm-4 text-dark" href="/contact"> <b>Contact</b></a>
               </li>
-              <li class="nav-item ml-4">
-                <a class="nav-link active mr-sm-2" href="#">About Us</a>
+              <li class="nav-item ">
+                <a class="nav-link active mr-sm-4 text-dark" href="/about"> <b>About Us</b></a>
               </li>
 
             </ul>
@@ -304,7 +343,7 @@ function subscrib(e) {
 
           </div>
 
-          <div class="float-right">
+          <div class="mx-auto">
 
             <div class="form-inline my-2 my-lg-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-facebook text-dark mr-sm-4 ml-3" viewBox="0 0 16 16">

@@ -38,7 +38,7 @@ class Slider extends Component {
                 <div>
                   {/* <h1>{item.recipeId.title}</h1> */}
                   <div className='pt-5'>
-                  <div class="card">
+                  <div class="card" style={{borderRadius:"36px"}}>
                           <div style={{ display: "inline-flex" }} className='varru'>
                             <div class="col-sm-6 bg-light pt-5 ">
                               <h1 class="pt-5 pb-5">{item.recipeId.title}</h1>
@@ -72,7 +72,7 @@ class Slider extends Component {
                                     </h6>
                                   </div>
                                   <div class="col">
-                                    <a href={`/recepi/${item._id}`} type="button" class="btn btn-dark btn-lg rounded-lg float-right ml-5">VIEW RECIPE</a>
+                                    <a href={`/recepi/${item._id}`} type="button" class="btn bg-dark text-white btn-lg rounded-lg float-right ml-5 pb-3" style={{borderRadius:"76px"}}>View Recipe</a>
                                   </div>
                                 </div>
 
@@ -84,7 +84,7 @@ class Slider extends Component {
                               <div style={{ display: "inline-flex" }} className='varru'>
                                 <img src={`http://95.111.202.157:8001/${item.recipeId.image}`}
                                   class="rounded-lg" alt="description"
-                                  style={{ width: "660px", height: "500px" }} />
+                                  style={{ width: "660px", height: "500px" ,borderRadius:"66px" }} />
                                 <div class="carousel-caption d-none d-md-block">
                                 </div>
                               </div>

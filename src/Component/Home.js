@@ -138,14 +138,31 @@ function Home() {
               <div class="container pt-5">
                 <Slider />
 
-                <div class="row pt-5">
-                  <div class="col pt-5 mx-auto">
-                    <h1 class=" pb-5  text-dark font-weight-bold ">Categories </h1>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                <h1 class=" pb-5 pt-5  text-dark font-weight-bold float-left categoty">Categories </h1>
+                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
+                        data-bs-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+
+                        <div class="navbar-nav ms-auto">
+                        <a href="/categorylist" type="button" class="btn btn-info btn-lg rounded-lg float-right text-dark font-weight-bold " style={{borderRadius:"56px",backgroundColor:"lightblue"}}>VIEW All Categories</a>
+                        </div>
+                    </div>
+                    </div>
+                    </nav>
+                
+
+                {/* <div class="row pt-5">
+                  <div class="col-md-6 pt-5 float-left">
+                    <h1 class=" pb-5  text-dark font-weight-bold float-left categoty">Categories </h1>
                   </div>
-                  <div class="col pt-5 pb-3 ">
-                    <a href="/categorylist" type="button" class="btn btn-info btn-lg rounded-lg ">VIEW All Categories</a>
+                  <div class="col-md-6 pt-5 pb-3 float-right ">
+                    <a href="/categorylist" type="button" class="btn btn-info btn-lg rounded-lg float-right ">VIEW All Categories</a>
                   </div>
-                </div>
+                </div> */}
 
 
               </div>
@@ -203,7 +220,7 @@ function Home() {
 
                   <div className='sa pb-5'>
 
-                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "430px", height: "300px", padding: "0px" }} />
+                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "430px", height: "300px", borderRadius:"26px" }} />
                     <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
                     <div className='float-left'>
                       <p class="text-muted ml-4">{item.recipeId.cookTime}
@@ -242,7 +259,7 @@ function Home() {
 
                   <div className='sa pb-5'>
 
-                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "430px", height: "300px", padding: "0px" }} />
+                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "430px", height: "300px", borderRadius:"26px" }} />
                     <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
                     <div className='float-left'>
                       <p class="text-muted ml-4">{item.recipeId.cookTime}
@@ -270,7 +287,7 @@ function Home() {
           }
 
           <div class="col float-right">
-            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="des" style={{ width: "380px", height: "380px" }} class="rounded-lg img-fluid pb-3" />
+            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="des" style={{ width: "380px", height: "380px" }} class=" img-fluid pb-3" />
           </div>
 
         </div>
@@ -287,7 +304,7 @@ function Home() {
 
                   <div className='sa pb-5'>
 
-                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "430px", height: "300px", padding: "0px" }} />
+                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "430px", height: "300px", borderRadius:"26px" }} />
                     <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
                     <div className='float-left'>
                       <p class="text-muted ml-4">{item.recipeId.cookTime}
@@ -320,7 +337,7 @@ function Home() {
 
       {/* static image */}
       <div class="container-fluid pt-5 pb-5">
-        <img src="https://cdn.pixabay.com/photo/2017/12/10/14/47/pizza-3010062__340.jpg" class="img-fluid" alt="dec" style={{ width: "1300px", height: "600px" }} />
+        <img src="https://cdn.pixabay.com/photo/2017/12/10/14/47/pizza-3010062__340.jpg" class="img-fluid" alt="dec" style={{ width: "1300px", height: "600px",borderRadius:"36px" }} />
       </div>
       {/* instagram section */}
       <div class="container pt-5 pb-5">
@@ -341,7 +358,7 @@ function Home() {
                   <div class="col-md-3 pb-3">
 
                     <div class="">
-                      <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="des" style={{ width: '300px', height: '300px' }} class="rounded-lg img-fluid " />
+                      <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="des" style={{ width: '300px', height: '300px' }} class=" img-fluid " />
                       <h6 class=" pt-2">Lorem ipsum </h6>
                     </div>
 
@@ -350,19 +367,19 @@ function Home() {
                   </div>
                   <div class="col-md-3 ">
                     <div class="">
-                      <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="des" style={{ width: '300px', height: '300px' }} class="rounded-lg img-fluid" />
+                      <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="des" style={{ width: '300px', height: '300px' }} class=" img-fluid" />
                       <h6 class=" pt-2">Lorem ipsum </h6>
                     </div>
                   </div>
                   <div class="col-md-3 ">
                     <div class="">
-                      <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="des" style={{ width: '300px', height: '300px' }} class="rounded-lg img-fluid " />
+                      <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="des" style={{ width: '300px', height: '300px' }} class=" img-fluid " />
                       <h6 class=" pt-2">Lorem ipsum </h6>
                     </div>
                   </div>
                   <div class="col-md-3">
                     <div class="">
-                      <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="des" style={{ width: '300px', height: '300px' }} class="rounded-lg img-fluid" />
+                      <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTN8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="des" style={{ width: '300px', height: '300px' }} class=" img-fluid" />
                       <h6 class=" pt-2">Lorem ipsum </h6>
                     </div>
                   </div>
@@ -389,10 +406,10 @@ function Home() {
 
       <div class="container-fluid pt-5 pb-5">
         <div class="row">
-          <div class="col">
+          <div class="col-md-6">
             <h1 class="pt-5 pb-5 float-left "> Try this delicious recepis <br />to make your day </h1>
           </div>
-          <div class="col">
+          <div class="col-md-6">
             <p class="text-muted pb-5 float-right pt-5 pb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit.<br /> Maxime mollitia,
               molestiae quas vel sint voluptatum laborum
             </p>
@@ -403,7 +420,7 @@ function Home() {
 
 
       <div class="container-fluid pt-3 pb-3">
-        <div class="row">
+      <div class="row">
           {
             list.slice(0, 4).map(item => {
               // console.log("list data", list)
@@ -413,7 +430,7 @@ function Home() {
 
                   <div className='sa pb-5'>
 
-                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "270px", height: "250px", padding: "0px" }} />
+                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "300px", height: "300px",borderRadius:"36px" }} />
                     <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
                     <div className='float-left'>
                       <p class="text-muted ml-4">{item.recipeId.cookTime}
@@ -453,7 +470,7 @@ function Home() {
 
                   <div className='sa pb-5'>
 
-                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "270px", height: "250px", padding: "0px" }} />
+                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "300px", height: "300px", borderRadius:"36px" }} />
                     <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
                     <div className='float-left'>
                       <p class="text-muted ml-4">{item.recipeId.cookTime}
@@ -488,7 +505,7 @@ function Home() {
       <div className='pt-5'>
         <div className='container-fluid pt-5 pb-5'>
 
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMmMUwsaaDSDhZOSOq7H6jG9NHXsX6txVBA&usqp=CAU" class="rounded-lg img-fluid" alt="description" style={{ width: "1200px", height: "500px", position: "relative" }} />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMmMUwsaaDSDhZOSOq7H6jG9NHXsX6txVBA&usqp=CAU" class=" img-fluid" alt="description" style={{ width: "1200px", height: "500px", position: "relative" ,borderRadius:"36px"}} />
 
           <div className='centered'>
             <h1 style={{

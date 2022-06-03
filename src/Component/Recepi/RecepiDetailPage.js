@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import '../../Assest/Recepi.css'
-import { GetRecipe, GetAllRecipe, Subscribe } from '../../Config/Commonapi';
+import { GetRecipe, GetAllRecipe, Subscribe, SiteOptions } from '../../Config/Commonapi';
 import { useParams } from 'react-router-dom';
 
 function RecepiDetailPage() {
     const [data, setData] = useState([]);
     const [datass, setDatass] = useState([]);
+    const [option, setOption] = useState([]);
     const [direction, setDirection] = useState([]);
     const [list, setList] = useState([]);
     const [email, setEmail] = useState("");
@@ -22,9 +23,17 @@ function RecepiDetailPage() {
         ids.push(datas)
         fetchData();
         recepidetail();
+        SiteOption();
 
     }, []);
 
+    async function SiteOption() {
+
+        await axios.get('getAllSitOptions')
+            .then((response) => { setOption(response.data) })
+        //.then((response) => { console.log(response.data) });
+
+    }
     async function recepidetail() {
 
         await axios.get(`/recipeDetails?id=${temps.id}`)
@@ -87,25 +96,34 @@ function RecepiDetailPage() {
 
                 <nav class="navbar navbar-expand-lg navbar navbar-light bg-light border-bottom">
                     <div class="container-fluid">
-                        <div class="sidebar-logo  mr-5">
-                            Foodien Land
-                        </div>
+                        {
+                            option.slice(0, 1).map(item => {
+                                console.log(item, "item")
+                                return (
+                                    <div>
+                                        {/* <p>{item.title}</p> */}
+                                        <img src={`http://95.111.202.157:8001/${item.logo}`} class="img-fluid" alt="fftgh" style={{ width: "140px", height: "30px" }} />
+                                    </div>
+                                )
+                            })
+                        }
+
                         <div class="collapse navbar-collapse mx-auto ml-5  mx-3 my-3">
                             <ul class="navbar-nav mr-auto ml-5">
                                 <li class="nav-item active ml-5">
-                                    <a class="nav-link mr-sm-4 ml-5" href="/home">Home </a>
+                                    <a class="nav-link mr-sm-4 ml-5 text-dark text-uppercase" href="/"><b>Home</b> </a>
                                 </li>
                                 <li class="nav-item ml-5">
-                                    <a class="nav-link active mr-sm-4" href="/recepilist">Recipes</a>
+                                    <a class="nav-link active mr-sm-4 text-dark" href="/recepilist"><b>Recipes</b> </a>
                                 </li>
                                 <li class="nav-item active ml-5">
-                                    <a class="nav-link mr-sm-4" href="/bloglist">Blog</a>
+                                    <a class="nav-link mr-sm-4 text-dark" href="/bloglist"> <b>Blog</b></a>
                                 </li>
                                 <li class="nav-item ml-5">
-                                    <a class="nav-link active mr-sm-4" href="/contact">Contact</a>
+                                    <a class="nav-link active mr-sm-4 text-dark" href="/contact"> <b>Contact</b></a>
                                 </li>
                                 <li class="nav-item ml-5">
-                                    <a class="nav-link active mr-sm-4" href="/about">About Us</a>
+                                    <a class="nav-link active mr-sm-4 text-dark" href="/about"> <b>About Us</b></a>
                                 </li>
 
                             </ul>
@@ -129,22 +147,23 @@ function RecepiDetailPage() {
             </div>
             {/* content */}
             <div class="pt-5 ">
-                <h1 class=" health pt-5 pb-5 "> {data && data.recipeId && data.recipeId.title ? data.recipeId.title : ""}</h1>
+                <h1 class=" health pt-5 pb-5 ml-5"> {data && data.recipeId && data.recipeId.title ? data.recipeId.title : ""}</h1>
                 <div class="container-fluid">
                     <div class="row">
 
-                        <div class="col-2">
+                        <div class="col-md-2">
 
-                            <img src={`http://95.111.202.157:8001/${data && data.recipeId && data.recipeId.userId && data.recipeId.userId.Image ? data.recipeId.userId.Image : ""}`} class="rounded-circle float-left ml-5" alt="fftgh" style={{ width: "60px", height: "60px" }} />
+
                             <p class="float-right font-weight-bold">
+
                                 {data && data.recipeId && data.recipeId.userId && data.recipeId.userId.firstName ? data.recipeId.userId.firstName : ""}
                                 {data && data.recipeId && data.recipeId.userId && data.recipeId.userId.lastName ? data.recipeId.userId.lastName : ""}
-
+                                <img src={`http://95.111.202.157:8001/${data && data.recipeId && data.recipeId.userId && data.recipeId.userId.Image ? data.recipeId.userId.Image : ""}`} class="rounded-circle float-left ml-5" alt="fftgh" style={{ width: "60px", height: "60px" }} />
                             </p>
                             {/* <span className='text-muted'>  {data.createdAt}</span> */}
 
                         </div>
-                        <div class="col-2 ">
+                        <div class="col-md-2 ">
                             <p>PREP TIME</p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-5" viewBox="0 0 16 16">
                                 <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
@@ -154,7 +173,7 @@ function RecepiDetailPage() {
                             </p>
 
                         </div>
-                        <div class="col-2">
+                        <div class="col-md-2">
                             <p>COOK TIME</p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-5" viewBox="0 0 16 16">
                                 <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
@@ -162,18 +181,19 @@ function RecepiDetailPage() {
                             <p className='text-muted'> {data && data.recipeId && data.recipeId.cookTime ? data.recipeId.cookTime : ""}</p>
 
                         </div>
-                        <div class="col-2 ">
+                        <div class="col-md-2 ">
 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-apple float-left ml-5" viewBox="0 0 16 16">
+                            
+                            <p className='text-dark'>
+                                {data && data.recipeId && data.recipeId.categoryId && data.recipeId.categoryId.categoryName ? data.recipeId.categoryId.categoryName : ""}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-apple float-left ml-5" viewBox="0 0 16 16">
                                 <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
                                 <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
                             </svg>
-                            <p className='text-muted'>
-                                {data && data.recipeId && data.recipeId.categoryId && data.recipeId.categoryId.categoryName ? data.recipeId.categoryId.categoryName : ""}
                             </p>
 
                         </div>
-                        <div class="col-4 ">
+                        <div class="col-md-4 pt-5">
                             <div className='float-right ml-3'>
                                 <span class="rounded-circle bg-info pt-5 pb-3 p-4 pl-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-box-arrow-up mx-auto pb-1" viewBox="0 0 16 16">
@@ -181,32 +201,32 @@ function RecepiDetailPage() {
                                         <path fill-rule="evenodd" d="M7.646.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 1.707V10.5a.5.5 0 0 1-1 0V1.707L5.354 3.854a.5.5 0 1 1-.708-.708l3-3z" />
                                     </svg>
                                 </span>
-                                <p className='text-muted pt-5'>SHARE</p>
+                                <p className='text-muted pt-5 mr-5'>SHARE</p>
                             </div>
 
-                            <div className='float-right ml-4'>
+                            <div className='float-right '>
                                 <span class="rounded-circle bg-info pt-5 pb-3 p-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-box-arrow-up mx-auto pb-1 " viewBox="0 0 16 16">
                                         <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
                                         <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z" />
                                     </svg>
                                 </span>
-                                <p className='text-muted pt-5'>PRINT</p>
+                                <p className='text-muted pt-5 mr-5'>PRINT</p>
 
                             </div>
                         </div>
                     </div>
                     <br />
-                    <div class="row  pb-5">
-                        <div class="col-8  ">
-                            <div class=" border-rounded-lg  mr-4">
+                    <div class="row  pb-5 ">
+                        <div class="col-sm-9 col-md-6 col-lg-8 ">
+                            <div class="border-rounded-lg pt-5 pb-3">
 
-                                <div class="rounded" style={{ marginTop: "-50px" }}>
+                                <div style={{ marginTop: "-40px", }}>
 
                                     {data.length == "0" ?
                                         ""
                                         :
-                                        <video width="860" height="600" controls >
+                                        <video width="860" height="1000" controls style={{ borderRadius: "36px", borderTopRightRadius: "50px" }} >
 
                                             <source src={`http://95.111.202.157:8001/${data.recipeId.video}`} type="video/mp4" />
                                             <button type="button" class="btn btn-primary btn-lg rounded-circle">Large</button>
@@ -224,8 +244,8 @@ function RecepiDetailPage() {
                             </div>
 
                         </div>
-                        <div class="col-4 float-right">
-                            <div class="card bg-info rounded">
+                        <div class="col-sm-3 col-md-6 col-lg-4 float-right">
+                            <div class="card bg-info " style={{ borderRadius: "40px" }}>
                                 <div class="card-body float-left">
                                     <h4 class="card-text font-weight-bold">Nutrition Information</h4>
                                 </div>
@@ -253,7 +273,7 @@ function RecepiDetailPage() {
                                     </span></h5>
 
                                     <hr />
-                                    <h5 className='float-right text-muted pt-5'>
+                                    <h5 className='float-right text-muted pt-3'>
                                         {data && data.nutritionInformation && data.nutritionInformation.nutritionTitle ? data.nutritionInformation.nutritionTitle : ""}
                                     </h5>
 
@@ -273,12 +293,12 @@ function RecepiDetailPage() {
                     {/*  section Ingredients*/}
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-sm-9 col-md-6 col-lg-8">
 
-                                
+
                                 <div class="row text-left">
                                     <div class="row-sm  pt-3 ">
-                                    <h1 className='pb-3 text-dark font-weight-bold '>Ingredients</h1>
+                                        <h1 className='pb-3 text-dark font-weight-bold '>Ingredients</h1>
                                         <h4 class="font-weight-bold text-dark pb-5 ">For Main Dish</h4>
                                     </div>
                                     {
@@ -317,16 +337,16 @@ function RecepiDetailPage() {
 
                                                     <div class="pt-5 ">
 
-                                                        <h4 class="font-weight-bold text-dark  pb-3 float-left" style={{ marginRight: "550px" }}>For the Sauce</h4>
+                                                        <h4 class="font-weight-bold text-dark pb-2 float-left" >For the Sauce</h4>
 
-                                                        <div class="form-check pt-5 pb-5" style={{ marginRight: "500px" }}>
+                                                        <div class="form-check pt-5 pb-5 mr-5" >
                                                             <label class="form-check-label float-left pt-2 pb-5" >
                                                                 <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.sauce[1]}</span>
 
                                                             </label>
                                                         </div>
 
-                                                        <div class="form-check pt-5 pb-5" style={{ marginRight: "500px" }}>
+                                                        <div class="form-check pt-5 pb-5" >
                                                             <label class="form-check-label float-left pt-2 pb-5" >
                                                                 <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.sauce[1]}</span>
 
@@ -339,7 +359,7 @@ function RecepiDetailPage() {
                                     }
 
 
-                                    <h1 className="font-weight-bold text-dark pt-5 pb-3 float-left" style={{ marginRight: "500px" }}>Direction</h1>
+                                    <h1 className="font-weight-bold text-dark pt-5 pb-3 float-left" >Direction</h1>
                                     {
                                         direction.map(items => {
                                             //console.log(items, "direcccctionsssssssss")
@@ -347,14 +367,13 @@ function RecepiDetailPage() {
                                                 <div>
                                                     <div class="row-sm pb-2">
 
-                                                        <div class="form-check pt-2 pb-5" style={{ marginRight: "500px" }}>
+                                                        <div class="form-check pt-2 pb-5" >
                                                             <label class="form-check-label float-left pt-4 pb-5" >
-                                                                <input type="checkbox" class="form-check-input rounded-lg  pt-3 " value="" /><span className='text-uppercase'>{items.directionTitle}</span>
+                                                                <input type="checkbox" class="form-check-input pt-3" /><span className='text-uppercase'>{items.directionTitle}</span>
                                                                 <br></br>
                                                                 <h5 class="text-muted pt-4 pb-5"> {items.directionDescription}</h5>
-
-
-                                                                <img src={`http://95.111.202.157:8001/${items.directionImage}`} alt="fftgh" style={{ width: '750px', height: "400px" }} class="rounded-lg pt-2 pb-4" />
+                                                                <img src={`http://95.111.202.157:8001/${items.directionImage}`} alt="fftgh"
+                                                                    style={{ width: '750px', height: "400px", borderRadius: "30px" }} class="pt-2 pb-4 img-fluid" />
                                                             </label>
                                                         </div>
 
@@ -379,9 +398,9 @@ function RecepiDetailPage() {
 
 
                             </div>
-                            <div class="col-4">
+                            <div class="col-sm-3 col-md-6 col-lg-4 float-left">
                                 <div class="row pt-3 pb-4">
-                                    <h2 class="float-left pb-3 text-dark font-weight-bold">Other Recepis</h2>
+                                    <h2 class="float-left pb-3 text-dark font-weight-bold mr-5">Other Recepis</h2>
 
                                     {
                                         list.slice(0, 3).map(item1 => {
@@ -390,17 +409,18 @@ function RecepiDetailPage() {
 
                                                 <div>
 
-                                                    <div class="col-2 float-left pb-4 ">
-                                                        <img src={`http://95.111.202.157:8001/${item1.recipeId.image}`} alt="fftgh" class="rounded-lg" style={{ width: "250px", height: "150px", }} />
-                                                    </div>
 
-                                                    <div class="col-2 float-right">
-                                                        <h5 class="float-right ">{item1.recipeId.title}</h5>
-                                                        {/* <p class="text-muted float-right ">{item1.recipeId.userId.firstName}</p> */}
+                                                    <div class="col">
+                                                        <div class="float-left mr-1 pb-5">
+                                                            <img src={`http://95.111.202.157:8001/${item1.recipeId.image}`} clas=" img-fluid" alt="fftgh" style={{ width: "250px", height: "200px", borderRadius: "36px" }} />
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-sm-4 float-left">
+                                                        <h5 class=" pt-5 pb-3 text-muted">{item1.recipeId.title}</h5>
+                                                        <p class="text-dark font-weight-bold"> {item1.recipeId.userId.firstName}</p>
                                                     </div>
                                                 </div>
-
-
                                             )
                                         })
                                     }
@@ -409,7 +429,7 @@ function RecepiDetailPage() {
 
                                     <div class="col pt-5 float-left">
                                         <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
-                                            alt="des" style={{ height: '600px', width: "400px" }} class="rounded-lg" />
+                                            alt="des" style={{ height: '600px', width: "400px" }} class="img-fluid" />
                                     </div>
 
                                 </div>
@@ -429,8 +449,8 @@ function RecepiDetailPage() {
                 <div className='container-fluid pt-5 pb-5'>
 
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMmMUwsaaDSDhZOSOq7H6jG9NHXsX6txVBA&usqp=CAU"
-                        class="rounded-lg" alt="description"
-                        style={{ width: "1200px", height: "500px" }} />
+                        alt="description" class="img-fluid"
+                        style={{ width: "1200px", height: "500px", borderRadius: "40px" }} />
 
                     <div className='deli'>
                         <h1 className=''>Deliciousness to your inbox</h1>
@@ -455,26 +475,26 @@ function RecepiDetailPage() {
             <div class="container-fluid pt-5 pb-5">
                 <div class="row">
                     {
-                        list.slice(0, 4).map(item1 => {
-
+                        list.slice(0, 4).map(item => {
+                            // console.log("list data", list)
                             return (
                                 <div className='col-md-3'>
 
 
                                     <div className='sa pb-5'>
 
-                                        <img src={`http://95.111.202.157:8001/${item1.recipeId.image}`} alt="fftgh" style={{ width: "330px", height: "250px", padding: "20px" }} />
-                                        <h6 class=" pt-2 pb-3">{item1.recipeId.title}</h6>
-                                        <div className='float-left' >
-                                            <p class="text-muted">{item1.recipeId.cookTime}
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-3 text-dark" viewBox="0 0 16 16">
+                                        <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "320px", height: "250px", borderRadius: "26px" }} />
+                                        <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
+                                        <div className='float-left'>
+                                            <p class="text-muted ml-4">{item.recipeId.cookTime}
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left mr-2 text-dark" viewBox="0 0 16 16">
                                                     <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
                                                 </svg>
                                             </p>
                                         </div>
-                                        <div className='float-right' >
-                                            <p class="text-muted">{item1.recipeId.categoryId.categoryName}
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-apple float-left ml-4 text-dark" viewBox="0 0 16 16">
+                                        <div className='float-right'>
+                                            <p class="text-muted mr-4">{item.recipeId.categoryId.categoryName}
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-apple float-left mr-2 text-dark" viewBox="0 0 16 16">
                                                     <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
                                                     <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
                                                 </svg>
@@ -491,6 +511,7 @@ function RecepiDetailPage() {
 
 
                 </div>
+
             </div>
 
 
@@ -500,30 +521,42 @@ function RecepiDetailPage() {
             <div class="navbar navbar-expand-lg navbar navbar-light bg-light pt-5 pb-5 border-bottom">
                 <div class="container-fluid pb-4">
                     <div class="float-left ">
-
-                        <h4 class="float-left font-italic text-dark pt-3  ">Foodien Land </h4>
-                        <p class="float-left text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        {
+                            option.slice(0, 1).map(item => {
+                                console.log(item, "item")
+                                return (
+                                    <div>
+                                        {/* <p>{item.title}</p> */}
+                                        <img src={`http://95.111.202.157:8001/${item.logo}`} class="img-fluid" alt="fftgh" style={{ width: "120px", height: "30px" }} />
+                                    </div>
+                                )
+                            })
+                        }
+                        {/* <h4 class=" font-italic text-dark pt-3  ">Foodien Land </h4> */}
+                        <h6 class="float-left text-muted pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
 
 
 
                     </div>
 
-                    <div class="float-right">
-                        <ul class="navbar-nav mr-auto ml-5">
-                            <li class="nav-item active ml-5">
-                                <a class="nav-link mr-sm-4 ml-5" href="#">Home </a>
+                    <div class="mx-auto">
+                        <ul class="navbar-nav mr-auto ">
+
+                            <li class="nav-item active ">
+                                <a class="nav-link mr-sm-4 text-dark text-uppercase" href="/"><b>Home</b></a>
                             </li>
-                            <li class="nav-item ml-5">
-                                <a class="nav-link active mr-sm-4" href="#">Recipes</a>
+                            <li class="nav-item ">
+                                <a class="nav-link  mr-sm-4 text-dark" href="/recepilist"><b>Recipes</b> </a>
+
                             </li>
-                            <li class="nav-item active ml-5">
-                                <a class="nav-link mr-sm-4" href="#">Blog</a>
+                            <li class="nav-item active ">
+                                <a class="nav-link mr-sm-4 text-dark" href="/bloglist"> <b>Blog</b></a>
                             </li>
-                            <li class="nav-item ml-5">
-                                <a class="nav-link active mr-sm-4" href="#">Contact</a>
+                            <li class="nav-item ">
+                                <a class="nav-link active mr-sm-4 text-dark" href="/contact"> <b>Contact</b></a>
                             </li>
-                            <li class="nav-item ml-4">
-                                <a class="nav-link active mr-sm-2" href="#">About Us</a>
+                            <li class="nav-item ">
+                                <a class="nav-link active mr-sm-4 text-dark" href="/about"> <b>About Us</b></a>
                             </li>
 
                         </ul>
@@ -543,7 +576,7 @@ function RecepiDetailPage() {
 
                     </div>
 
-                    <div class="float-right">
+                    <div class="mx-auto">
 
                         <div class="form-inline my-2 my-lg-0">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-facebook text-dark mr-sm-4 ml-3" viewBox="0 0 16 16">
@@ -561,6 +594,7 @@ function RecepiDetailPage() {
 
                 </div>
             </div>
+
 
         </div>
 

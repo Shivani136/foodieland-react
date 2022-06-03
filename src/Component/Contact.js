@@ -148,7 +148,7 @@ function Contact() {
                     <div class="row ">
                         <div class="col-sm-5 pb-5 ">
                             <img src="https://st2.depositphotos.com/1158045/7470/i/600/depositphotos_74708117-stock-photo-smiling-chef-in-his-kitchen.jpg" class="float-left img-fluid" alt="description"
-                                style={{ width: "480px", height: "500px" }} />
+                                style={{ width: "480px", height: "500px" ,borderRadius:"36px"}} />
 
                         </div>
 
@@ -219,8 +219,8 @@ function Contact() {
                     <div className='container-fluid pt-5 pb-3'>
 
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMmMUwsaaDSDhZOSOq7H6jG9NHXsX6txVBA&usqp=CAU"
-                            class="rounded-lg img-fluid" alt="description"
-                            style={{ width: "1400px", height: "500px" }} />
+                            class=" img-fluid" alt="description"
+                            style={{ width: "1200px", height: "500px",borderRadius:"46px" }} />
 
                         <div className='centere '>
                             <h1 className=''>Deliciousness to your inbox</h1>
@@ -255,7 +255,7 @@ function Contact() {
 
                                         <div className='sa pb-5'>
 
-                                            <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "320px", height: "250px", padding: "0px" }} />
+                                            <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "320px", height: "250px",borderRadius:"36px" }} />
                                             <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
                                             <div className='float-left'>
                                                 <p class="text-muted ml-4">{item.recipeId.cookTime}
@@ -305,7 +305,7 @@ function Contact() {
                                 return (
                                     <div>
                                         {/* <p>{item.title}</p> */}
-                                        <img src={`http://95.111.202.157:8001/${item.logo}`} class="img-fluid" alt="fftgh" style={{ width: "200px", height: "30px" }} />
+                                        <img src={`http://95.111.202.157:8001/${item.logo}`} class="img-fluid" alt="fftgh" style={{ width: "120px", height: "30px" }} />
                                     </div>
                                 )
                             })

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import '../../Assest/BlogDetailPage.css'
-import { GetBlog, GetAllRecipe, Subscribe } from '../../Config/Commonapi';
+import { GetBlog, GetAllRecipe, Subscribe, SiteOptions } from '../../Config/Commonapi';
 import { useParams } from 'react-router-dom';
 
 function BlogDetailPage(props) {
     const [data, setData] = useState([]);
     const [datass, setDatass] = useState([]);
+    const [option, setOption] = useState([]);
     const [list, setList] = useState([]);
     const [email, setEmail] = useState("");
     const [_id, _setId] = useState(null);
@@ -21,8 +22,17 @@ function BlogDetailPage(props) {
     useEffect(() => {
         ids.push(datas)
         getRecepi();
-        blogsBYID()
+        blogsBYID();
+        SiteOption();
     }, []);
+
+    async function SiteOption() {
+
+        await axios.get('getAllSitOptions')
+            .then((response) => { setOption(response.data) })
+        //.then((response) => { console.log(response.data) });
+
+    }
 
     async function blogsBYID() {
         //  console.log(JSON.parse(ids[0]), "idsssssssssssssssss")
@@ -51,7 +61,7 @@ function BlogDetailPage(props) {
 
     }
 
-  //  console.log(data, data.blogFAQ, "itemmmmmmmmmm")
+    //  console.log(data, data.blogFAQ, "itemmmmmmmmmm")
 
 
 
@@ -95,25 +105,34 @@ function BlogDetailPage(props) {
 
                 <nav class="navbar navbar-expand-lg navbar navbar-light bg-light border-bottom  fixed-top ">
                     <div class="container-fluid">
-                        <div class="sidebar-logo  mr-5">
-                            Foodien Land
-                        </div>
+                        {
+                            option.slice(0, 1).map(item => {
+                                console.log(item, "item")
+                                return (
+                                    <div>
+                                        {/* <p>{item.title}</p> */}
+                                        <img src={`http://95.111.202.157:8001/${item.logo}`} class="img-fluid" alt="fftgh" style={{ width: "140px", height: "30px" }} />
+                                    </div>
+                                )
+                            })
+                        }
+
                         <div class="collapse navbar-collapse mx-auto ml-5  mx-3 my-3">
                             <ul class="navbar-nav mx-auto ml-5">
                                 <li class="nav-item active ml-5">
-                                    <a class="nav-link mr-sm-4 ml-5" href="/home">Home </a>
+                                    <a class="nav-link mr-sm-4 ml-5 text-dark text-uppercase" href="/"><b>Home</b> </a>
                                 </li>
                                 <li class="nav-item ml-5">
-                                    <a class="nav-link active mr-sm-4" href="/recepilist">Recipes</a>
+                                    <a class="nav-link active mr-sm-4 text-dark" href="/recepilist"><b>Recipes</b> </a>
                                 </li>
                                 <li class="nav-item active ml-5">
-                                    <a class="nav-link mr-sm-4" href="/bloglist">Blog</a>
+                                    <a class="nav-link mr-sm-4 text-dark" href="/bloglist"> <b>Blog</b></a>
                                 </li>
                                 <li class="nav-item ml-5">
-                                    <a class="nav-link active mr-sm-4" href="/contact">Contact</a>
+                                    <a class="nav-link active mr-sm-4 text-dark" href="/contact"> <b>Contact</b></a>
                                 </li>
                                 <li class="nav-item ml-5">
-                                    <a class="nav-link active mr-sm-4" href="/about">About Us</a>
+                                    <a class="nav-link active mr-sm-4 text-dark" href="/about"> <b>About Us</b></a>
                                 </li>
 
                             </ul>
@@ -134,8 +153,6 @@ function BlogDetailPage(props) {
 
                     </div>
                 </nav>
-
-
                 <div>
 
                     <div className='banner'>
@@ -148,7 +165,7 @@ function BlogDetailPage(props) {
 
                         <h6 class="text-dark font-weight-bold pb-5">
                             <p class="mr-5 text-uppercase">
-                                <img src={`http://95.111.202.157:8001/${data && data.userId && data.userId.Image ? data.userId.Image : ""} `} alt="fftgh" style={{ width: "50px", height: "50px" }} />
+                                <img src={`http://95.111.202.157:8001/${data && data.userId && data.userId.Image ? data.userId.Image : ""} `} alt="fftgh" style={{ width: "75px", height: "60px", borderRadius: '50px' }} />
 
                                 {data && data.userId && data.userId.firstName ? data.userId.firstName : ""}
                                 <span class=" border-left text-muted ml-5">12 November 2021</span>
@@ -161,29 +178,29 @@ function BlogDetailPage(props) {
                         <h5 class="text-muted pb-5">{data && data.description ? data.description : ""} </h5>
 
                         <div class="container-fluid pb-5">
-                            <img src={`http://95.111.202.157:8001/${data.image}`} alt="fftgh" style={{ width: '1300px', height: "500px" }} class="rounded-lg" />
+                            <img src={`http://95.111.202.157:8001/${data.image}`} class="img-fluid" alt="fftgh" style={{ width: '1300px', height: "500px", borderRadius: '50px' }} />
 
 
                         </div>
 
                         <div class="row pt-3">
-                            <div class="col-9">
+                            <div class="col-sm-9">
                                 <div class="col pb-5">
-                                    <h4 class="pb-3"></h4>
+                                    <h4 class=""></h4>
 
                                     {
                                         datass.map(items => {
                                             //console.log(items, "otems")
                                             return (
                                                 <div>
-                                            
-                                                    <h3 className='font-weight-bolder text-uppercase pt-3 float-left ml-5  pt-5'>{items.faqTitle} </h3>
-                                                    <br/>
-                                                    <div style={{marginRight: "670px"}}>
-                                                    <h4 class="text-muted float-left pt-3 pb-4 ml-5">{items.faqDescription} </h4>
-                                                        </div>
 
-                                                    <img src={`http://95.111.202.157:8001/${items.faqImage}`} alt="fftgh" style={{ width: '940px', height: "400px" }} class="rounded-lg pt-2" />
+                                                    <h3 className='font-weight-bolder text-uppercase pt-3 float-left ml-5  pt-3'>{items.faqTitle} </h3>
+                                                    <br />
+                                                    <div style={{ marginRight: "670px" }}>
+                                                        <h4 class="text-muted float-left pt-3 pb-4 ml-5">{items.faqDescription} </h4>
+                                                    </div>
+
+                                                    <img src={`http://95.111.202.157:8001/${items.faqImage}`} alt="fftgh" style={{ width: '940px', height: "400px", borderRadius: '40px' }} class="pt-2 pb-5 img-fluid" />
 
 
 
@@ -201,7 +218,7 @@ function BlogDetailPage(props) {
 
 
 
-                            <div class="col-3 pt-3">
+                            <div class="col-sm-3 pt-3">
                                 <h5 class=" font-weight-bolder pb-3">SHARE THIS ON. .</h5>
                                 <div class="col pb-5">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-facebook  mr-sm-4" viewBox="0 0 16 16">
@@ -233,28 +250,29 @@ function BlogDetailPage(props) {
 
                 {/* subscription text */}
                 <div className='pt-5'>
-                    <div className='container-fluid pt-5 pb-5'>
+                    <div className='container-fluid pt-5 pb-3'>
 
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMmMUwsaaDSDhZOSOq7H6jG9NHXsX6txVBA&usqp=CAU"
-                            class="rounded-lg" alt="description"
-                            style={{ width: "1200px", height: "500px" }} />
+                            class=" img-fluid" alt="description"
+                            style={{ width: "1300px", height: "500px", borderRadius: "36px" }} />
 
-                        <div className='blogs'>
+                        <div className='centere '>
                             <h1 className=''>Deliciousness to your inbox</h1>
-                            <p className='text-muted pt-3 pb-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                            <p className='text-muted pt-3 pb-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
                                 molestiae quas vel sint commodi repudiandae consequuntur voluptatum iusto</p>
-
 
                             <form onSubmit={subscrib}>
 
                                 <input type="email" class="form-control form-rounded rounded-pill p-5" placeholder='your email address'
                                     value={email} onChange={(e) => { setEmail(e.target.value) }} required autofocus />
+                                <button class=" centeredd  btn btn-lg btn-dark rounded-lg pb-2">subscribe</button>
 
-                                <button class="centeredd btn btn-lg btn-dark rounded-lg pt-2 pb-2">subscribe</button>
                             </form>
                         </div>
                     </div>
                 </div>
+
+
 
 
                 <div className='pt-5 pb-5'>
@@ -272,18 +290,18 @@ function BlogDetailPage(props) {
 
                                         <div className='sa pb-5'>
 
-                                            <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} alt="fftgh" style={{ width: "320px", height: "200px", padding: "15px" }} />
+                                            <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "320px", height: "250px", borderRadius: "26px" }} />
                                             <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
-                                            <div className='float-left' >
-                                                <p class="text-muted">{item.recipeId.cookTime}
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left ml-3 text-dark" viewBox="0 0 16 16">
+                                            <div className='float-left'>
+                                                <p class="text-muted ml-4">{item.recipeId.cookTime}
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left mr-2 text-dark" viewBox="0 0 16 16">
                                                         <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
                                                     </svg>
                                                 </p>
                                             </div>
-                                            <div className='float-right' >
-                                                <p class="text-muted">{item.recipeId.categoryId.categoryName}
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-apple float-left ml-4 text-dark" viewBox="0 0 16 16">
+                                            <div className='float-right'>
+                                                <p class="text-muted mr-4">{item.recipeId.categoryId.categoryName}
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-apple float-left mr-2 text-dark" viewBox="0 0 16 16">
                                                         <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
                                                         <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z" />
                                                     </svg>
@@ -309,30 +327,42 @@ function BlogDetailPage(props) {
             <div class="navbar navbar-expand-lg navbar navbar-light bg-light pt-5 pb-5 border-bottom">
                 <div class="container-fluid pb-4">
                     <div class="float-left ">
-
-                        <h4 class="float-left font-italic text-dark pt-3  ">Foodien Land </h4>
-                        <p class="float-left text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        {
+                            option.slice(0, 1).map(item => {
+                                console.log(item, "item")
+                                return (
+                                    <div>
+                                        {/* <p>{item.title}</p> */}
+                                        <img src={`http://95.111.202.157:8001/${item.logo}`} class="img-fluid" alt="fftgh" style={{ width: "120px", height: "30px" }} />
+                                    </div>
+                                )
+                            })
+                        }
+                        {/* <h4 class=" font-italic text-dark pt-3  ">Foodien Land </h4> */}
+                        <h6 class="float-left text-muted pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
 
 
 
                     </div>
 
-                    <div class="float-right">
-                        <ul class="navbar-nav mr-auto ml-5">
-                            <li class="nav-item active ml-5">
-                                <a class="nav-link mr-sm-4 ml-5" href="#">Home </a>
+                    <div class="mx-auto">
+                        <ul class="navbar-nav mr-auto ">
+
+                            <li class="nav-item active ">
+                                <a class="nav-link mr-sm-4 text-dark text-uppercase" href="/"><b>Home</b></a>
                             </li>
-                            <li class="nav-item ml-5">
-                                <a class="nav-link active mr-sm-4" href="#">Recipes</a>
+                            <li class="nav-item ">
+                                <a class="nav-link  mr-sm-4 text-dark" href="/recepilist"><b>Recipes</b> </a>
+
                             </li>
-                            <li class="nav-item active ml-5">
-                                <a class="nav-link mr-sm-4" href="#">Blog</a>
+                            <li class="nav-item active ">
+                                <a class="nav-link mr-sm-4 text-dark" href="/bloglist"> <b>Blog</b></a>
                             </li>
-                            <li class="nav-item ml-5">
-                                <a class="nav-link active mr-sm-4" href="#">Contact</a>
+                            <li class="nav-item ">
+                                <a class="nav-link active mr-sm-4 text-dark" href="/contact"> <b>Contact</b></a>
                             </li>
-                            <li class="nav-item ml-4">
-                                <a class="nav-link active mr-sm-2" href="#">About Us</a>
+                            <li class="nav-item ">
+                                <a class="nav-link active mr-sm-4 text-dark" href="/about"> <b>About Us</b></a>
                             </li>
 
                         </ul>
@@ -352,7 +382,7 @@ function BlogDetailPage(props) {
 
                     </div>
 
-                    <div class="float-right">
+                    <div class="mx-auto">
 
                         <div class="form-inline my-2 my-lg-0">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-facebook text-dark mr-sm-4 ml-3" viewBox="0 0 16 16">
@@ -370,6 +400,7 @@ function BlogDetailPage(props) {
 
                 </div>
             </div>
+
         </div>
 
 
