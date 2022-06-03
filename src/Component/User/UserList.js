@@ -135,8 +135,8 @@ function UserList() {
 
                 <div className=' '>
 
-
-                    <table class="table table-striped table-bordered h-100"  >
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered h-100 table-responsive{-sm|-md|-lg|-xl} "  >
                         <thead>
                             <tr>
                                 <th scope="col">FirstName</th>
@@ -220,6 +220,7 @@ function UserList() {
 
                 
                     </table>
+                    </div>
                     <Pagination
                         className="pagination-bar"
                         currentPage={currentPage}

@@ -4,26 +4,53 @@
   font-weight: bolder;
 }
 
-/* .banners {
-  padding-top: 140px;
-  font-size: 60px;
-  font-weight: bolder;
-} */
-
-/* .content-container {
-  padding-top: 20px;
-} */
-
-.center {
+.centere {
   position: absolute;
-  top: 165%;
+  top: 172%;
   left: 45%;
   transform: translate(-40%, -40%);
 }
 
 .centeredd {
   position: absolute;
-  top: 82%;
+  /* top: 172%; */
   left: 80%;
+  margin-top: 80px;
   transform: translate(-40%, -40%);
 }
+
+@media(max-width:767px) {
+  .centere {
+    position: relative;
+    left: 40%;
+    top: -250px;
+  }
+
+  .centeredd {
+    position: relative;
+    top: -58px;
+    margin-left: -272px;
+    transform: translate(-40%, -40%);
+  }
+
+  .centere .centeredd {
+    margin-top: 5px;
+    margin-left: -20rem;
+ }
+
+}
+
+
+/* /* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
+/* @media screen and (min-width: 601px) {
+  .banner {
+    font-size: 70px;
+  }
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+/* @media screen and (max-width: 600px) {
+  .banner {
+    font-size: 30px;
+  }
+}  */

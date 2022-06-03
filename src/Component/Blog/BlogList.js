@@ -103,6 +103,7 @@ function BlogList() {
             <div class="content px-5 py-5">
 
                 <div className=''>
+                <div class="table-responsive">
             <table class="table table-striped table-bordered h-100" >
                         <thead>
                             <tr>
@@ -194,6 +195,7 @@ function BlogList() {
                         </tbody>
 
                     </table>
+                    </div>
                     <Pagination
                         className="pagination-bar"
                         currentPage={currentPage}

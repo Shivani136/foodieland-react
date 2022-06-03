@@ -1,24 +1,35 @@
-.banner {
-    padding-top: 140px;
-    font-size: 70px;
-    font-weight: bolder;
-  }
-  
-  .content-container {
-    padding-top: 20px;
-  }
-  
+.centered {
+  position: absolute;
+  top: 765%;
+  /* top: 172%; */
+  left: 45%;
+  transform: translate(-40%, -40%);
+}
+
+.centeredd {
+  position: absolute;
+  top: 52%;
+  left: 85%;
+  transform: translate(-40%, -40%);
+}
+
+@media(max-width:767px) {
+
   .centered {
-    position: absolute;
-    top: 765%;
-    left: 45%;
-    transform: translate(-40%, -40%);
+    position: relative;
+    left: 40%;
+    top: -250px;
   }
-  
+
   .centeredd {
-    position: absolute;
-    top: 82%;
-    left: 80%;
+    position: relative;
+    top: -58px;
+    margin-left: -268px;
     transform: translate(-40%, -40%);
   }
- 
+  .centered .centeredd {
+    margin-top: 5px;
+    margin-left: -20rem;
+  }
+
+}

@@ -69,6 +69,7 @@ function CategoryList() {
                 <div className=' '>
                     {/* 
                     <Paginations /> */}
+                        <div class="table-responsive">
                     <table class="table table-striped table-bordered h-75" >
                         <thead>
                             <tr>
@@ -123,6 +124,7 @@ function CategoryList() {
                         </tbody>
 
                     </table>
+                    </div>
                     <Pagination
                         className="pagination-bar"
                         currentPage={currentPage}

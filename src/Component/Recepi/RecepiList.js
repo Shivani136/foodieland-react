@@ -151,7 +151,8 @@ function RecepiList() {
                 <div class="content  px-5 py-5">
 
                     <div className=' '>
-                        <table class="table table-striped table-bordered h-100" >
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered h-100  " >
                             <thead>
                                 <tr>
                                     <th scope="col">Title</th>
@@ -244,6 +245,7 @@ function RecepiList() {
                             </tbody>
 
                         </table>
+                        </div>
                         <Pagination
                         className="pagination-bar"
                         currentPage={currentPage}

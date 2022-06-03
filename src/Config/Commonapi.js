@@ -40,6 +40,8 @@ authAxios.get('/searchBlog')
 authAxios.get('/searcRecipe')
 authAxios.get('/popularRecipes')
 authAxios.get('/popularBlog')
+authAxios.get('/getAllSitOptions')
+
 
 export const api = `${apiUrl}/signIn`; 
 export const AllUser = `${apiUrl}/getAllUsers`; 
@@ -53,21 +55,22 @@ export const UpdateCategory  = `${apiUrl}/updateCategory`;
 export const DeleteCategory  = `${apiUrl}/deleteCategory`; 
 export const addCategory  = `${apiUrl}/addCtegory`; 
 
-export const AddRecipe  = `${apiUrl}/addRecipes`;  //
-export const DeleteRecipe  = `${apiUrl}/recipesChangeStatus?status=isDeleted`;  //
+export const AddRecipe  = `${apiUrl}/addRecipes`;  
+export const DeleteRecipe  = `${apiUrl}/recipesChangeStatus?status=isDeleted`;  
 export const EditRecipe  = `${apiUrl}/editRecipe`; 
-export const GetAllRecipe  = `${apiUrl}/v1/getallrecipes`;  //
-export const GetRecipe  = `${apiUrl}/recipeDetails`;  //
+export const GetAllRecipe  = `${apiUrl}/v1/getallrecipes`;  
+export const GetRecipe  = `${apiUrl}/recipeDetails`;  
 export const AddRecipesMeta  = `${apiUrl}/addRecipesMeta`; 
 
-export const GetAllBlog  = `${apiUrl}/getAllBlog`;  //
-export const addBlog  = `${apiUrl}/addBlog`; //
-export const GetBlog  = `${apiUrl}/getBlog`; //
-export const DeleteBlog  = `${apiUrl}/statusChanged`; //
-export const UpdateBlog  = `${apiUrl}/updateBlog`;  //
-export const AddContact  = `${apiUrl}/addContactDetails`;  //
-export const Subscribe  = `${apiUrl}/subscribe`;  //
-export const SearchBlog  = `${apiUrl}/searchBlog`;  //
-export const SearchRecepi  = `${apiUrl}/searcRecipe`;  //
-export const PopularRecipes  = `${apiUrl}/popularRecipes`;  //
-export const PopularBlog  = `${apiUrl}/popularBlog`;  //
+export const GetAllBlog  = `${apiUrl}/getAllBlog`;  
+export const addBlog  = `${apiUrl}/addBlog`; 
+export const GetBlog  = `${apiUrl}/getBlog`; 
+export const DeleteBlog  = `${apiUrl}/statusChanged`;
+export const UpdateBlog  = `${apiUrl}/updateBlog`;  
+export const AddContact  = `${apiUrl}/addContactDetails`;  
+export const Subscribe  = `${apiUrl}/subscribe`;  
+export const SearchBlog  = `${apiUrl}/searchBlog`;  
+export const SearchRecepi  = `${apiUrl}/searcRecipe`;  
+export const PopularRecipes  = `${apiUrl}/popularRecipes`; 
+export const PopularBlog  = `${apiUrl}/popularBlog`;  
+export const SiteOptions  = `${apiUrl}/getAllSitOptions`; 
