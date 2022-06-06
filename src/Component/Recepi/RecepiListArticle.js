@@ -145,15 +145,21 @@ function RecepiListArticle() {
 
 
         <div className='banner'>
-          <h1 className='banner pb-2 pt-4'>Recepi & Article</h1>
+          <h1 className='banner pb-2 pt-4 ml-5 mr-5'>Recepi & Article</h1>
 
         </div>
-        <p class="text-muted pb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,Lorem ipsum dolor sit amet consectetur adipisicing elit.mollitia,  </p>
+        <p class="text-muted pb-5 ml-5 mr-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,Lorem ipsum dolor sit amet consectetur adipisicing elit.mollitia,  </p>
         <div class="content-container ">
-          <form onSubmit={fetchData}>
+
+
+          <div class="input-group">
+            <input type="search" class="form-control rounded p-3" placeholder='Search Article News or Recepi' aria-label="Search" aria-describedby="search-addon" required autofocus/>
+            <button type="button" class="btn btn-outline-primary">Search</button>
+          </div>
+          {/* <form onSubmit={fetchData}>
             <input type="text" class="form-control border rounded-pill h-50 p-4" placeholder='Search Article News or Recepi' required autofocus />
             <button class="centeredds btn btn-lg btn-dark rounded-lg pt-2 pb-2">Search </button>
-          </form>
+          </form> */}
         </div>
 
 
@@ -170,29 +176,32 @@ function RecepiListArticle() {
                       <p key={index} value={item._id}> </p>
 
                       <div class="row">
-                        <div class="col pb-5">
-                          <div class="">
-                            <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} clas="float-left img-fluid" alt="fftgh" style={{ width: "400px", height: "250px", borderRadius: "36px" }} />
+                        <div class="col-sm-1 pb-2 ml-5 mr-5">
+                          <div class="" >
+                            <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} clas="float-left img-fluid" alt="fftgh" style={{ width: "300px", height: "220px", borderRadius: "26px" }} />
                           </div>
 
                         </div>
-                        <div class="col float-left">
-                          <h4 class=" pt-2 pb-3">{item.recipeId.title}</h4>
-                          <p class="text-muted ">{item.recipeId.description}
-                          </p>
+                        
+                        <div class="col-sm-7 float-left" style={{marginLeft:"200px"}}>
+                          <h3 class="text-dark font-weight-bold pt-2 pb-3 float-left ml-4">{item.recipeId.title}</h3>
+                          <h6 class="text-muted float-left ml-3">{item.recipeId.description} </h6>
                           <div class="row">
-                            <div class="col float-right">
-                              <p class="text-dark font-weight-bold">
+                            <div class="col float-left ml-3">
+                              <p class="text-dark font-weight-bold float-left">
                                 <img src={`http://95.111.202.157:8001/${item.recipeId.userId.Image}`} clas="float-left img-fluid" alt="fftgh" style={{ width: "50px", height: "50px" }} />
+
                                 {item.recipeId.userId.firstName}
                               </p>
 
                             </div>
-                            <div class="col float-left">
-                              <p class="text-muted">{item.createdAt}</p>
+                            <div class="col float-lef ">
+                              <p class="text-muted">12 November 2021</p>
                             </div>
                           </div>
                         </div>
+                     
+                     
                       </div>
                     </div>
                   )
@@ -207,7 +216,7 @@ function RecepiListArticle() {
                 <h2 class="float-left pb-3 mr-5">Tasty BLOG</h2>
 
                 {
-                  data.slice(0, 2).map((item, index) => {
+                  data.slice(0, 3).map((item, index) => {
                     // console.log(getCourse, "getCourse")
 
                     return (
@@ -216,7 +225,7 @@ function RecepiListArticle() {
 
                         <div class="col-sm-2">
                           <div class="float-left mr-5">
-                            <img src={`http://95.111.202.157:8001/${item.image}`} clas="float-left img-fluid" alt="fftgh" style={{ width: "220px", height: "150px", borderRadius: "36px" }} />
+                            <img src={`http://95.111.202.157:8001/${item.image}`} clas="float-left img-fluid" alt="fftgh" style={{ width: "180px", height: "130px", borderRadius: "36px" }} />
                           </div>
 
                         </div>

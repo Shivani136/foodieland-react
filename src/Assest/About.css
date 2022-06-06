@@ -6,10 +6,13 @@
   .centeres {
     position: absolute;
     top: 172%;
-    left: 45%;
+    left: 50%;
+    right: 5%;
     transform: translate(-40%, -40%);
   }
   
+  /* margin-left: -50px;
+  margin-right: 107px; */
   .centeredd {
     position: absolute;
     top: 78%;

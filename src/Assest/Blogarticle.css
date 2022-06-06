@@ -29,6 +29,20 @@
     left: 75%;
     transform: translate(-40%, -40%);
   }
- 
+
+  /* .search{
+    position: absolute;
+    width: 10%;
+    height:10px;
+  } */
+
+  @media(max-width:767px) {
+
+   .search{
+
+   
+    }
+  }
+   
   
   

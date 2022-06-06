@@ -6,16 +6,17 @@
 
 .centere {
   position: absolute;
-  margin-top: -270px;
-  margin-left: 30px;
-  margin-right: 20px;
+  margin-top: -260px;
+  margin-left: -50px;
+  margin-right: 107px;
   transform: translate(-40%, -40%);
 }
 
 .centeredd {
   position: absolute;
-  top: 78%;
-  left: 80%;
+
+  margin-top: 70px;
+  left: 10%;
   transform: translate(-40%, -40%);
 }
 

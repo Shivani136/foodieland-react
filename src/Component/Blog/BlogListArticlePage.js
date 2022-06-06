@@ -157,8 +157,10 @@ function BlogListArticlePage() {
         <p class="text-muted pb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,Lorem ipsum dolor sit amet consectetur adipisicing elit.mollitia,  </p>
         <div class="content-container ">
 
-          <form onSubmit={SearchBlog}>
-            <input type="text" class="form-control border rounded-pill h-50 text-centered p-4" placeholder='Search Article News or Blog' required autofocus />
+
+
+          <form onSubmit={SearchBlog} class="search">
+            <input type="text" class="form-control border rounded-pill h-50 text-centered p-4 search" placeholder='Search Article News or Blog' required autofocus />
             <button class="centeredds btn btn-lg btn-dark rounded-lg pt-2 pb-2" >Search</button>
           </form>
         </div>
@@ -252,7 +254,7 @@ function BlogListArticlePage() {
 
 
 
-                <div class="col-md-4 pt-5 float-left">
+                <div class="col-md-4 pt-5 ">
                   <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
                     alt="des" style={{ height: '400px', width: "400px" }} class="rounded-lg" />
                 </div>
@@ -268,8 +270,8 @@ function BlogListArticlePage() {
           <div className='container-fluid pt-5 pb-5'>
 
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMmMUwsaaDSDhZOSOq7H6jG9NHXsX6txVBA&usqp=CAU"
-              class="rounded-lg" alt="description"
-              style={{ width: "1200px", height: "500px", borderRadius: "156px" }} />
+              class="img-fluid" alt="description"
+              style={{ width: "1200px", height: "500px", borderRadius: "46px" }} />
 
             <div className='blog '>
               <h1 className=''>Deliciousness to your inbox</h1>

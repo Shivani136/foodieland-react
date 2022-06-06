@@ -1,3 +1,7 @@
+
+.banner{
+  display: inline-flex;
+}
 .centered {
   position: absolute;
   top: 786%;
@@ -5,14 +9,12 @@
   left: 45%;
   transform: translate(-40%, -40%);
 }
-
 .centeredd {
   position: absolute;
-  top: 52%;
+  top: -23%;
   left: 85%;
   transform: translate(-40%, -40%);
 }
-
 
 @media(max-width:767px) {
 
@@ -31,6 +33,9 @@
   .centered .centeredd {
     margin-top: 5px;
     margin-left: -20rem;
+  }
+  .banner{
+    display: inline-block;
   }
  
 }
