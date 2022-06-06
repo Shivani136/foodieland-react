@@ -155,17 +155,7 @@ function Home() {
                     </nav>
                 
 
-                {/* <div class="row pt-5">
-                  <div class="col-md-6 pt-5 float-left">
-                    <h1 class=" pb-5  text-dark font-weight-bold float-left categoty">Categories </h1>
-                  </div>
-                  <div class="col-md-6 pt-5 pb-3 float-right ">
-                    <a href="/categorylist" type="button" class="btn btn-info btn-lg rounded-lg float-right ">VIEW All Categories</a>
-                  </div>
-                </div> */}
-
-
-              </div>
+           </div>
 
               {/* category section */}
               <div class="">
@@ -179,7 +169,7 @@ function Home() {
                         <div className='sa'>
 
                           <img src={`http://95.111.202.157:8001/${item.image}`} clas="float-left img-fluid" alt="fftgh" style={{ width: "250px", height: "250px", padding: "10px" }} />
-                          <h4 class=" font-weight-bold text-dark pt-2">{item.categoryName} </h4>
+                          <h4 class=" font-weight-bold text-dark pt-2 pb-3">{item.categoryName} </h4>
                         </div>
 
                       </div>
@@ -221,9 +211,9 @@ function Home() {
                   <div className='sa pb-5'>
 
                     <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "430px", height: "300px", borderRadius:"26px" }} />
-                    <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
-                    <div className='float-left'>
-                      <p class="text-muted ml-4">{item.recipeId.cookTime}
+                    <h6 class=" pt-4 pb-2">{item.recipeId.title}</h6>
+                    <div className='float-left pb-4'>
+                      <p class="text-muted ml-4 ">{item.recipeId.cookTime}
                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left mr-2 text-dark" viewBox="0 0 16 16">
                           <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
                         </svg>
@@ -254,14 +244,14 @@ function Home() {
             list.slice(0, 2).map(item => {
               /// console.log("list data", list)
               return (
-                <div className='col-md-4'>
+                <div className='col-md-4 pt-2'>
 
 
                   <div className='sa pb-5'>
 
                     <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "430px", height: "300px", borderRadius:"26px" }} />
-                    <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
-                    <div className='float-left'>
+                    <h6 class=" pt-4 pb-2">{item.recipeId.title}</h6>
+                    <div className='float-left pb-4'>
                       <p class="text-muted ml-4">{item.recipeId.cookTime}
                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left mr-2 text-dark" viewBox="0 0 16 16">
                           <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
@@ -287,7 +277,7 @@ function Home() {
           }
 
           <div class="col float-right">
-            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="des" style={{ width: "380px", height: "380px" }} class=" img-fluid pb-3" />
+            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="des" style={{ width: "400px", height: "400px" }} class=" img-fluid pb-3" />
           </div>
 
         </div>
@@ -300,12 +290,12 @@ function Home() {
             list.slice(0, 3).map(item => {
               // console.log("list data", list)
               return (
-                <div className='col-md-4'>
+                <div className='col-md-4 pt-2'>
 
                   <div className='sa pb-5'>
 
                     <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "430px", height: "300px", borderRadius:"26px" }} />
-                    <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
+                    <h6 class="  pt-4 pb-2">{item.recipeId.title}</h6>
                     <div className='float-left'>
                       <p class="text-muted ml-4">{item.recipeId.cookTime}
                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left mr-2 text-dark" viewBox="0 0 16 16">
@@ -420,19 +410,19 @@ function Home() {
 
 
       <div class="container-fluid pt-3 pb-3">
-      <div class="row">
+      <div class="row ">
           {
             list.slice(0, 4).map(item => {
               // console.log("list data", list)
               return (
-                <div className='col-md-3'>
+                <div className='col-md-3 pb-2'>
 
 
                   <div className='sa pb-5'>
 
                     <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "300px", height: "300px",borderRadius:"36px" }} />
-                    <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
-                    <div className='float-left'>
+                    <h6 class=" pt-4 pb-2">{item.recipeId.title}</h6>
+                    <div className='float-left pb-4'>
                       <p class="text-muted ml-4">{item.recipeId.cookTime}
                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left mr-2 text-dark" viewBox="0 0 16 16">
                           <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
@@ -465,14 +455,14 @@ function Home() {
             list.slice(0, 4).map(item => {
               // console.log("list data", list)
               return (
-                <div className='col-md-3'>
+                <div className='col-md-3 pt-2'>
 
 
                   <div className='sa pb-5'>
 
                     <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "300px", height: "300px", borderRadius:"36px" }} />
-                    <h6 class=" pt-2 pb-3">{item.recipeId.title}</h6>
-                    <div className='float-left'>
+                    <h6 class=" pt-4 pb-2">{item.recipeId.title}</h6>
+                    <div className='float-left '>
                       <p class="text-muted ml-4">{item.recipeId.cookTime}
                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-alarm-fill float-left mr-2 text-dark" viewBox="0 0 16 16">
                           <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
@@ -508,10 +498,7 @@ function Home() {
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMmMUwsaaDSDhZOSOq7H6jG9NHXsX6txVBA&usqp=CAU" class=" img-fluid" alt="description" style={{ width: "1200px", height: "500px", position: "relative" ,borderRadius:"36px"}} />
 
           <div className='centered'>
-            <h1 style={{
-              position: "relative",
-              // bottom: "490px"
-            }}>Deliciousness to your inbox</h1>
+            <h1 style={{ position: "relative"}}>Deliciousness to your inbox</h1>
             <p className='text-muted pt-3 pb-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
               molestiae quas vel sint commodi repudiandae consequuntur voluptatum iusto</p>
 
