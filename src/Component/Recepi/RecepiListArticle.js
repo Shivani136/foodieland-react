@@ -152,14 +152,11 @@ function RecepiListArticle() {
         <div class="content-container ">
 
 
-          <div class="input-group">
-            <input type="search" class="form-control rounded p-3" placeholder='Search Article News or Recepi' aria-label="Search" aria-describedby="search-addon" required autofocus/>
-            <button type="button" class="btn btn-outline-primary">Search</button>
-          </div>
-          {/* <form onSubmit={fetchData}>
-            <input type="text" class="form-control border rounded-pill h-50 p-4" placeholder='Search Article News or Recepi' required autofocus />
-            <button class="centeredds btn btn-lg btn-dark rounded-lg pt-2 pb-2">Search </button>
-          </form> */}
+
+          <form onSubmit={fetchData} >
+            <input type="text" class="form-control h-50 p-4" style={{ borderRadius: "16px" }} placeholder='Search Article News or Recepi' required autofocus />
+            <button class="searchbutton btn btn-lg btn-dark " style={{ borderRadius: "16px" }}>Search </button>
+          </form>
         </div>
 
 
@@ -182,8 +179,8 @@ function RecepiListArticle() {
                           </div>
 
                         </div>
-                        
-                        <div class="col-sm-7 float-left" style={{marginLeft:"200px"}}>
+
+                        <div class="col-sm-7 float-left" style={{ marginLeft: "200px" }}>
                           <h3 class="text-dark font-weight-bold pt-2 pb-3 float-left ml-4">{item.recipeId.title}</h3>
                           <h6 class="text-muted float-left ml-3">{item.recipeId.description} </h6>
                           <div class="row">
@@ -200,8 +197,8 @@ function RecepiListArticle() {
                             </div>
                           </div>
                         </div>
-                     
-                     
+
+
                       </div>
                     </div>
                   )
@@ -270,17 +267,17 @@ function RecepiListArticle() {
               class="rounded-lg img-fluid" alt="description"
               style={{ width: "1200px", height: "500px" }} />
 
-            <div className='delicious'>
+            <div className='centere '>
               <h1 className=''>Deliciousness to your inbox</h1>
-              <p className='text-muted pt-3 pb-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+              <p className='text-muted pt-3 pb-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
                 molestiae quas vel sint commodi repudiandae consequuntur voluptatum iusto</p>
 
-              <form onSubmit={subscrib}>
+              <form onSubmit={subscrib} class="search">
 
-                <input type="email" class="form-control form-rounded rounded-pill p-5" placeholder='your email address'
+                <input type="email" class="form-control searchBar" style={{ borderRadius: "20px" }} placeholder='your email address'
                   value={email} onChange={(e) => { setEmail(e.target.value) }} required autofocus />
+                <button class=" centeredd btn-dark  pb-2">subscribe</button>
 
-                <button class="centereddss btn btn-lg btn-dark rounded-lg pt-2 pb-2">Subscribe</button>
               </form>
             </div>
           </div>

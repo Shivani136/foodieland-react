@@ -199,11 +199,11 @@ function About() {
               <p className='text-muted pt-3 pb-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
                 molestiae quas vel sint commodi repudiandae consequuntur voluptatum iusto</p>
 
-              <form onSubmit={subscrib}>
+              <form onSubmit={subscrib} class="search">
 
-                <input type="email" class="form-control form-rounded rounded-pill p-5" placeholder='your email address'
+                <input type="email" class="form-control searchBar" style={{ borderRadius: "20px" }} placeholder='your email address'
                   value={email} onChange={(e) => { setEmail(e.target.value) }} required autofocus />
-                <button class=" centeredd  btn btn-lg btn-dark rounded-lg ">subscribe</button>
+                <button class=" centeredd btn-dark  pb-2">subscribe</button>
 
               </form>
             </div>

@@ -22,5 +22,52 @@
     height: auto;
   }
   
+  .centere {
+    position: absolute;
+    margin-top: 1220px;
+    margin-left: 50px;
+    margin-right: 50px;
+    transform: translate(-40%, -40%);
+  }
+  
+  .centeredd {
+    position: absolute;
+    top: 78%;
+    left: 80%;
+    transform: translate(-40%, -40%);
+  }
+  .search{
+    position: relative;
+    margin-left: 73px;
+    margin-right: 70px;
+   
+  }
+   .search .searchBar{
+    height: 51%;
+    padding: 33px;
+    border-radius: 20px;
+   }
+  
+  @media(max-width:767px) {
+    .centere {
+      position: relative;
+      margin-left: 30px;
+      margin-top: 30px;
+    }
+  
+    .centeredd {
+      position: relative;
+      top: -58px;
+      left: 50px;
+      transform: translate(-40%, -40%);
+    }
+  
+    .centere .centeredd {
+      margin-left: -7%;
+      margin-top: 20px;
+      height: 41px;
+  }
+    }
+  
   
   

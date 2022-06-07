@@ -33,7 +33,17 @@
   left: 80%;
   transform: translate(-40%, -40%);
 }
-
+.search{
+  position: relative;
+  margin-left: 73px;
+  margin-right: 70px;
+ 
+}
+ .search .searchBar{
+  height: 51%;
+  padding: 33px;
+  border-radius: 20px;
+ }
 
 @media(max-width:767px) {
   .centere {
@@ -50,9 +60,10 @@
   }
 
   .centere .centeredd {
-    margin-right: 62px;
-    margin-left: 28px;
+    margin-left: -7%;
+    margin-top: 20px;
+    height: 41px;
+}
   }
 
 
-}

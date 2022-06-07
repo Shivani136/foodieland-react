@@ -14,34 +14,74 @@
 
 .centeredd {
   position: absolute;
+  width: 120px;
 
-  margin-top: 70px;
-  left: 10%;
+  border-radius: 20px;
+  height: 59px;
+  margin-top: 60px;
+  margin-left: -15px;
   transform: translate(-40%, -40%);
 }
+.centered{
+  height: 59px;
+  margin-top: 60px;
+}
+
+.search{
+  position: relative;
+  margin-left: 73px;
+  margin-right: 70px;
+ 
+}
+ .search .searchBar{
+  height: 51%;
+  padding: 33px;
+  border-radius: 20px;
+ }
 
 
 @media(max-width:767px) {
   .centere {
     position: relative;
-    margin-left: 30px;
-    margin-top: 30px;
+    /* margin-left: 30px; */
+    /* margin-top: 30px; */
+    top: 83%;
+    left: 58%;
   }
-
+  .search{
+    position: relative;
+    margin-left: 52px;
+    /* padding: -43px; */
+    margin-right: 62px;
+    height: 115px;
+   
+  }
+  
   .centeredd {
     position: relative;
+    width: 100px;
+    height: 100px;
     top: -58px;
     left: 50px;
+    border-radius: 15px;
     transform: translate(-40%, -40%);
-  }
 
+  }
+  
   .centere .centeredd {
-    margin-right: 62px;
-    margin-left: 28px;
+    left: 46%;
+    height: 41px;
+
+
+    /* margin-right: 62px;
+    margin-left: 28px; */
   }
 
 
 }
+
+
+
 
 /* /* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
 /* @media screen and (min-width: 601px) {

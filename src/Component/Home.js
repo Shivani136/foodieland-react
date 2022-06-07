@@ -139,23 +139,23 @@ function Home() {
                 <Slider />
 
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                <h1 class=" pb-5 pt-5  text-dark font-weight-bold float-left categoty">Categories </h1>
+                  <div class="container-fluid">
+                    <h1 class=" pb-5 pt-5  text-dark font-weight-bold float-left categoty">Categories </h1>
                     <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
-                        data-bs-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
+                      data-bs-target="#navbarCollapse">
+                      <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
 
-                        <div class="navbar-nav ms-auto">
-                        <a href="/categorylist" type="button" class="btn btn-info btn-lg rounded-lg float-right text-dark font-weight-bold " style={{borderRadius:"56px",backgroundColor:"lightblue"}}>VIEW All Categories</a>
-                        </div>
+                      <div class="navbar-nav ms-auto">
+                        <a href="/categorylist" type="button" class="btn btn-info btn-lg rounded-lg float-right text-dark font-weight-bold " style={{ borderRadius: "56px", backgroundColor: "lightblue" }}>VIEW All Categories</a>
+                      </div>
                     </div>
-                    </div>
-                    </nav>
-                
+                  </div>
+                </nav>
 
-           </div>
+
+              </div>
 
               {/* category section */}
               <div class="">
@@ -210,7 +210,7 @@ function Home() {
 
                   <div className='sa pb-5'>
 
-                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "430px", height: "300px", borderRadius:"26px" }} />
+                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "430px", height: "300px", borderRadius: "26px" }} />
                     <h6 class=" pt-4 pb-2">{item.recipeId.title}</h6>
                     <div className='float-left pb-4'>
                       <p class="text-muted ml-4 ">{item.recipeId.cookTime}
@@ -249,7 +249,7 @@ function Home() {
 
                   <div className='sa pb-5'>
 
-                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "430px", height: "300px", borderRadius:"26px" }} />
+                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "430px", height: "300px", borderRadius: "26px" }} />
                     <h6 class=" pt-4 pb-2">{item.recipeId.title}</h6>
                     <div className='float-left pb-4'>
                       <p class="text-muted ml-4">{item.recipeId.cookTime}
@@ -294,7 +294,7 @@ function Home() {
 
                   <div className='sa pb-5'>
 
-                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "430px", height: "300px", borderRadius:"26px" }} />
+                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "430px", height: "300px", borderRadius: "26px" }} />
                     <h6 class="  pt-4 pb-2">{item.recipeId.title}</h6>
                     <div className='float-left'>
                       <p class="text-muted ml-4">{item.recipeId.cookTime}
@@ -327,7 +327,7 @@ function Home() {
 
       {/* static image */}
       <div class="container-fluid pt-5 pb-5">
-        <img src="https://cdn.pixabay.com/photo/2017/12/10/14/47/pizza-3010062__340.jpg" class="img-fluid" alt="dec" style={{ width: "1300px", height: "600px",borderRadius:"36px" }} />
+        <img src="https://cdn.pixabay.com/photo/2017/12/10/14/47/pizza-3010062__340.jpg" class="img-fluid" alt="dec" style={{ width: "1300px", height: "600px", borderRadius: "36px" }} />
       </div>
       {/* instagram section */}
       <div class="container pt-5 pb-5">
@@ -410,7 +410,7 @@ function Home() {
 
 
       <div class="container-fluid pt-3 pb-3">
-      <div class="row ">
+        <div class="row ">
           {
             list.slice(0, 4).map(item => {
               // console.log("list data", list)
@@ -420,7 +420,7 @@ function Home() {
 
                   <div className='sa pb-5'>
 
-                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "300px", height: "300px",borderRadius:"36px" }} />
+                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "300px", height: "300px", borderRadius: "36px" }} />
                     <h6 class=" pt-4 pb-2">{item.recipeId.title}</h6>
                     <div className='float-left pb-4'>
                       <p class="text-muted ml-4">{item.recipeId.cookTime}
@@ -460,7 +460,7 @@ function Home() {
 
                   <div className='sa pb-5'>
 
-                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "300px", height: "300px", borderRadius:"36px" }} />
+                    <img src={`http://95.111.202.157:8001/${item.recipeId.image}`} class="img-fluid" alt="fftgh" style={{ width: "300px", height: "300px", borderRadius: "36px" }} />
                     <h6 class=" pt-4 pb-2">{item.recipeId.title}</h6>
                     <div className='float-left '>
                       <p class="text-muted ml-4">{item.recipeId.cookTime}
@@ -495,19 +495,19 @@ function Home() {
       <div className='pt-5'>
         <div className='container-fluid pt-5 pb-5'>
 
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMmMUwsaaDSDhZOSOq7H6jG9NHXsX6txVBA&usqp=CAU" class=" img-fluid" alt="description" style={{ width: "1200px", height: "500px", position: "relative" ,borderRadius:"36px"}} />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMmMUwsaaDSDhZOSOq7H6jG9NHXsX6txVBA&usqp=CAU" class=" img-fluid" alt="description" style={{ width: "1200px", height: "500px", position: "relative", borderRadius: "36px" }} />
 
-          <div className='centered'>
-            <h1 style={{ position: "relative"}}>Deliciousness to your inbox</h1>
-            <p className='text-muted pt-3 pb-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+          <div className='centere '>
+            <h1 className=''>Deliciousness to your inbox</h1>
+            <p className='text-muted pt-3 pb-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
               molestiae quas vel sint commodi repudiandae consequuntur voluptatum iusto</p>
 
+            <form onSubmit={subscrib} class="search">
 
-            <form onSubmit={subscrib} style={{ position: "relative" }}>
+              <input type="email" class="form-control searchBar" style={{ borderRadius: "20px" }} placeholder='your email address'
+                value={email} onChange={(e) => { setEmail(e.target.value) }} required autofocus />
+              <button class=" centeredd btn-dark  pb-2">subscribe</button>
 
-              <input type="email" class="form-control form-rounded rounded-pill p-5" placeholder='your email address' value={email} onChange={(e) => { setEmail(e.target.value) }} required autofocus />
-
-              <button class="centeredd btn btn-lg btn-dark rounded-lg pt-2 pb-2">subscribe</button>
             </form>
           </div>
         </div>

@@ -157,22 +157,23 @@ function SiteManagement() {
                                     </form>
 
                                     {/* subscription text */}
-                                    <div className=' pt-3 pb-4'>
+                                    <div className='container-fluid pt-3 pb-4'>
 
                                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMmMUwsaaDSDhZOSOq7H6jG9NHXsX6txVBA&usqp=CAU"
                                             class="rounded-lg img-fluid" alt="description"
                                             style={{ width: "1000px", height: "500px" }} />
 
-                                        <div className='centere'>
+                                        <div className='centeres '>
                                             <h1 className=''>Deliciousness to your inbox</h1>
                                             <p className='text-muted pt-3 pb-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
                                                 molestiae quas vel sint commodi repudiandae consequuntur voluptatum iusto</p>
-                                            <form onSubmit={subscrib}>
 
-                                                <input type="email" class="form-control form-rounded rounded-pill p-5" placeholder='your email address'
+                                            <form onSubmit={subscrib} class="search">
+
+                                                <input type="email" class="form-control searchBar" style={{ borderRadius: "20px" }} placeholder='your email address'
                                                     value={email} onChange={(e) => { setEmail(e.target.value) }} required autofocus />
+                                                <button class=" centeredd btn-dark  pb-2">subscribe</button>
 
-                                                <button class="centeredd btn btn-lg btn-dark rounded-lg pt-2 pb-2">Subscribe</button>
                                             </form>
                                         </div>
                                     </div>
